@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   ZombiHorde.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/05/26 16:16:15 by seozkan           #+#    #+#             */
+/*   Updated: 2023/05/28 15:47:49 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-PhoneBook::Phonebook(void)
+Zombie	*zombieHorde(int N, std::string name)
 {
-	this->_max = 0;
-	this->ful = false;
-	return ;
+	Zombie *zs = new Zombie[N];
+
+	for (int i = 0; i < N; i++)
+		zs[i].setName(name);
+	return (zs);
 }
-
-PhoneBook::~Phonebook(void)
-{
-	return ;
-}
-
-void addContact();
-
-void searchContact();	

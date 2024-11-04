@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/05/28 18:03:29 by seozkan           #+#    #+#             */
+/*   Updated: 2023/05/28 19:39:13 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "HumanA.hpp"
 
-PhoneBook::Phonebook(void)
+HumanA::HumanA(std::string name, Weapon &weapon) : _name(name), _weapon(weapon)
 {
-	this->_max = 0;
-	this->ful = false;
 	return ;
-}
+};
 
-PhoneBook::~Phonebook(void)
+HumanA::~HumanA()
 {
 	return ;
 }
 
-void addContact();
-
-void searchContact();	
+void HumanA::attack(void)
+{
+	std::cout << this->_name << " attacks with his " << this->_weapon.getType()
+		<< std::endl;
+}

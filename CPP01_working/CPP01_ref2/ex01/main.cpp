@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/12/09 18:06:08 by imontero          #+#    #+#             */
+/*   Updated: 2023/12/09 19:00:56 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-PhoneBook::Phonebook(void)
+int	main(void)
 {
-	this->_max = 0;
-	this->ful = false;
-	return ;
+	int N = 4;
+	
+	Zombie	*horde = zombieHorde(N, "Pepe");
+
+	for (int i = 0; i < N; i++)
+	{
+		horde[i].announce();
+	}
+
+	delete[] horde;
 }
-
-PhoneBook::~Phonebook(void)
-{
-	return ;
-}
-
-void addContact();
-
-void searchContact();	

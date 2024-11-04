@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   newZombie.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/12/09 08:47:54 by imontero          #+#    #+#             */
+/*   Updated: 2023/12/09 17:59:45 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
-PhoneBook::Phonebook(void)
-{
-	this->_max = 0;
-	this->ful = false;
-	return ;
+Zombie	*newZombie(std::string name)
+{	
+	Zombie	*inst = new Zombie(name);
+	
+	return (inst);
 }
-
-PhoneBook::~Phonebook(void)
-{
-	return ;
-}
-
-void addContact();
-
-void searchContact();	

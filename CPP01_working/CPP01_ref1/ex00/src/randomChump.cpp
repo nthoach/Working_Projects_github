@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seozkan <seozkan@student.42kocaeli.com.tr> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/05/24 13:46:38 by seozkan           #+#    #+#             */
+/*   Updated: 2023/05/24 13:50:55 by seozkan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+# include "Zombie.hpp"
 
-PhoneBook::Phonebook(void)
+void randomChump( std::string name )
 {
-	this->_max = 0;
-	this->ful = false;
-	return ;
+    Zombie zomzom(name);
+    zomzom.announce();
 }
-
-PhoneBook::~Phonebook(void)
-{
-	return ;
-}
-
-void addContact();
-
-void searchContact();	

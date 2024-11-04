@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: imontero <imontero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 16:48:22 by honguyen         ###   ########.fr       */
+/*   Created: 2023/12/09 23:59:13 by imontero          #+#    #+#             */
+/*   Updated: 2023/12/10 00:08:27 by imontero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Weapon.hpp"
 
-PhoneBook::Phonebook(void)
+Weapon::Weapon(std::string weapon): _type(weapon)
 {
-	this->_max = 0;
-	this->ful = false;
-	return ;
 }
 
-PhoneBook::~Phonebook(void)
+Weapon::~Weapon(void)
 {
-	return ;
 }
 
-void addContact();
+const std::string&	Weapon::getType(void)
+{
+	return (this->_type);
+}
 
-void searchContact();	
+void	Weapon::setType(std::string str)
+{
+	this->_type = str;
+}
