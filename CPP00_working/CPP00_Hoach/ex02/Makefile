@@ -6,15 +6,15 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 09:10:57 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/05 18:14:26 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/05 18:46:17 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=	phonebook
+NAME		=	tests
 
-SRCS		=	main.cpp PhoneBook.cpp Contact.cpp
-HEADERS		=   Contact.hpp PhoneBook.hpp
+SRCS		=	tests.cpp Account.cpp
+HEADERS		=   Account.hpp
 
 CC			=	c++
 CFLAGS		=	-Wall -Wextra -Werror -std=c++98

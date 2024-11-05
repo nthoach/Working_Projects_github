@@ -6,14 +6,13 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/05 17:34:46 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:15:01 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
 Contact::Contact(): _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {}
-
 
 Contact::Contact(const std::string& first, const std::string& last, const std::string& nick, const std::string& phone, 
 const std::string& secret): _firstName(first), _lastName(last), _nickName(nick), _phoneNumber(phone), _darkestSecret(secret) {}

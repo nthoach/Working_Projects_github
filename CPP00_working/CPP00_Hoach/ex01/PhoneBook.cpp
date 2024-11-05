@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/05 18:03:02 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:18:22 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,6 @@ void PhoneBook::searchContact()
 	std::cout << "|     Index|First Name| Last Name|  Nickname|" << std::endl;
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
     
-	//std::cout << "|" << std::setw(10) << "\033[31mIndex" << "|";
-	//std::cout << "|" << std::setw(10) << "Firstname" << "|";
-	//std::cout << "|" << std::setw(10) << "Lastname" << "|";
-	//std::cout << "|" << std::setw(10) << "Nickname" << "|\033[0m" << std::endl;
 	int index = -1;
 	while (++index < _contactCount)
 		_contacts[index].displayContact(_contacts[index], index);
