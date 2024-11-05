@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:42 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 19:26:32 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:04:54 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ class Contact
 		std::string _nickName;
 		std::string _phoneNumber;
 		std::string _darkestSecret;
-		Contact();
 	public:
+		Contact();
         Contact(const std::string& first, const std::string& last, 
 				const std::string& nick, const std::string& phone, const std::string& secret); 
-		~Contact();
 
-		void	writeContact(Contact contact, int i);
 		void	displayContact(Contact contact, int i);
 		void	printContact(Contact contact, int i);
 };

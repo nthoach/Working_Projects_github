@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:42 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 17:58:09 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:59:07 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ class PhoneBook
 		int		_contactCount;
 	
 	public:
-		Phonebook(void);
-		~Phonebook(void);
+		PhoneBook(void);
+		~PhoneBook(void);
 
 		void	addContact();
 		void	searchContact();	

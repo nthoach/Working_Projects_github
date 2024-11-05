@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/04 19:29:23 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 17:34:46 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,12 @@
 Contact::Contact(): _firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {}
 
 
-Contact::Contact(const std::string& first, const std::string& last, const std::string& nick, const std::string& phone, const std::string& secret):
-    _firstName(first), _lastName(last), _nickName(nick), _phoneNumber(phone), _darkestSecret(secret) {}
-
-Contact::~Contact();
-{
-	return ;
-}
-
-void Contact::writeContact(Contact contact, int i)
-{
-
-
-}
+Contact::Contact(const std::string& first, const std::string& last, const std::string& nick, const std::string& phone, 
+const std::string& secret): _firstName(first), _lastName(last), _nickName(nick), _phoneNumber(phone), _darkestSecret(secret) {}
 
 void Contact::displayContact(Contact contact, int i)
 {
-	std::cout << "|" << std::setw(10) << i << "|";
+	std::cout << "|" << std::setw(10) << i + 1 << "|";
 	if (contact._firstName.size() > 10)
 		std::cout << std::string(contact._firstName.begin(), contact._firstName.begin() + 9) << '.';
 	else

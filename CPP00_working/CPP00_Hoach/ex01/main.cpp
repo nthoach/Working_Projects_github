@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 08:47:18 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/03 10:18:14 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/05 18:04:42 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int main(void)
 
     while (true) 
     {
-        std::cout << "\033[36mPlease enter a command (ADD, SEARCH, EXIT): \033[0m";
+        std::cout << "\033[36mSelect a command (ADD, SEARCH, EXIT): \033[0m";
         if (!std::getline(std::cin, command))
         {
             if (std::cin.eof())
@@ -29,14 +29,14 @@ int main(void)
             break;
         }
         std::transform(command.begin(), command.end(), command.begin(), ::toupper);        
-        if (command== "EXIT")
+        if (command == "EXIT" || command == "E")
             break;
-        else  if (command == "ADD")
+        else  if (command == "ADD" || command == "A")
             phonebook.addContact();
-        else if (command == "SEARCH")
+        else if (command == "SEARCH" || command == "S")
             phonebook.searchContact();
         else
-            std::cout << "\033[31mWrong Choice!\033[0m" << std::endl;
+            std::cout << "\033[31mINVALID COMMAND!\033[0m" << std::endl;
     }
     return 0;
 }
