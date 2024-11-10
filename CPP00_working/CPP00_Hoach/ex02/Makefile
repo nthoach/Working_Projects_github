@@ -6,12 +6,12 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 09:10:57 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/05 18:46:17 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/10 15:53:55 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=	tests
+NAME		=	ex02
 
 SRCS		=	tests.cpp Account.cpp
 HEADERS		=   Account.hpp
@@ -24,7 +24,7 @@ RM			=	rm -f
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o: %.cpp $(HEADERS)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
 

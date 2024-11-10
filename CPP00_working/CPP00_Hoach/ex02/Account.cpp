@@ -6,14 +6,13 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:52:36 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/05 18:59:58 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/08 19:15:44 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
-#include <ctime>
 
 // Static member initializations
 int Account::_nbAccounts = 0;
@@ -21,21 +20,9 @@ int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
-// Helper function to display timestamp
-void Account::_displayTimestamp() {
-    std::time_t now = std::time(nullptr);
-    std::tm *ltm = std::localtime(&now);
-
-    std::cout << "[" << 1900 + ltm->tm_year
-              << std::setw(2) << std::setfill('0') << 1 + ltm->tm_mon
-              << std::setw(2) << std::setfill('0') << ltm->tm_mday << "_"
-              << std::setw(2) << std::setfill('0') << ltm->tm_hour
-              << std::setw(2) << std::setfill('0') << ltm->tm_min
-              << std::setw(2) << std::setfill('0') << ltm->tm_sec << "] ";
-}
-
 // Constructor with initial deposit
-Account::Account(int initial_deposit) : _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0) {
+Account::Account(int initial_deposit) : _amount(initial_deposit), _nbDeposits(0), _nbWithdrawals(0)
+{
     _accountIndex = _nbAccounts++;
     _totalAmount += initial_deposit;
 
@@ -43,39 +30,59 @@ Account::Account(int initial_deposit) : _amount(initial_deposit), _nbDeposits(0)
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";created" << std::endl;
 }
 
+Account::Account(void)
+{
+    return ;
+}
+
 // Destructor
-Account::~Account() {
+Account::~Account(void)
+{
+    _nbAccounts--;
+    _totalAmount -= _amount;
     _displayTimestamp();
     std::cout << "index:" << _accountIndex << ";amount:" << _amount << ";closed" << std::endl;
 }
 
+// Helper function to display timestamp
+void Account::_displayTimestamp()
+{
+    std::time_t now = std::time(NULL);
+    std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
+}
+
 // Static method to get number of accounts
-int Account::getNbAccounts() {
+int Account::getNbAccounts() 
+{
     return _nbAccounts;
 }
 
 // Static method to get total amount
-int Account::getTotalAmount() {
+int Account::getTotalAmount() 
+{
     return _totalAmount;
 }
 
 // Static method to get total deposits
-int Account::getNbDeposits() {
+int Account::getNbDeposits() 
+{
     return _totalNbDeposits;
 }
 
 // Static method to get total withdrawals
-int Account::getNbWithdrawals() {
+int Account::getNbWithdrawals() 
+{
     return _totalNbWithdrawals;
 }
 
-// Static method to display account information
-void Account::displayAccountsInfos() {
+// Display infos
+void Account::displayAccountsInfos() 
+{
     _displayTimestamp();
-    std::cout << "accounts:" << _nbAccounts
-              << ";total:" << _totalAmount
-              << ";deposits:" << _totalNbDeposits
-              << ";withdrawals:" << _totalNbWithdrawals
+    std::cout << "accounts:" << getNbAccounts()
+              << ";total:" << getTotalAmount()
+              << ";deposits:" << getNbDeposits()
+              << ";withdrawals:" << getNbWithdrawals()
               << std::endl;
 }
 
@@ -97,7 +104,8 @@ void Account::makeDeposit(int deposit) {
 }
 
 // Method to make a withdrawal
-bool Account::makeWithdrawal(int withdrawal) {
+bool Account::makeWithdrawal(int withdrawal)
+{
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
               << ";p_amount:" << _amount;
@@ -121,12 +129,14 @@ bool Account::makeWithdrawal(int withdrawal) {
 }
 
 // Method to check current amount
-int Account::checkAmount() const {
+int Account::checkAmount() const
+{
     return _amount;
 }
 
 // Method to display account status
-void Account::displayStatus() const {
+void Account::displayStatus() const 
+{
     _displayTimestamp();
     std::cout << "index:" << _accountIndex
               << ";amount:" << _amount

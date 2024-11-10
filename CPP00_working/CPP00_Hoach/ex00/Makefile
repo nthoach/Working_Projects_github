@@ -6,12 +6,12 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 09:10:57 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/03 09:36:11 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/10 15:53:29 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-NAME		=	megaphone
+NAME		=	ex00
 
 SRCS		=	megaphone.cpp
 
@@ -23,7 +23,7 @@ RM			=	rm -f
 OBJS		=	$(SRCS:.cpp=.o)
 
 %.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all : $(NAME)
 
