@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 14:36:53 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:47:23 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Zombie
 		Zombie( std::string name );
 		Zombie( void );
 		~Zombie( );
-		void announce( void );
-		void setName(std::string name);
+		void announce( void ) const;
+		void setName( std::string name );
 };
 
 Zombie* zombieHorde( int N, std::string name );

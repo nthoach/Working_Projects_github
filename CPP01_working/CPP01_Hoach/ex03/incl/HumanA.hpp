@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:50:53 by honguyen         ###   ########.fr       */
+/*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
+/*   Updated: 2024/11/10 19:52:21 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#pragma once
 
-Zombie::Zombie( std::string name ): _name(name) {}
+#ifndef HUMANA_HPP
+# define HUMAN_HPP
 
-Zombie::Zombie( void ) {}
+# include "Weapon.hpp"
 
-Zombie::~Zombie(  )
+class HumanA
 {
-	std::cout << _name << ": is dead (RIP)." << std::endl;
-}
+	private:
+		std::string _name;
+		Weapon &_weapon;
+		HumanA( void );
 
-void Zombie::announce( void ) const
-{
-	std::cout << _name << ": BBraiiiiiiinnnzzzZ..." << std::endl;
-}
+	public:
+		HumanA(std::string _name, Weapon &weapon);
+		HumanA( Weapon &weapon);
+		~HumanA( );
+		void attack( void );
+};
 
-void Zombie::setName( std::string name )
-{
-	_name = name;
-}
+#endif

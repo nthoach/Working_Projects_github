@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:50:53 by honguyen         ###   ########.fr       */
+/*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
+/*   Updated: 2024/11/10 16:56:40 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include "../incl/HumanB.hpp"
 
-Zombie::Zombie( std::string name ): _name(name) {}
+HumanB::HumanB(std::string name): _name(name), _weapon(NULL) {}
 
-Zombie::Zombie( void ) {}
-
-Zombie::~Zombie(  )
+void HumanB::attack(void)
 {
-	std::cout << _name << ": is dead (RIP)." << std::endl;
+ if (_weapon == NULL)
+ 	std::cout << _name << " has no weapon" << std::endl;
+ else
+ 	std::cout << _name << "attacks with his " << _weapon->getType() << std::endl;
 }
 
-void Zombie::announce( void ) const
+void HumanB::setWeapon(Weapon& weapon)
 {
-	std::cout << _name << ": BBraiiiiiiinnnzzzZ..." << std::endl;
+	_weapon = &weapon;
 }
 
-void Zombie::setName( std::string name )
-{
-	_name = name;
-}
+

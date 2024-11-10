@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:50:53 by honguyen         ###   ########.fr       */
+/*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
+/*   Updated: 2024/11/10 19:49:49 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#pragma once
 
-Zombie::Zombie( std::string name ): _name(name) {}
+#ifndef HUMANB_HPP
+# define HUMAB_HPP
 
-Zombie::Zombie( void ) {}
+# include "Weapon.hpp"
 
-Zombie::~Zombie(  )
+class HumanB
 {
-	std::cout << _name << ": is dead (RIP)." << std::endl;
-}
+	private:
+		std::string	_name;
+		Weapon* _weapon;
+		HumanB( Weapon weapon );
+	
+	public:
+		HumanB( std::string name );
+		~HumanB( void );
+		void attack( void );
+		void setWeapon(Weapon &weapon);
+};
 
-void Zombie::announce( void ) const
-{
-	std::cout << _name << ": BBraiiiiiiinnnzzzZ..." << std::endl;
-}
-
-void Zombie::setName( std::string name )
-{
-	_name = name;
-}
+#endif

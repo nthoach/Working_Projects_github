@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/10 14:36:28 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/10 16:31:38 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,19 +25,13 @@ INCS		= $(shell find $(INCS_DIR) -type f -name "*.hpp")
 
 MAIN_INC	= -I$(INCS_DIR)
 
-CYAN 		= \033[1;36m
-END			= \033[0m
-CLEAR    	= \033[2K
-
 .cpp.o:
-	@printf "$(CLEAR)$(CYAN)Compiling: $<$(END)\r"
-	@${CC} ${CFLAGS} ${MAIN_INC} -c $< -o ${<:.cpp=.o}
+	${CC} ${CFLAGS} ${MAIN_INC} -c $< -o ${<:.cpp=.o}
 
 all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS)
-			@$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
-			@echo "\n${NAME} compiled"
+	$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
 
 clean		:
 			@$(RM) $(OBJS)

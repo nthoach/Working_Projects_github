@@ -6,29 +6,24 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:56:40 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:08:14 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include <iostream>
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	Zombie *zs;
+	std::string str = "HI THIS IS BRAIN";
+	std::string* stringPTR = &str;
+	std::string& stringREF = str;
 
-	if (ac != 3 || atoi(av[1]) <= 0)
-	{
-		std::cout << "Number and Name of Zombie." << std::endl;
-		return (1);
-	}
-	else
-		zs = zombieHorde(atoi(av[1]), av[2]);
-	std::cout << "Zombie horde created." << std::endl;
-	for (int i = 0; i < atoi(av[1]); i++)
-	{
-		zs[i].announce();
-	}
-	delete[] zs;
-	std::cout << "Zombie horde dead." << std::endl;
+	std::cout << "Address:" << &str << std::endl;
+	std::cout << "Address:" << stringPTR << std::endl;
+	std::cout << "Address:" << &stringREF << std::endl;
+	
+	std::cout << "Value:" << str << std::endl;
+	std::cout << "Value:" << *stringPTR << std::endl;
+	std::cout << "Value:" << stringREF << std::endl;
 	return (0);
 }

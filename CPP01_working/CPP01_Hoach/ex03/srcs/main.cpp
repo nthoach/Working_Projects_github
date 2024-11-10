@@ -6,29 +6,29 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:56:40 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/10 19:30:43 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include "../incl/Weapon.hpp"
+#include "../incl/HumanA.hpp"
+#include "../incl/HumanB.hpp"
 
-int	main(int ac, char **av)
+int	main(void)
 {
-	Zombie *zs;
-
-	if (ac != 3 || atoi(av[1]) <= 0)
 	{
-		std::cout << "Number and Name of Zombie." << std::endl;
-		return (1);
-	}
-	else
-		zs = zombieHorde(atoi(av[1]), av[2]);
-	std::cout << "Zombie horde created." << std::endl;
-	for (int i = 0; i < atoi(av[1]); i++)
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club"); 
+		bob.attack();
+	} 
 	{
-		zs[i].announce();
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
 	}
-	delete[] zs;
-	std::cout << "Zombie horde dead." << std::endl;
 	return (0);
 }

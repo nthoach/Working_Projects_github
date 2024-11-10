@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 14:35:15 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:51:40 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 Zombie* zombieHorde( int N, std::string name )
 {
-	Zombie *horder = new Zombie[N];
-	for (int i = 0; i < N, i++)
-		(horder + i)(name + static_cast<char>(i + 48));
+	Zombie* horder = new Zombie[N];
+	for (int i = 0; i < N; i++)
+		horder[i].setName(name + static_cast<char>(i + '0'));
 	return (horder);
 }
