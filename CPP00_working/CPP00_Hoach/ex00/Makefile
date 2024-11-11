@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/03 09:10:57 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/10 15:53:29 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/11 15:35:26 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,5 +38,9 @@ clean		:
 	$(RM) $(OBJS)
 
 re			:	fclean all
+
+run			: re clean
+	./$(NAME)
+	./$(NAME) "This is OK " " ..."
 
 .PHONY		:	all clean fclean re

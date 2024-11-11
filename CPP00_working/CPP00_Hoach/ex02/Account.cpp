@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 18:52:36 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/08 19:15:44 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:18:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 
 // Static member initializations
 int Account::_nbAccounts = 0;
@@ -48,7 +49,10 @@ Account::~Account(void)
 void Account::_displayTimestamp()
 {
     std::time_t now = std::time(NULL);
-    std::cout << std::put_time(localtime(&now), "[%Y%m%d_%H%M%S] ");
+    struct std::tm* timeinfo = std::localtime(&now);
+    char buffer[20];
+    std::strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S] ", timeinfo);
+    std::cout << buffer;
 }
 
 // Static method to get number of accounts

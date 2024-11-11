@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:02:35 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 16:15:41 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:05:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 PhoneBook::PhoneBook(void)
 {
 	_contactCount = 0;
+	_index = 0;
 }
 
 PhoneBook::~PhoneBook() {}
@@ -51,10 +52,10 @@ void read_fields(std::string* first, std::string* last,
 
 void PhoneBook::addContact()
 {
-	if (_contactCount == 8)
-		std::cout << "\033[31mPhoneBook is full, the newest contact will replace the oldest one.\033[0m" << std::endl;
-	int index = _contactCount % 8;
-	std::cout << "Contact #" << index + 1 << std::endl;
+	if (_contactCount >= 8)
+		std::cout << "\033[31mPhoneBook is full, the new contact will replace the old #" << _index + 1  << "...\033[0m" << std::endl;
+	
+	std::cout << "Contact #" << _index + 1 << std::endl;
 
 	std::string first, last, nick, phone, secret;
 	read_fields(&first, &last, &nick, &phone, &secret);
@@ -66,10 +67,10 @@ void PhoneBook::addContact()
 		return;
 	}
 	Contact	newContact(first, last, nick, phone, secret);
-	_contacts[index] = newContact;
+	_contacts[_index] = newContact;
 	_contactCount++;
+	_index = _contactCount % 8;	
 }
-
 
 void PhoneBook::print_table(void)
 {
@@ -78,7 +79,10 @@ void PhoneBook::print_table(void)
 	std::cout << "|----------|----------|----------|----------|" << std::endl;
 	
 	int index = -1;
-	while (++index < this->_contactCount)
+	int max = _index;
+	if (_contactCount >= 8)
+		max = 8;
+	while (++index < max)
 		this->_contacts[index].displayContact(_contacts[index], index);
 	std::cout << "|-------------------------------------------|" << std::endl;
 }
@@ -86,11 +90,15 @@ void PhoneBook::print_table(void)
 void PhoneBook::print_contact(void)
 {
 	std::string	input;
-		while (true)
+	int max = _index;
+	
+	if (_contactCount >= 8)
+		max = 8;
+	while (true)
 	{
 		std::cout << "\033[36mEnter Contact Index to Search:\033[0m" << std::endl;
 		while (!(std::getline(std::cin, input)) || input.length() > 1 || input.compare("1") < 0
-				|| input.compare("9") > 0 || (std::atoi(input.c_str()) > _contactCount))
+				|| input.compare("9") > 0 || (std::atoi(input.c_str()) > max))
 		{
 			if (std::cin.eof() == true)
 			{
@@ -100,17 +108,17 @@ void PhoneBook::print_contact(void)
 			else if (input.length() > 1 || input.compare("1") < 0 || input.compare("9") > 0)
 			{
 				std::cin.clear();
-				std::cout << "\033[31mEnter Index Number from [1 - " << _contactCount << "]: \033[0m\n";
+				std::cout << "\033[31mEnter Index Number from [1 - " << max << "]: \033[0m\n";
 			}
-			else if (std::atoi(input.c_str())  > _contactCount)
+			else if (std::atoi(input.c_str())  > max)
 			{
-				std::cout << "\033[36mPhone Book has only " << _contactCount << " Contacts saved.\033[0m" << std::endl;
+				std::cout << "\033[36mPhone Book has only " << max << " Contacts saved.\033[0m" << std::endl;
 				std::cin.clear();
-				std::cout << "\033[31mEnter Index Number from [1 - " << _contactCount << "]: \033[0m\n";
+				std::cout << "\033[31mEnter Index Number from [1 - " << max << "]: \033[0m\n";
 			}
 		}
 		int i = std::atoi(input.c_str());
-		if (i < 1 || i > _contactCount)
+		if (i < 1 || i > max)
 		{
 			std::cout << ("You have entered an invalid index.") << std::endl;
 			continue ;
