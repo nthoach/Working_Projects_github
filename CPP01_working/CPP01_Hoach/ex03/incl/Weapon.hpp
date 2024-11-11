@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 19:32:40 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:31:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef WEAPON_HPP
 # define WEAPON_HPP
@@ -26,7 +24,8 @@ class Weapon
 		Weapon( std::string type );
 		Weapon( void );
 		~Weapon( );
-		std::string const &getType( void );
+	
+		std::string& getType( void );
 		void setType( std::string type );
 };
 

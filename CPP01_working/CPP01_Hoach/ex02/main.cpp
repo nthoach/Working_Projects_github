@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 17:08:14 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:53:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	main(void)
 	std::string* stringPTR = &str;
 	std::string& stringREF = str;
 
-	std::cout << "Address:" << &str << std::endl;
-	std::cout << "Address:" << stringPTR << std::endl;
-	std::cout << "Address:" << &stringREF << std::endl;
+	std::cout << "Address of the string:" << &str << std::endl;
+	std::cout << "Value of the pointer:" << stringPTR << std::endl;
+	std::cout << "Address of the reference:" << &stringREF << std::endl;
 	
-	std::cout << "Value:" << str << std::endl;
-	std::cout << "Value:" << *stringPTR << std::endl;
-	std::cout << "Value:" << stringREF << std::endl;
+	std::cout << "Value of the string:" << str << std::endl;
+	std::cout << "Value pointed by the pointer:" << *stringPTR << std::endl;
+	std::cout << "Value of the reference:" << stringREF << std::endl;
 	return (0);
 }

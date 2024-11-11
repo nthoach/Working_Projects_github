@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 14:08:17 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:05:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP

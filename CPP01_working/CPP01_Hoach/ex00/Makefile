@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/10 16:29:17 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/11 16:37:33 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ CLEAR    	= \033[2K
 all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS)
-	$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
+	$(CC) ${CFLAGS} $(OBJS) $(MAIN_INC) -o $(NAME)
 	@echo "${NAME} compiled"
 
 clean		:
@@ -46,5 +46,10 @@ fclean		: clean
 			@$(RM) $(NAME)
 
 re			: fclean all
+
+run			: re
+			@$(RM) $(OBJS)
+			@./$(NAME)
+			
 
 .PHONY		: all clean fclean re

@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 19:49:49 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:10:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#pragma once
 
 #ifndef HUMANB_HPP
 # define HUMAB_HPP
@@ -22,8 +20,8 @@ class HumanB
 	private:
 		std::string	_name;
 		Weapon* _weapon;
-		HumanB( Weapon weapon );
-	
+		HumanB( Weapon* weapon );
+		HumanB( std::string name, Weapon* weapon );
 	public:
 		HumanB( std::string name );
 		~HumanB( void );
