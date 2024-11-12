@@ -13,8 +13,8 @@ void replacewrite(std::ifstream& iFile, std::ofstream& oFile, const std::string 
         while ((pos = line.find(s1, pos)) != std::string::npos)
 		{
             // Create the new string with the replacement
-            line = line.substr(0, pos) + s2 + line.substr(pos + s1.size());
-            pos += s1.size(); // Move past the replaced string
+			line = line.substr(0, pos) + s2 + line.substr(pos + s1.size());
+			pos += s2.size(); // Move past the replaced string
         }
 
         // Write the modified line to the output file
