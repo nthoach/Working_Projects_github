@@ -6,21 +6,21 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/11 16:55:05 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/12 13:20:45 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex03
+NAME		= ex04
 CC			= c++
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS_DIR 	= srcs
+SRCS_DIR 	= ./
 SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.cpp")
 
 OBJS		= $(SRCS:.cpp=.o)
 
-INCS_DIR	= incl
+INCS_DIR	= ./
 INCS		= $(shell find $(INCS_DIR) -type f -name "*.hpp")
 
 MAIN_INC	= -I$(INCS_DIR)
@@ -31,7 +31,7 @@ MAIN_INC	= -I$(INCS_DIR)
 all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS)
-	$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
+	$(CC) ${CFLAGS} $(OBJS) $(MAIN_INC) -o $(NAME)
 
 clean		:
 			@$(RM) $(OBJS)
@@ -43,6 +43,6 @@ re			: fclean all
 
 run			: re
 			@$(RM) $(OBJS)
-			@./$(NAME)
-
+			@./$(NAME) input.txt "content Search " "SEARCHING ..."
+			
 .PHONY		: all clean fclean re
