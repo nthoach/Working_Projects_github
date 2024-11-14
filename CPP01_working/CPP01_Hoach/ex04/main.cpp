@@ -41,7 +41,18 @@ int main(int argc, char **argv)
     // Open input file
     std::ifstream iFile(fname.c_str());
     if (!iFile.is_open())
-        return std::cerr << "Error: Unable to open " << fname << std::endl, 1;
+    {
+        std::cout << "Error: Unable to open " << fname << std::endl;
+        // Attempt to change permissions with chmod
+        std::cout << "Attempt to change permission" << fname << std::endl;
+        std::string command = "chmod 644 " + fname;
+        int result = system(command.c_str());  // Runs chmod command
+        if (result != 0) {
+        std::cerr << "Error: Unable to open " << fname << std::endl;
+        return 1;
+        }
+    }
+
 
     // Open output file
     std::ofstream oFile((fname + ".replace").c_str());

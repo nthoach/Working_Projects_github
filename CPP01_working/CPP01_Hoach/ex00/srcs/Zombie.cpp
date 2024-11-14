@@ -6,13 +6,13 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/10 14:14:43 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:20:52 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/Zombie.hpp"
 
-Zombie::Zombie( std::string name )
+Zombie::Zombie( std::string name = "" )
 {
 	_name = name;
 	std::cout << _name << ": born." << std::endl;

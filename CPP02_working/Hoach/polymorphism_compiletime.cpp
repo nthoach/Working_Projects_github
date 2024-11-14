@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   polymorphism.cpp                                   :+:      :+:    :+:   */
+/*   polymorphism_compiletime.cpp                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:56:10 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/12 18:09:51 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:00:05 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ Achieved via function overloading or operator overloading.
 Runtime Polymorphism (Dynamic Binding)
 Achieved via inheritance and virtual functions.
 
+1. Compile-time Polymorphism (Function Overloading)
+In function overloading, you define multiple functions with the same name but different parameters. The compiler decides which function to call based on the number and types of arguments passed.
 */
 
 #include <iostream>
@@ -48,7 +50,7 @@ class Printer
         }
 };
 
-int main()
+int main2()
 {
 
     Printer p;
@@ -58,3 +60,4 @@ int main()
     
     return 0;
 }
+

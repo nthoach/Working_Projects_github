@@ -6,10 +6,11 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 19:35:03 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/12 19:42:57 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:00:12 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
 In C++98, an "Orthodox Canonical Class Form" (or simply, a "Canonical Class") follows 
 a set of rules ensuring proper resource management and consistent behavior. 
 The canonical form includes a specific set of functions:
@@ -46,6 +47,33 @@ class Array
         // Copy Constructor
         Array(const Array &other): size(other.size), data(new int[other.size])
         {
-            std::memset(data, other.data, sizeof(int) * size);
+            std::memcpy(data, other.data, sizeof(int) * size);
         }
-}
+
+        // Copy Assigment Operator
+        Array& operator=(const Array &other)
+        {
+            if (this != &other)
+            {
+                delete[] data;
+                size = other.size;
+                data = new int[size];
+                std::memcpy(data, other.data, sizeof(int) * size);
+            }
+            return *this;
+        }
+        // Destructor
+        ~Array()
+        {
+            delete[] data;
+        }
+        // services
+        void display() const
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                std::cout << data[i] << " ";
+            }
+            std::cout << std::endl;
+        }
+};

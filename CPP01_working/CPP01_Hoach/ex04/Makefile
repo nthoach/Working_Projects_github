@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/12 13:20:45 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/14 16:44:49 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,12 +15,12 @@ CC			= c++
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
-SRCS_DIR 	= ./
+SRCS_DIR 	= .
 SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.cpp")
 
 OBJS		= $(SRCS:.cpp=.o)
 
-INCS_DIR	= ./
+INCS_DIR	= .
 INCS		= $(shell find $(INCS_DIR) -type f -name "*.hpp")
 
 MAIN_INC	= -I$(INCS_DIR)
@@ -34,7 +34,7 @@ $(NAME)		: $(OBJS) $(INCS)
 	$(CC) ${CFLAGS} $(OBJS) $(MAIN_INC) -o $(NAME)
 
 clean		:
-			@$(RM) $(OBJS)
+			@$(RM) $(OBJS) *.replace
 
 fclean		: clean
 			@$(RM) $(NAME)
@@ -43,6 +43,7 @@ re			: fclean all
 
 run			: re
 			@$(RM) $(OBJS)
-			@./$(NAME) input.txt "content Search " "SEARCHING ..."
+			@./$(NAME) input.txt "main" "MAIN"
+			@./$(NAME) input.txt.replace "LaTeX" "MS WORDS"
 			
 .PHONY		: all clean fclean re
