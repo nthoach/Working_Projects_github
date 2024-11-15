@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/11 17:10:17 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/15 14:13:22 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HUMANB_HPP
-# define HUMAB_HPP
+# define HUMANB_HPP
 
 # include "Weapon.hpp"
 

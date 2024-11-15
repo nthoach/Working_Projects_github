@@ -1,6 +1,8 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <sys/stat.h>
 
 void replacewrite(std::ifstream& iFile, std::ofstream& oFile, const std::string s1, const std::string s2)
 {
@@ -42,17 +44,26 @@ int main(int argc, char **argv)
     std::ifstream iFile(fname.c_str());
     if (!iFile.is_open())
     {
-        std::cout << "Error: Unable to open " << fname << std::endl;
-        // Attempt to change permissions with chmod
-        std::cout << "Attempt to change permission" << fname << std::endl;
-        std::string command = "chmod 644 " + fname;
-        int result = system(command.c_str());  // Runs chmod command
-        if (result != 0) {
-        std::cerr << "Error: Unable to open " << fname << std::endl;
-        return 1;
+        struct stat buffer;
+        if (stat(fname.c_str(), &buffer) == 0)
+        {
+            std::cout << "File existed; Attempt to change permission " << fname << std::endl;
+            std::string command = "chmod 644 " + fname;
+            int result = system(command.c_str());
+            if (result != 0)
+            {
+                std::cerr << "cannot change permission " << fname << std::endl;
+                return 1;
+            }
+            std::ifstream iFile(fname.c_str());
+            if (!iFile.is_open())
+                return std::cerr << fname << " unable to be opened"<< std::endl, 1;
+            else
+                std::cerr << fname << " is opened now"<< std::endl;
         }
+        else
+            return std::cerr << fname << " is not existed"<< std::endl, 1;
     }
-
 
     // Open output file
     std::ofstream oFile((fname + ".replace").c_str());
