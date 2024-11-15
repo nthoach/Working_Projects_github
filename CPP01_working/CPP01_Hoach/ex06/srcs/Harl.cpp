@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/12 15:49:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:48:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,32 @@ void Harl::complain( std::string level )
 	std::string lv[4] = {"DEBUG", "INFO", "WARNING", "ERROR" };
 	void (Harl::*ptrf[4])(void) = {&Harl::_debug, &Harl::_info, &Harl::_warning, &Harl::_error};
 	
-	for (int i = 0; i < 4; i++)
+	int index = 0;
+	while (level != lv[index] && index < 4)
+		index++;
+	
+	switch (index)
 	{
-		if (level == lv[i])
-		{
-			for (int j = i; j < 4; j++)
-				(this->*ptrf[j])();
-			return ;
-		}
-	}
-	std::cout << "Invalid Level." << std::endl;
+		case 0: 
+			(this->*ptrf[0])();
+			(this->*ptrf[1])();
+			(this->*ptrf[2])();
+			(this->*ptrf[3])();
+			return;
+		case 1:
+			(this->*ptrf[1])();
+			(this->*ptrf[2])();
+			(this->*ptrf[3])();
+			return;
+		case 2:
+			(this->*ptrf[2])();
+			(this->*ptrf[3])();
+			return;
+		case 3:
+			(this->*ptrf[3])();
+			return;
+		default:
+	        std::cout << "Invalid Level." << std::endl;
+            return;
+    }
 }
