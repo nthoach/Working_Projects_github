@@ -27,7 +27,7 @@ class Fixed
 		// Copy constructor
 		Fixed(const Fixed& other);
 		// Copy assignment
-		Fixed& operator=(const Fixed &other);
+		Fixed& operator=(const Fixed& other);
 		// Deconstructor
 		~Fixed( );
 
