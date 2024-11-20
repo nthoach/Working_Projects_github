@@ -22,7 +22,7 @@ class Fixed
 		static const int _nfixed = 8;
 
 	public:
-		// Constructor
+		// Constructor & default
 		Fixed(int _value = 0);
 		// Copy constructor
 		Fixed(const Fixed& other);

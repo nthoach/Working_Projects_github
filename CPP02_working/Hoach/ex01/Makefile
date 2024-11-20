@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/14 10:56:49 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/17 14:52:25 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,17 +16,19 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR 	= srcs
-SRCS		= $(shell find $(SRCS_DIR) -type f -name "*.cpp")
+SRCS		= $(addprefix $(SRCS_DIR)/, Fixed.cpp main.cpp)
 
-OBJS		= $(SRCS:.cpp=.o)
+OBJS_DIR	= objs
+OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(shell find $(INCS_DIR) -type f -name "*.hpp")
+INCS		= $(addprefix $(INCS_DIR)/, Fixed.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
-.cpp.o:
-	${CC} ${CFLAGS} ${MAIN_INC} -c $< -o ${<:.cpp=.o}
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
+	mkdir -p $(OBJS_DIR)
+	${CC} ${CFLAGS} ${MAIN_INC} -c $< -o $@
 
 all			: $(NAME)
 
@@ -35,6 +37,7 @@ $(NAME)		: $(OBJS) $(INCS)
 
 clean		:
 			@$(RM) $(OBJS)
+			@rmdir $(OBJS_DIR) 2>/dev/null || true
 
 fclean		: clean
 			@$(RM) $(NAME)
@@ -44,5 +47,9 @@ re			: fclean all
 run			: re
 			@$(RM) $(OBJS)
 			@./$(NAME)
+
+leaks		: re
+			@$(RM) $(OBJS)
+			valgrind --leak-check=full ./$(NAME)
 
 .PHONY		: all clean fclean re

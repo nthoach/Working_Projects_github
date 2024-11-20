@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/14 10:34:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/20 17:36:40 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/Fixed.hpp"
 
 
-Fixed::Fixed(int value): _value(value)
+Fixed::Fixed(const int intVal)
 {
-	std::cout << "Default constructor called" << std::endl;
+    std::cout << "Int constructor called" << std::endl;
+    _value = intVal << _nfixed;
 }
 
 Fixed::Fixed(const Fixed& other) 

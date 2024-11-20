@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/14 11:41:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/20 17:56:32 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main()
     Point b(4, 0);
     Point c(2, 4);
     Point pointInside(2, 2);
-    Point pointOutside(5, 5);
+    Point pointOutside(2, 4 - 1/256);
     
     // Test points
     std::cout << "Is pointInside inside the triangle? " << bsp(a, b, c, pointInside) << std::endl;

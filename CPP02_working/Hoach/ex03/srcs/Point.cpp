@@ -20,6 +20,7 @@ Point::Point() : x(0), y(0) {
 
 Point::Point(float xVal, float yVal) : x(xVal), y(yVal) {
  //   std::cout << "Constructor with parameters called" << std::endl;
+ //std::cout << x << y << std::endl;
 }
 
 Point::Point(const Point& other) : x(other.x), y(other.y) {
@@ -34,8 +35,9 @@ Point::~Point() {
 // Assignment operator
 Point& Point::operator=(const Point& other) {
    // std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &other) {
-        // Fixed attributes are constant, so no need to assign.
+    if (this != &other)
+    {
+      // Fixed attributes are constant, so no need to assign.
     }
     return *this;
 }
@@ -50,20 +52,25 @@ Fixed Point::getY() const {
 }
 
 // Helper function for area of triangle
-Fixed area(Point const a, Point const b, Point const c) {
+Fixed area(Point const a, Point const b, Point const c)
+{
     return (a.getX() * (b.getY() - c.getY()) + b.getX() * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY()));
 }
 
 // BSP function
-bool bsp(Point const a, Point const b, Point const c, Point const point) {
-    // Calculate the area of the full triangle (a, b, c)
-    Fixed A = area(a, b, c);
+bool bsp(Point const a, Point const b, Point const c, Point const m) {
 
-    // Calculate the areas of the sub-triangles formed by the point and the triangle vertices
-    Fixed A1 = area(point, b, c);
-    Fixed A2 = area(a, point, c);
-    Fixed A3 = area(a, b, point);
+  Fixed A = area(a, b, c);
 
-    // The point is inside the triangle if the sum of the areas of the sub-triangles is equal to the area of the triangle
-    return A == A1 + A2 + A3;
+  Fixed A1 = area(m, b, c);
+   Fixed A2 = area(a, m, c);
+  Fixed A3 = area(a, b, m);
+
+  bool allPositive = (A1 > 0 && A2 > 0 && A3 > 0);
+  bool allNegative = (A1 < 0 && A2 < 0 && A3 < 0);
+  bool onEdge = (A1 == 0 && A2 == 0 && A3 == 0);
+
+    return allPositive || allNegative || onEdge;
+
+    // return abs(A.getRawBits()) == abs(A1.getRawBits()) + abs(A2.getRawBits()) + abs(A3.getRawBits()) ;
 }
