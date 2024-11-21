@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:33:33 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/12 15:49:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/15 12:35:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ void Harl::complain( std::string level )
 			return ;
 		}
 	}
+	
 	std::cout << "Invalid Level." << std::endl;
 }

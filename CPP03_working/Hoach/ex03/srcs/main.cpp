@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 13:34:25 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/15 11:24:05 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/20 19:30:06 by honguyen          #+#    #+#             */
+/*   Updated: 2024/11/21 18:01:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/Zombie.hpp"
+#include "../incl/Diamond.hpp"
 
-Zombie::Zombie( ): _name("emptyName") 
-{
-	std::cout << _name << ": born" << std::endl;
-}
+int main() {
+    DiamondTrap dt("Diamond");
 
-Zombie::Zombie( std::string name)
-{
-	_name = name;
-	std::cout << _name << ": born" << std::endl;
-}
+    dt.whoAmI();
+    dt.attack("Target");
 
-Zombie::~Zombie(  )
-{
-	std::cout << _name << ": is dead (RIP)" << std::endl;
-}
-
-void Zombie::announce( void )
-{
-	std::cout << _name << ": BBraiiiiiiinnnzzzZ..." << std::endl;
+    return 0;
 }

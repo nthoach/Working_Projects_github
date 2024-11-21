@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:23:11 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/11 17:05:48 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/15 11:17:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Zombie
 		std::string	_name;
 
 	public:
+		Zombie( );
 		Zombie( std::string name );
 		~Zombie( );
 		void announce( void );
