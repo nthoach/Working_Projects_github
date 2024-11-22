@@ -6,14 +6,14 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:07:55 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/21 17:48:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 13:13:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/FragTrap.hpp"
 
-FragTrap::FragTrap(std::string name, int hit, int energy, int damage): ClapTrap(name, hit, energy, damage)
-{    
+FragTrap::FragTrap(std::string name): ClapTrap(name, 100, 100, 30)
+{
     std::cout << name << ": FragTrap Constructor Called" << std::endl; 
 }
 
@@ -39,3 +39,9 @@ void FragTrap::hiFiveGuys(void)
 {
 	std::cout << _name << " uses 'HI_FIVE' on GUYS" << std::endl << std::endl;
 }
+
+int FragTrap::getH() const
+{ return (100); } // Getter for hit points
+
+int FragTrap::getD() const
+{ return (20);  } // Getter for damage

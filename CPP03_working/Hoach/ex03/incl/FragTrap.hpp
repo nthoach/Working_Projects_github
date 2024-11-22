@@ -15,15 +15,17 @@
 
 #include "ClapTrap.hpp"
 
-class   FragTrap: public ClapTrap
+class   FragTrap: virtual public ClapTrap
 {
     public:
-        FragTrap(std::string name = "Unnamed", int hit = 100, int energy = 100, int damage = 30);
+        FragTrap(std::string name = "Unnamed");
         FragTrap(const FragTrap& other);
         FragTrap& operator=(const FragTrap& other);
         ~FragTrap();
 
         void hiFiveGuys();
+        int getH() const;  // Getter for hit points
+        int getD() const; // Getter for damage
 };
 
 #endif

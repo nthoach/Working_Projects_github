@@ -6,13 +6,13 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:07:55 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/21 17:11:47 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 13:12:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name, int hit, int energy, int damage): ClapTrap(name, hit, energy, damage)
+ScavTrap::ScavTrap(std::string name): ClapTrap(name, 100, 30, 20)
 {    
     std::cout << name << ": ScavTrap Constructor Called" << std::endl; 
 }
@@ -39,7 +39,7 @@ void ScavTrap::attack(const std::string& target)
 {
     if (actable())
     {
-        std::cout << _name << " attacks " << target << ", causing " << 
+        std::cout << _name << ": ScavTrap attacks " << target << ", causing " << 
             _damage << " points of damage!" << std::endl;
         _energy--;
     }
@@ -49,3 +49,8 @@ void ScavTrap::guardGate(void)
 {
 	std::cout << _name << " enters 'GUARD_KEEPER' mode" << std::endl << std::endl;
 }
+
+int ScavTrap::getE() const
+{ 
+    return 50 ; 
+}  // Getter for energy

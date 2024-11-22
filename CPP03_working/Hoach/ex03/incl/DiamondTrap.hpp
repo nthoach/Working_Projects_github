@@ -15,24 +15,27 @@
 
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
+#include <iostream>
 
-class DiamondTrap : public FragTrap, public ScavTrap {
-private:
-    std::string _name; // Private name specific to DiamondTrap
+class DiamondTrap : public FragTrap, public ScavTrap
+{
+    private:
+        std::string _name; // Private name specific to DiamondTrap
 
-public:
-    // Constructor
-    DiamondTrap(const std::string& name);
-    DiamondTrap(const DiamondTrap& other);
-    DiamondTrap& operator=(const DiamondTrap& other);
-    // Destructor
-    ~DiamondTrap();
+    public:
+        // Constructor
+        DiamondTrap(const std::string& name = "_clap_name");
+        DiamondTrap(const DiamondTrap& other);
+        DiamondTrap& operator=(const DiamondTrap& other);
+        // Destructor
+        ~DiamondTrap();
 
-    // Special capacity
-    void whoAmI();
+        // Special capacity
+        void whoAmI();
 
-    // Overriding attack from ScavTrap
-    void attack(const std::string& target);
+        // Overriding attack from ScavTrap
+        void attack(const std::string& target);
+        void showStatus(void);
 };
 
 #endif

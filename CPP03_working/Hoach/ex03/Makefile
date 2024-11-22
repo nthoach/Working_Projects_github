@@ -6,23 +6,23 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/21 18:02:19 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/22 13:01:48 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= ex03
 CC			= c++
 RM			= rm -f
-CFLAGS		= -Wall -Wextra -Werror -std=c++98
+CFLAGS		= -Wall -Wextra -Werror -std=c++98 -Wshadow -Wno-shadow
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, ClapTrap.cpp ScavTrap.cpp DiamondTrap.cpp main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, ScavTrap.hpp ClapTrap.hpp DiamondTrap.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, ScavTrap.hpp ClapTrap.hpp FragTrap.hpp DiamondTrap.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
@@ -33,7 +33,7 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.cpp
 all			: $(NAME)
 
 $(NAME)		: $(OBJS) $(INCS)
-	$(CC) $(OBJS) $(MAIN_INC) -o $(NAME)
+	$(CC) $(OBJS) ${CFLAGS} $(MAIN_INC) -o $(NAME)
 
 clean		:
 			@$(RM) $(OBJS)

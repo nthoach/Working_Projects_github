@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/21 17:44:27 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 12:03:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CLAPTRAP_HPP
 
 #include <iostream>
+#include <string>
 
 class   ClapTrap
 {
@@ -26,12 +27,12 @@ class   ClapTrap
         virtual void attack(const std::string& target);
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
-        void showStatus(void);
+        virtual void showStatus(void);
 
         //methods to access
-        std::string getName() const;
-        int        getDamage() const;
-        void        setDamage(int damage);
+        virtual std::string getName() const;
+        virtual int         getDamage() const;
+        virtual void        setDamage(int damage);
 
     protected:
         std::string _name;

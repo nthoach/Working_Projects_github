@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:07:55 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/21 17:48:08 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/22 09:17:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ FragTrap::~FragTrap()
     std::cout << _name << ": FragTrap Destructor Called" << std::endl;
 }
 
-void FragTrap::hiFiveGuys(void)
+void FragTrap::hiFivesGuys(void)
 {
-	std::cout << _name << " uses 'HI_FIVE' on GUYS" << std::endl << std::endl;
+	std::cout << _name << ": hi guys! Let's HIFIVES" << std::endl << std::endl;
 }

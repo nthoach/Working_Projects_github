@@ -6,11 +6,11 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/21 16:40:40 by marvin           ###   ########.fr        #
+#    Updated: 2024/11/22 09:28:55 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= ex01
 CC			= c++
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
