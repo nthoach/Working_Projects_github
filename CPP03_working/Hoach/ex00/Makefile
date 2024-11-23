@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/20 19:29:59 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/23 10:25:23 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,4 +52,16 @@ leaks		: re
 			@$(RM) $(OBJS)
 			valgrind --leak-check=full ./$(NAME)
 
+leaksall		: leaks
+			cd ../ex01/; make leaks;
+			cd ../ex02/; make leaks;			
+			cd ../ex03/; make leaks;
+			cd ../ex00/;
+
+fcleanall	: fclean
+			cd ../ex01/; make fclean;
+			cd ../ex02/; make fclean;			
+			cd ../ex03/; make fclean;
+			cd ../ex00/;
+			
 .PHONY		: all clean fclean re
