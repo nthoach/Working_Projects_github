@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:52:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/23 14:20:20 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define DOG_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
 class   Dog: public Animal
 {
@@ -23,7 +24,9 @@ class   Dog: public Animal
         Dog& operator=(const Dog& other);
         ~Dog();
 
-       void makeSound() const;
+        void makeSound() const;
+        std::string	getIdea(int i) const;
+		void  		setIdea(int i, std::string const & idea);
     
     private: 
         Brain* _brain;

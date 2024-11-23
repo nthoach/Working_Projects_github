@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/23 11:12:07 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:02:13 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ class   Animal
 
         //methods to access
         std::string getType() const;
-        virtual void makeSound() const;
+        virtual void makeSound() const = 0;
+        virtual std::string	getIdea(int i) const = 0;
+		virtual void  		setIdea(int i, std::string const & idea) = 0;
 
     protected:
         std::string _type;

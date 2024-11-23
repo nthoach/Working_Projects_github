@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 19:30:06 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:48:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/23 11:21:20 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int	main(void)
 {
+	std::cout << std::endl << "=======================   ex00 tests  ============================" << std::endl;;
 	{
 		const Animal* meta = new Animal();
 		const Animal* j = new Dog();
@@ -74,6 +75,6 @@ int	main(void)
 		B.makeSound();
 		std::cout << std::endl << std::endl;
 	}
-
+std::cout << std::endl << "=======================   ex00 tests  ============================" << std::endl;;
 	return 0;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:22:39 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/23 14:20:34 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class   Animal
         //methods to access
         std::string getType() const;
         virtual void makeSound() const;
+        virtual std::string	getIdea(int i) const;
+		virtual void  		setIdea(int i, std::string const & idea);
 
     protected:
         std::string _type;

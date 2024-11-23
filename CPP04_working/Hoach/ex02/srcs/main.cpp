@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 19:30:06 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/23 14:48:30 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:01:29 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ std::cout << std::endl << "=======================   ex01 tests  ===============
 				Zoo[i] = new Dog();
 			else
 				Zoo[i] = new Cat();
+			// else
+			// 	Zoo[i] = new Animal();
 		}
 
 		for (int i = 0; i < 10; i++)
