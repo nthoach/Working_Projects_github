@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.hpp                                          :+:      :+:    :+:   */
+/*   Ice.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BRAIN_HPP
-# define BRAIN_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
-# include <iostream>
-# include <string>
-# define SIZE 100
+# include "AMateria.hpp"
 
-class   Brain
+class   Ice: public AMateria
 {
     public:
-        Brain();
-        Brain(const Brain& other);
-        Brain& operator=(const Brain& other);
-        virtual ~Brain();
-
-        const std::string   getIdea(int i) const;
-        std::string         getIdea(int i);
-        void                setIdea(int i, std::string const & idea);
-
-    protected:
-        std::string _ideas[SIZE];
-
+        Ice();
+        Ice(const Ice& other);
+        Ice& operator=(const Ice& other);
+        virtual ~Ice();
+       
+        virtual AMateria* clone() const;
+        virtual void use(ICharacter& target);
 };
 
 #endif

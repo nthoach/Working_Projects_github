@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+# include "AMateria.hpp"
 
-class   Cat: public Animal
+class  Cure: public AMateria
 {
     public:
-        Cat();
-        Cat(const Cat& other);
-        Cat& operator=(const Cat& other);
-        ~Cat();
-
-        void        makeSound() const;
-        std::string	getIdea(int i) const;
-		void  		setIdea(int i, std::string const & idea);
-       
-    private: 
-        Brain* _brain;
-
+        Cure();
+        Cure(const Cure& other);
+        Cure& operator=(const Cure& other);
+        virtual ~Cure();
+        
+        virtual AMateria* clone() const;
+        virtual void use(ICharacter& target);
 };
 
 #endif

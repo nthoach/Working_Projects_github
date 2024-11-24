@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.hpp                                         :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,27 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AMATERIA_HPP
-# define AMATERIA_HPP
+#ifndef MATERIASOURCE_HPP
+# define MATERIASOURCE_HPP
 
-#include <iostream>
-#include <string>
+# include "IMateriaSource.hpp"
 
-class   AMateria
+class   MateriaSource : public IMateriaSource
 {
-    protected:
-        std::string _type;
+    private:
+        AMateria *_templates[4];
     
     public:
-        AMateria(std::string const & type);
-        AMateria(const AMateria& other);
-        AMateria& operator=(const AMateria& other);
-        virtual ~AMateria();
+        MateriaSource();
+        MateriaSource(const MateriaSource& other);
+        MateriaSource& operator=(const MateriaSource& other);
+        virtual ~MateriaSource();
 
         //methods to access
         std::string const & getType() const;
         
-        virtual AMateria* clone() const = 0;
+        virtual MateriaSource* clone() const = 0;
         virtual void use(ICharacter& target);
 
 };

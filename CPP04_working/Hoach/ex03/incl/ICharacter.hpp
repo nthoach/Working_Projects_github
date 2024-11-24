@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   ICharacter.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,26 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef ICHARACTER_HPP
+# define ICHARACTER_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "AMateria.hpp"
 
-class   Dog: public Animal
+class   ICharacter
 {
     public:
-        Dog();
-        Dog(const Dog& other);
-        Dog& operator=(const Dog& other);
-        ~Dog();
-
-        void makeSound() const;
-        std::string	getIdea(int i) const;
-		void  		setIdea(int i, std::string const & idea);
-    
-    private: 
-        Brain* _brain;
+        virtual ~ICharacter();
+        virtual std::string const & getName() const = 0;
+        virtual void equip(AMateria* m) = 0;
+        virtual void unequip(int idx) = 0;
+        virtual void use(int idx, ICharacter & target) = 0;
 };
 
 #endif

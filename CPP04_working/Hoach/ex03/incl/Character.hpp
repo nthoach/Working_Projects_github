@@ -6,30 +6,32 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/23 17:22:41 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:28:17 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
-#include "Animal.hpp"
-#include "Brain.hpp"
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-class   Dog: public Animal
+class   Character: public ICharacter
 {
+    private: 
+        std::string _name;
+        AMateria    _inventory[4];
+
     public:
-        Dog();
-        Dog(const Dog& other);
-        Dog& operator=(const Dog& other);
-        ~Dog();
+        Character();
+        Character(const Character& other);
+        Character& operator=(const Character& other);
+        ~Character();
 
         void makeSound() const;
         std::string	getIdea(int i) const;
 		void  		setIdea(int i, std::string const & idea);
-    
-    private: 
-        Brain* _brain;
+
 };
 
 #endif
