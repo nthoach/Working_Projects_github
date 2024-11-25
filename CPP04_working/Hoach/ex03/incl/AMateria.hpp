@@ -23,7 +23,7 @@ class   AMateria
         std::string _type;
     
     public:
-        AMateria(std::string const & type);
+		AMateria(std::string const & type);
         AMateria(const AMateria& other);
         AMateria& operator=(const AMateria& other);
         virtual ~AMateria();
