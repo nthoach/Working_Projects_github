@@ -1,76 +1,79 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                         :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/16 08:07:55 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:20:33 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/25 21:18:01 by nthoach           #+#    #+#             */
+/*   Updated: 2024/11/25 21:23:07 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "../incl/Brain.hpp"
-#include <sstream>
-#include <cstdlib>  // For rand and srand
-#include <ctime>    // For time
+#include "../incl/Character.hpp"
 
-Brain::Brain()
+Character::Character(std::string const &name): _name(name)
 {
-    std::string str_arr[] = {
-        "I am barking", "I am eating", "I am sleeping",
-        "I am drinking", "I am fighting", "I am looking boss",
-        "I am looking for friend", "I dont like milk", "I am a  boss",
-        "I am playing", "I am leaving home", "I am biting anyone" };
-    
-    const size_t str_arr_size = sizeof(str_arr) / sizeof(str_arr[0]);
-    // Seed the random number generator
-    srand(static_cast<unsigned int>(time(0)));
-
-    for (size_t i = 0; i < SIZE; i++)
-    {
-        std::ostringstream oss;
-        oss << i;
-        std::string str = oss.str();
-        _ideas[i] = "Idea[" + str + "]: " + str_arr[std::rand() % str_arr_size]; 
-    }
- std::cout << "Brain Constructor Called" << std::endl;
+	for (int i=0; i < 4; i++)
+		_inventory[i] = nullptr;
 }
 
-Brain::Brain(const Brain& other)
-{
-    std::cout << "Brain Copy Constructor Called" << std::endl;
-    *this = other;
+Character::Character(Character const &other) : _name(other._name) {
+    for (int i = 0; i < 4; i++) {
+        if (other._inventory[i]) {
+            _inventory[i] = other._inventory[i]->clone();
+        } else {
+            _inventory[i] = nullptr;
+        }
+    }
 }
 
-Brain& Brain::operator=(const Brain& other)
-{
-    if (this != &other)
-    {
-        for (size_t i = 0; i < SIZE; i++)
-            _ideas[i] = other._ideas[i];
+Character &Character::operator=(Character const &other) {
+    if (this != &other) {
+        _name = other._name;
+        for (int i = 0; i < 4; i++) {
+            if (_inventory[i]) {
+                delete _inventory[i];
+            }
+            if (other._inventory[i]) {
+                _inventory[i] = other._inventory[i]->clone();
+            } else {
+                _inventory[i] = nullptr;
+            }
+        }
     }
-    std::cout << "Brain Copy assignment operator called" << std::endl;
     return *this;
 }
 
-Brain::~Brain(void)
-{
-    std::cout << "Brain Destructor Called" << std::endl;
+Character::~Character() {
+    for (int i = 0; i < 4; i++) {
+        if (_inventory[i]) {
+            delete _inventory[i];
+        }
+    }
 }
 
-const std::string Brain::getIdea(int i) const
-{
-    return (_ideas[i]);
+std::string const &Character::getName() const {
+    return _name;
 }
 
-// Getter for mutable access
-std::string Brain::getIdea(int i)
-{
-    return _ideas[i]; // Pointer to the array's first element
+void Character::equip(AMateria *m) {
+    for (int i = 0; i < 4; i++) {
+        if (!_inventory[i]) {
+            _inventory[i] = m;
+            break;
+        }
+    }
 }
 
-void			Brain::setIdea(int i, std::string const & idea)
-{
-	this->_ideas[i] = idea;
+void Character::unequip(int idx) {
+    if (idx >= 0 && idx < 4) {
+        _inventory[idx] = nullptr;
+    }
+}
+
+void Character::use(int idx, ICharacter &target) {
+    if (idx >= 0 && idx < 4 && _inventory[idx]) {
+        _inventory[idx]->use(target);
+    }
 }

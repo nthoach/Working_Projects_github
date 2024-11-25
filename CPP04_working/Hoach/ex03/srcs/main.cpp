@@ -1,55 +1,41 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 19:30:06 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/23 15:01:29 by honguyen         ###   ########.fr       */
+/*   Created: 2024/11/25 21:28:14 by nthoach           #+#    #+#             */
+/*   Updated: 2024/11/25 21:51:10 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "../incl/Dog.hpp"
-#include "../incl/Cat.hpp"
-#include "../incl/Animal.hpp"
-#include "../incl/Brain.hpp"
+#include "MateriaSource.hpp"
+#include "Character.hpp"
+#include "Ice.hpp"
+#include "Cure.hpp"
 
-int	main(void)
+int main()
 {
-std::cout << std::endl << "=======================   ex01 tests  ============================" << std::endl;;
-	
-	{
-		Animal* Zoo[10];
-		for (int i = 0; i < 10; i++)
-		{
-			if (i % 2 == 0)
-				Zoo[i] = new Dog();
-			else
-				Zoo[i] = new Cat();
-			// else
-			// 	Zoo[i] = new Animal();
-		}
+    IMateriaSource* src = new MateriaSource();
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
 
-		for (int i = 0; i < 10; i++)
-		{
-			std::cout  << "--" << Zoo[i]->getType()<< ":";
-			std::cout << Zoo[i]->getIdea(i);
-			std::string idea("->NONE");
-			Zoo[i]->setIdea(i, idea);
-			std::cout << Zoo[i]->getIdea(i) << std::endl;
-		}
-		
-		for (int i = 0; i < 10; i++)
-		{
-			Zoo[i]->makeSound();
-			delete Zoo[i];
-		}
-		return 0;
+    ICharacter* me = new Character("me");
+    AMateria* tmp;
 
-	}
+    tmp = src->createMateria("ice");
+    me->equip(tmp);
+    tmp = src->createMateria("cure");
+    me->equip(tmp);
 
-std::cout << std::endl << "=======================   ex01 tests  ============================" << std::endl;;
+    ICharacter* bob = new Character("bob");
+    me->use(0, *bob);
+    me->use(1, *bob);
 
-	return 0;
+    delete bob;
+    delete me;
+    delete src;
+
+    return 0;
 }

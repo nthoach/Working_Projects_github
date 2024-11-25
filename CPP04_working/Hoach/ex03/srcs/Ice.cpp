@@ -1,56 +1,38 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/16 08:07:55 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 09:20:20 by marvin           ###   ########.fr       */
+/*   Created: 2024/11/25 21:03:20 by nthoach           #+#    #+#             */
+/*   Updated: 2024/11/25 21:43:22 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "../incl/Cat.hpp"
+#include "Ice.hpp"
 
-Cat::Cat(): Animal("Cat"), _brain(new Brain())
+Ice::Ice(): AMateria("ice") {}
+
+Ice::Ice(Ice const &other): AMateria(other) {}
+
+Ice &Ice::operator=(Ice const &other)
 {
-    std::cout << "Cat Constructor Call" << std::endl;
+	if (this != &other)
+		AMateria::operator=(other);
+
+	return *this;
 }
 
-Cat::Cat(const Cat& other): Animal(other), _brain(new Brain(*(other._brain))) 
+Ice::~Ice() {}
+
+AMateria* Ice::clone() const
 {
-    std::cout << "Cat Copy Constructor Called" << std::endl;
+	return new Ice(*this);
 }
 
-Cat& Cat::operator=(const Cat& other)
+void Ice::use(ICharacter &target)
 {
-    if (this != &other)
-    {
-        Animal::operator=(other);
-        *(_brain) = *(other._brain); 
-    }
-    std::cout << "Cat Copy assignment operator called" << std::endl;
-    return *this;
-}
-
-Cat::~Cat(void)
-{
-    delete _brain;
-    std::cout << "Cat Destructor Called" << std::endl;
-}
-
-void Cat::makeSound() const
-{
-    std::cout << _type << " Meows Meow Meow" << std::endl;
-    return ;
-}
-
-std::string	Cat::getIdea(int i) const
-{
-	return this->_brain->getIdea(i);
-}
-
-void		Cat::setIdea(int i, std::string const & idea)
-{
-	this->_brain->setIdea(i, idea);
+	std::cout << "* shoots an ice bolt at " << target.getName() << " *"
+	<< std::endl;
 }

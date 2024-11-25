@@ -1,14 +1,14 @@
-# **************************************************************************** #
+#******************************************************************************#
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2024/11/23 15:06:12 by honguyen         ###   ########.fr        #
+#    Updated: 2024/11/25 21:50:32 by nthoach          ###   ########.fr        #
 #                                                                              #
-# **************************************************************************** #
+#******************************************************************************#
 
 NAME		= ex03
 CC			= c++
@@ -16,13 +16,15 @@ RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, Animal.cpp Cat.cpp Dog.cpp Brain.cpp main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, AMateria.cpp Character.cpp Cure.cpp Ice.cpp \
+				MateriaSource.cpp main.cpp IMateriaSource.cpp ICharacter.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, Animal.hpp Cat.hpp Dog.hpp Brain.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, AMateria.hpp Character.hpp Cure.hpp Ice.hpp \
+				ICharacter.hpp MateriaSource.hpp IMateriaSource.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 

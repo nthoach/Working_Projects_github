@@ -13,9 +13,10 @@
 #ifndef AMATERIA_HPP
 # define AMATERIA_HPP
 
-# include <iostream>
-# include <string>
 # include "ICharacter.hpp"
+# include <string>
+
+class ICharacter;
 
 class   AMateria
 {
@@ -23,17 +24,15 @@ class   AMateria
         std::string _type;
     
     public:
-		AMateria(std::string const & type);
+		AMateria(std::string const & type = "notype");
         AMateria(const AMateria& other);
         AMateria& operator=(const AMateria& other);
         virtual ~AMateria();
 
-        //methods to access
+        //methods to accessß
         std::string const & getType() const;
-        
         virtual AMateria* clone() const = 0;
         virtual void use(ICharacter& target);
-
 };
 
 #endif

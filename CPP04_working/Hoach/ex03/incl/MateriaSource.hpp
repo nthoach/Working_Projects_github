@@ -26,11 +26,8 @@ class   MateriaSource : public IMateriaSource
         MateriaSource& operator=(const MateriaSource& other);
         virtual ~MateriaSource();
 
-        //methods to access
-        std::string const & getType() const;
-        
-        virtual MateriaSource* clone() const = 0;
-        virtual void use(ICharacter& target);
+    	void learnMateria(AMateria *m);
+    	AMateria* createMateria(std::string const &type);
 
 };
 
