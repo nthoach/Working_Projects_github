@@ -48,6 +48,7 @@
 		"complex": "cpp",
 		"optional": "cpp",
 		"string_view": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"ctime": "cpp"
 	}
 }

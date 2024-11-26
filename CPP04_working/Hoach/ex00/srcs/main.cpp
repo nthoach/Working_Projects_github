@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 19:30:06 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/23 11:21:20 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/11/26 08:38:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,36 @@
 
 int	main(void)
 {
-	std::cout << std::endl << "=======================   ex00 tests  ============================" << std::endl;;
+	std::cout << std::endl << "======================= Start: ex00 tests  ============================" << std::endl;;
 	{
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const Animal* a = new Animal();
+		const Animal* d = new Dog();
+		const Animal* c = new Cat();
 		std::cout << std::endl << std::endl;
 
-		const WrongAnimal* neta = new WrongAnimal();
-		const WrongAnimal* k = new WrongCat();
+		const WrongAnimal* wa = new WrongAnimal();
+		const WrongAnimal* wc = new WrongCat();
 		std::cout << std::endl << std::endl;
 
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		std::cout << k->getType() << " " << std::endl;
+		std::cout << a->getType() << " " << std::endl;
+		std::cout << d->getType() << " " << std::endl;
+		std::cout << c->getType() << " " << std::endl;
 		std::cout << std::endl << std::endl;
 
-		i->makeSound(); //will output the cat sound!
-		j->makeSound();
-		k->makeSound();
-		meta->makeSound();
-		neta->makeSound();
+		a->makeSound(); //will output the cat sound!
+		d->makeSound();
+		c->makeSound();
+		wa->makeSound();
+		wc->makeSound();
 		std::cout << std::endl << std::endl;
 		
-		delete meta;
-		delete neta;
-		delete j;
-		delete i;
-		delete k;
+		delete a;
+		delete d;
+		delete c;
+		delete wa;
+		delete wc;
 	}
+
 	std::cout << std::endl << std::endl;
 	{
 		Animal	A1, A2;
@@ -75,6 +76,6 @@ int	main(void)
 		B.makeSound();
 		std::cout << std::endl << std::endl;
 	}
-std::cout << std::endl << "=======================   ex00 tests  ============================" << std::endl;;
+std::cout << std::endl << "======================= End: ex00 tests  ============================" << std::endl;;
 	return 0;
 }

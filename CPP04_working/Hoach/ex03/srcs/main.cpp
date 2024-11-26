@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:28:14 by nthoach           #+#    #+#             */
-/*   Updated: 2024/11/25 21:51:10 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/11/26 09:20:40 by marvin           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "MateriaSource.hpp"
 #include "Character.hpp"
@@ -17,6 +17,8 @@
 
 int main()
 {
+    std::cout << std::endl << "======================= Start: ex03 tests  ============================" << std::endl;;
+	
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -36,6 +38,8 @@ int main()
     delete bob;
     delete me;
     delete src;
+    delete tmp;
 
+    std::cout << std::endl << "======================= End: ex03 tests  ============================" << std::endl;;
     return 0;
 }

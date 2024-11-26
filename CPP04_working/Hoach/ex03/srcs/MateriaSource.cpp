@@ -1,20 +1,20 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:25:37 by nthoach           #+#    #+#             */
-/*   Updated: 2024/11/25 21:26:55 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/11/26 09:19:00 by marvin           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../incl/MateriaSource.hpp"
 
 MateriaSource::MateriaSource() {
     for (int i = 0; i < 4; i++) {
-        _templates[i] = nullptr;
+        _templates[i] = NULL;
     }
 }
 
@@ -23,7 +23,7 @@ MateriaSource::MateriaSource(MateriaSource const &other) {
         if (other._templates[i]) {
             _templates[i] = other._templates[i]->clone();
         } else {
-            _templates[i] = nullptr;
+            _templates[i] = NULL;
         }
     }
 }
@@ -37,7 +37,7 @@ MateriaSource &MateriaSource::operator=(MateriaSource const &other) {
             if (other._templates[i]) {
                 _templates[i] = other._templates[i]->clone();
             } else {
-                _templates[i] = nullptr;
+                _templates[i] = NULL;
             }
         }
     }
@@ -48,17 +48,20 @@ MateriaSource::~MateriaSource() {
     for (int i = 0; i < 4; i++) {
         if (_templates[i]) {
             delete _templates[i];
+            _templates[i] = NULL;
         }
     }
 }
 
 void MateriaSource::learnMateria(AMateria *m) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 4; i++)
+    {
         if (!_templates[i]) {
             _templates[i] = m->clone();
             break;
         }
     }
+    delete m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type) {
@@ -67,5 +70,5 @@ AMateria* MateriaSource::createMateria(std::string const &type) {
             return _templates[i]->clone();
         }
     }
-    return nullptr;
+    return NULL;
 }

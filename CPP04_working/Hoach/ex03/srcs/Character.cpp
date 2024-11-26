@@ -1,21 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:18:01 by nthoach           #+#    #+#             */
-/*   Updated: 2024/11/25 21:23:07 by nthoach          ###   ########.fr       */
+/*   Updated: 2024/11/26 08:47:10 by marvin           ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "../incl/Character.hpp"
 
 Character::Character(std::string const &name): _name(name)
 {
 	for (int i=0; i < 4; i++)
-		_inventory[i] = nullptr;
+		_inventory[i] = NULL;
 }
 
 Character::Character(Character const &other) : _name(other._name) {
@@ -23,7 +23,7 @@ Character::Character(Character const &other) : _name(other._name) {
         if (other._inventory[i]) {
             _inventory[i] = other._inventory[i]->clone();
         } else {
-            _inventory[i] = nullptr;
+            _inventory[i] = NULL;
         }
     }
 }
@@ -38,7 +38,7 @@ Character &Character::operator=(Character const &other) {
             if (other._inventory[i]) {
                 _inventory[i] = other._inventory[i]->clone();
             } else {
-                _inventory[i] = nullptr;
+                _inventory[i] = NULL;
             }
         }
     }
@@ -68,7 +68,7 @@ void Character::equip(AMateria *m) {
 
 void Character::unequip(int idx) {
     if (idx >= 0 && idx < 4) {
-        _inventory[idx] = nullptr;
+        _inventory[idx] = NULL;
     }
 }
 
