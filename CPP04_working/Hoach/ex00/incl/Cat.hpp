@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:32:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 13:50:23 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class   Cat: public Animal
         Cat& operator=(const Cat& other);
         ~Cat();
 
-       void makeSound() const;
+       virtual void makeSound() const;
 
 };
 

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/11/22 14:04:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 13:12:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class   Dog: public Animal
         Dog& operator=(const Dog& other);
         ~Dog();
 
-       void makeSound() const;
+       virtual void makeSound() const;
 };
 
 #endif

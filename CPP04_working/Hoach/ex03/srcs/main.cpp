@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 21:28:14 by nthoach           #+#    #+#             */
-/*   Updated: 2024/11/26 09:20:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:30:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main()
     std::cout << std::endl << "======================= Start: ex03 tests  ============================" << std::endl;;
 	
     IMateriaSource* src = new MateriaSource();
+
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
