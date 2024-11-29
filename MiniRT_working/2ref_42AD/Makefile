@@ -59,7 +59,7 @@ $(NAME): $(SRCS) $(LAG_SRCS) $(INCLUDE)
 
 clean:
 	@make -C $(BUILD_DIR) clean
-	make -C libft clean
+	 make -C libft clean
 
 fclean:
 	@make -C $(BUILD_DIR) clean

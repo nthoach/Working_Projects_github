@@ -219,6 +219,7 @@ fclean: clean
 #_                                                                                           _
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
+SCENE= ./scenes/bonus/bubbles.rt
 
 $(OBJ_FOLDER):
 	mkdir -p $(OBJ_FOLDER)
