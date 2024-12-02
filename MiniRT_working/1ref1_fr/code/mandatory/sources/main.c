@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 15:08:17 by ncarvalh          #+#    #+#             */
-/*   Updated: 2024/12/02 12:36:49 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:22:27 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	on_keypress(int keycode, t_world *w)
 	if (keycode == ESC)
 		quit(w);
 	else if (keycode == W)
-		w->camera.center.y += 5;
-	else if (keycode == A)
-		w->camera.center.x -= 5;
-	else if (keycode == S)
 		w->camera.center.y -= 5;
-	else if (keycode == D)
+	else if (keycode == A)
 		w->camera.center.x += 5;
+	else if (keycode == S)
+		w->camera.center.y += 5;
+	else if (keycode == D)
+		w->camera.center.x -= 5;
 	else if (keycode == C)
 		w->camera.center.z -= 5;
 	else if (keycode == V)
