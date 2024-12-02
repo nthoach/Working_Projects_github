@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:53:43 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/02 12:08:01 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:35:17 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 //define error codes
 # define OK     0
 # define NOK    1
-# define E_ARG  2
+# define E_ARC  2
 # define E_MLX  3
 # define E_MOR  4
 # define E_OTH  5

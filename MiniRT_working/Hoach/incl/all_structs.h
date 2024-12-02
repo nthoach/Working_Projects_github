@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   all_structs.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/10 14:02:32 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/02 12:30:23 by honguyen         ###   ########.fr       */
+/*   Created: 2024/12/02 12:27:56 by honguyen          #+#    #+#             */
+/*   Updated: 2024/12/02 12:32:46 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef     ALL_STRUCTS_H
+# define    DALL_STRUCTS_H
 
-
-# ifdef __APPLE__
-#	include "../libs/mlx_macos/mlx.h"
-# else
-# 	include "../libs/mlx_linux/mlx.h"
-# 	include <X11/X.h>
-# endif
-
-
-# include "../libs/libft/libft.h"
-# include "define.h"
-# include "all_structs.h"
-
-void	msg_err(char *s, int err, t_minirt *minirt);
-void	free_minirt(t_minirt *minirt);
-
+typedef struct s_minirt
+{
+	t_camera	camera;
+	t_light		ambient;
+	t_vector	*lights;
+	t_vector	*shapes;
+	int			counters[3];
+	t_graphics	disp;
+	t_vec3		up;
+	t_vec3		right;
+	char		**map;
+	double		hview;
+	double		wview;
+    
+    void	*mlx;
+	void	*mlx_win;
+	void	*mlx_text;
+}	t_minirt;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:12:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/02 11:47:24 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:25:15 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	errors(int err_code, t_minirt *minirt)
 	return (err_code);
 }
 
-void	clsoe_minirt(t_minirt *minirt)
+void	close_minirt(t_minirt *minirt)
 {
 	int	i;
 
@@ -70,6 +70,6 @@ int	close_window(t_minirt *minirt, char *s)
 	ft_printf("%s", s);
 	mlx_clear_window(minirt->mlx, minirt->mlx_win);
 	mlx_destroy_window(minirt->mlx, minirt->mlx_win);
-	free_minirt(minirt);
+	close_minirt(minirt);
 	exit(0);
 }
