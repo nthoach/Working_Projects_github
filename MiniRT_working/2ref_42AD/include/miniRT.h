@@ -26,6 +26,8 @@
 #  define EPSILON 0.0001f
 # endif // !EPSILON
 
+#define GL_SILENCE_DEPRECATION
+
 long long	my_gettime(void);
 
 typedef struct s_canvas

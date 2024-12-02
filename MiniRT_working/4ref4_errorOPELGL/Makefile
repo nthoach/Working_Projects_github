@@ -21,6 +21,10 @@ B_SRCS = bonus/main.c bonus/get_next_line.c bonus/allocation.c \
     bonus/specular.c bonus/shading.c
 
 CFLAGS = -Wall -Wextra -Werror
+
+LMLX_FLAG = -L ./minilibx_opengl libmlx.a -L ./minilibx_mms_20200219 libmlx.dylib -framework OpenGL -framework AppKit
+
+
 CC = gcc
 
 OBJS_M = $(M_SRCS:.c=.o)
@@ -31,7 +35,7 @@ all: $(NAME)
 bonus: $(NAME_B)
 
 $(NAME): $(OBJS_M) $(HEADER)
-	@$(CC) -lmlx -lX11 -lXext $(CFLAGS) $(OBJS_M) -o $(NAME)
+	@$(CC) -lmlx -lX11 -lXext $(CFLAGS) $(LMLX_FLAG) $(OBJS_M) -o $(NAME)
 
 $(NAME_B): $(OBJS_B) $(HEADER)
 	@$(CC) -lmlx -lX11 -lXext $(CFLAGS) $(OBJS_B) -o $(NAME_B)

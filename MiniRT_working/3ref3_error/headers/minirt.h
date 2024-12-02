@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sqatim <sqatim@student.42.fr>              +#+  +:+       +#+        */
+/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 11:00:01 by sqatim            #+#    #+#             */
-/*   Updated: 2020/11/23 17:33:14 by sqatim           ###   ########.fr       */
+/*   Updated: 2024/12/02 09:35:13 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include "get_next_line.h"
 # include "../libft/libft.h"
 
+
 # define RESOLUTION_D 1
 # define AMBIENT_D 2
 # define CAMERA_D 3
@@ -41,6 +42,8 @@
 # define SQUARE_D 7
 # define CYLINDER_D 8
 # define TRIANGLE_D 9
+
+#define GL_SILENCE_DEPRECATION
 
 void		check_type(t_data *type, char **parc);
 int			check_element(t_data *type, char **parc, int check);
