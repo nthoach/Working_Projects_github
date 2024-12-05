@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:06:27 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/05 16:48:53 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:29:13 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 int key_move(int key, t_minirt *minirt)
 {
 	if (key == KEY_LEFT || key == KEY_A)
-		minirt->camera.center.x -= 10;
-	else if (key == KEY_RIGHT || key == KEY_D)
 		minirt->camera.center.x += 10;
+	else if (key == KEY_RIGHT || key == KEY_D)
+		minirt->camera.center.x -= 10;
 	else if (key == KEY_UP || key == KEY_W)
-		minirt->camera.center.y += 10;
-	else if (key == KEY_DOWN || key == KEY_S)
 		minirt->camera.center.y -= 10;
+	else if (key == KEY_DOWN || key == KEY_S)
+		minirt->camera.center.y += 10;
     else if (key == KEY_C)
 		minirt->camera.center.z -= 10;
 	else if (key == KEY_V)
 		minirt->camera.center.z += 10;
 	else if (key == KEY_ESC || key == KEY_Q)
-		close_window(minirt, "Window Closed\n");
+		close_window(minirt, "ESC/Q Window Closed\n");
     ray_trace(minirt);
 	return (0);
 }
@@ -37,18 +37,30 @@ int key_move(int key, t_minirt *minirt)
 int	close_window(t_minirt *minirt, char *s)
 {
 	if (*s == 'c')
-		s = "Window Closed\n";
+		s = "Ctrl + C Window Closed\n";
 	ft_printf("%s", s);
 	free_minirt(minirt);
 	exit(OK);
 }
 
-void	free_minirt(t_minirt *minirt) //*lights, *shape, **map, graph.image, graph.mlx, graph.window
+void	free_array(t_vector *vector)
+{
+
+}
+
+void	free_matrix(char **map)
+{
+	
+}
+
+
+
+void	free_minirt(t_minirt *minirt) //*lights, *shape, **map, *graph.image, *graph.mlx, *graph.window, *graph.adress??
 {
 	if (!minirt)
 		return ;
-	free_array(minirt->shapes);
-	free_array(minirt->lights);
+	free_vector(minirt->shapes);
+	free_vector(minirt->lights);
 	free_matrix(minirt->map);
 	if (minirt->graph.image)
 		mlx_destroy_image(minirt->graph.mlx, minirt->graph.image);
