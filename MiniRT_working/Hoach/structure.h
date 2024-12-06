@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 15:35:24 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/06 15:44:34 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:07:59 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,21 @@ typedef struct s_scene
     t_camera    camera;
     t_light     light;
     t_plane     plane;
-    t_sphere    t_sphere;
+    t_sphere    sphere;
 }               t_scene;
 
 
 
+t_vec3d add_vec3d(t_vec3d a, t_vec3d b);
 
+t_vec3d sub_vec3d(t_vec3d a, t_vec3d b);
+
+t_vec3d scale_vec3d(t_vec3d v, float k);
+
+float vdot_vec3d(t_vec3d a, t_vec3d b);
+
+t_vec3d cross_vec3d(t_vec3d a, t_vec3d b);
+
+float length_vec3d(t_vec3d v);
+
+t_vec3d normalize_vec3d(t_vec3d v);

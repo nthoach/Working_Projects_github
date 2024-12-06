@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 15:45:12 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/06 15:54:16 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/06 16:01:16 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ float length_vec3d(t_vec3d v)
     return sqrtf(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
-t_vec3d vector_normalize(t_vec3d v)
+t_vec3d normalize_vec3d(t_vec3d v)
 {
     float len = length_vec3d(v);
     return scale_vec3d(v, 1.0f / len);
