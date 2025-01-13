@@ -15,39 +15,6 @@
 #include "mlx.h"
 #include "keys.h"
 
-void	start_rt(t_minirt *minirt);
-bool	ini_objs(t_minirt *minirt);
-void	ini_mlx(t_minirt *minirt);
-
-int	main(int argc, char *argv[])
-{
-	t_minirt	minirt;
-
-	if (argc != 2)
-	{
-		write(2, "Usage:\n\t./miniRT <filename>.rt\n", 32);
-		return (2);
-	}
-	minirt = (t_minirt){0};
-	ini_mlx(&minirt);
-	if (!ini_objs(&minirt))
-	{
-		ft_putendl_fd("FATAL: Couldn't allocate for necessary objects.", 2);
-		return (destroy_scene(&minirt), 2);
-	}
-	if (!parse_file(argv[1], &minirt))
-		return (destroy_scene(&minirt), destroy_textures(&minirt), 2);
-	if (!ini_core(&minirt))
-	{
-		destroy_scene(&minirt);
-		destroy_mlx(&minirt);
-		ft_putendl_fd("FATAL: Couldn't allocate for threads.", 2);
-		return (destroy_textures(&minirt), 2);
-	}
-	start_rt(&minirt);
-	return (0);
-}
-
 void	ini_mlx(t_minirt *minirt)
 {
 	minirt->mlx = mlx_init();
@@ -96,3 +63,33 @@ bool	ini_objs(t_minirt *minirt)
 	minirt->textures = NULL;
 	return (true);
 }
+
+int	main(int argc, char *argv[])
+{
+	t_minirt	minirt;
+
+	if (argc != 2)
+	{
+		write(2, "Usage:\n\t./miniRT <filename>.rt\n", 32);
+		return (2);
+	}
+	minirt = (t_minirt){0};
+	ini_mlx(&minirt);
+	if (!ini_objs(&minirt))
+	{
+		ft_putendl_fd("FATAL: Couldn't allocate for necessary objects.", 2);
+		return (destroy_scene(&minirt), 2);
+	}
+	if (!parse_file(argv[1], &minirt))
+		return (destroy_scene(&minirt), destroy_textures(&minirt), 2);
+	if (!ini_core(&minirt))
+	{
+		destroy_scene(&minirt);
+		destroy_mlx(&minirt);
+		ft_putendl_fd("FATAL: Couldn't allocate for threads.", 2);
+		return (destroy_textures(&minirt), 2);
+	}
+	start_rt(&minirt);
+	return (0);
+}
+
