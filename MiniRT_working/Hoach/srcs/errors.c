@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 11:12:50 by honguyen          #+#    #+#             */
-/*   Updated: 2024/12/02 15:12:36 by honguyen         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:31:32 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	errors(int err_code, t_minirt *minirt)
 {
 	close_minirt(minirt);
 	if (err_code == ER_AGC)
-		ft_putstr_fd(ERROR_USAGE, 2);
+		ft_putstr_fd(ER_USAGE, 2);
 	else if (err_code == ER_MLX)
 		ft_putstr_fd("Error in MLX initialization \n", 2);
 	else if (err_code == ER_MOR)
