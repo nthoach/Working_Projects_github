@@ -164,7 +164,7 @@ typedef struct s_material_colors
 
 typedef struct s_object
 {
-	int			type;  // 0 = SP, CY, PL, CU, CO, S_L, P_L
+	int			type;  // 0 = SPHERE, CYLINDER, PLANE, CUBIC, CONE, SPOT_LIGHT, POINT_LIGHT
 	t_vec4s		center; // center point of the object
 	t_mat4s		inv_transform; // used to transfrom scene coordinates to object's local coordinates
 	t_mat4s		transposed_inverse; //transpose of the inverse transformation matrix

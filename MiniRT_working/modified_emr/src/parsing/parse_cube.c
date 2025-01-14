@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:38:04 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:45:03 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:09:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 static void	material_init(t_material *material, const t_split *fields,
 	t_minirt *minirt, int curr_line)
 {
-	__m128	color_vec;
+	//__m128	color_vec;
 
-	color_vec = material->color.v.simd;
-	material->xordc = \
-		(t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
+	//color_vec = material->color.v.simd;
+	//material->xordc = (t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
+	material->xordc = (t_color){.v = vec4s_re(0.f, 0.f, 0.f, 0.f)};
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
 	material->specular = 0.9;
@@ -46,7 +46,7 @@ bool	parse_cube(t_minirt *minirt, const t_split *fields, int curr_line)
 	if (fields->wordcount < 5 || fields->wordcount > 7)
 		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CU ERR_ECU,
 				curr_line), str_arr_destroy(fields->array), false);
-	cu->type = CU;
+	cu->type = CUBIC;
 	if (!parse_vec4p(&cu->trans, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	if (!parse_vec4v(&cu->orientation, fields->array[2], minirt, curr_line))
@@ -58,7 +58,9 @@ bool	parse_cube(t_minirt *minirt, const t_split *fields, int curr_line)
 	material_init(&cu->material, fields, minirt, curr_line);
 	cu->scale = vec4s_re(1, 1, 1, 1);
 	cu->rot = rt_extract_rot_vertical(cu->orientation);
+	//cu->inv_transform = get_inv_tranform_mat4s(cu->rot,
+	//		cu->scale.simd, cu->trans.simd);
 	cu->inv_transform = get_inv_tranform_mat4s(cu->rot,
-			cu->scale.simd, cu->trans.simd);
+			cu->scale, cu->trans);
 	return (str_arr_destroy(fields->array), true);
 }

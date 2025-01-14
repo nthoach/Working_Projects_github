@@ -18,13 +18,13 @@
 
 enum e_object_types
 {
-	SP,
-	CY,
-	PL,
-	CU,
-	CO,
-	S_L,
-	P_L
+	SPHERE,
+	CYLINDER,
+	PLANE,
+	CUBIC,
+	CONE,
+	SPOT_LIGHT,
+	POINT_LIGHT
 };
 
 typedef union u_color

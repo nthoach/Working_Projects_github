@@ -22,7 +22,7 @@
 # endif // !EPSILON
 /*--- VECTOR ---*/
 
-typedef union u_vec4d
+typedef union __attribute((aligned(32))) u_vec4d
 {
 	float		a[4];
 	__m256d		simd;
@@ -34,21 +34,21 @@ typedef union u_vec4d
 		float	z;
 		float	w;
 	};
-}__attribute((aligned(32)))	t_vec4d;
+} t_vec4d;
 
-typedef union u_vec4s
+typedef union __attribute((aligned(16))) u_vec4s
 {
 	float		a[4];
 	__m128		simd;
 	uint32_t	raw[4];
-	struct
+	struct 
 	{
 		float	x;
 		float	y;
 		float	z;
 		float	w;
 	};
-}__attribute((aligned(16)))	t_vec4s;
+}	t_vec4s;
 
 typedef union u_vec3d
 {
@@ -103,7 +103,7 @@ typedef union u_mat3d
 	};
 }__attribute((aligned(32)))	t_mat3d;
 
-typedef union u_mat4s
+typedef union __attribute((aligned(16))) u_mat4s
 {
 	float	a[4][4];
 	__m128	simd[4];
@@ -115,7 +115,7 @@ typedef union u_mat4s
 		t_vec4s	r3;
 		t_vec4s	r4;
 	};
-}__attribute((aligned(16)))	t_mat4s;
+}	t_mat4s;
 
 typedef union u_mat4d
 {

@@ -12,86 +12,52 @@
 
 #include "lag.h"
 
-bool	equal_vec4s(const t_vec4s a, const t_vec4s b,
+bool	equal_vec4s(const t_vec4s v1, const t_vec4s v2,
 						float tolerance)
 {
-	const __m128	sign_mask = _mm_set1_ps(-0.0f);
-	const __m128	abs_diff = _mm_andnot_ps(\
-						sign_mask, \
-						_mm_sub_ps(a.simd, b.simd) \
-					);
-	const __m128	load_tol = _mm_set1_ps(tolerance);
-	const __m128	cmp = _mm_cmp_ps(\
-						abs_diff, \
-						load_tol, \
-						_CMP_LT_OQ \
-					);
-	const int		mask = _mm_movemask_ps(cmp);
-
-	return (mask == 0xF);
-}
-
-//bool	precequal_vec4s(const t_vec4s a, const t_vec4s b)
-//{
-//	const int	mask = _mm_movemask_ps(
-//					_mm_cmp_ps(a.simd, b.simd, _CMP_LT_OQ) 
-//				);
-
-//	return (mask == 0xF);
-//}
-
-static inline __m128	_mm_msqr_ps(const __m128 vec)
-{
-	__m128	mul;
-	__m128	shuf;
-	__m128	sums;
-
-	mul = _mm_mul_ps(vec, vec);
-	shuf = _mm_shuffle_ps(mul, mul, _MM_SHUFFLE(2, 3, 0, 1));
-	sums = _mm_add_ps(mul, shuf);
-	shuf = _mm_movehl_ps(shuf, sums);
-	sums = _mm_add_ss(sums, shuf);
-	return (_mm_shuffle_ps(sums, sums, _MM_SHUFFLE(0, 0, 0, 0)));
+    return (fabsf(v1.a[0] - v2.a[0]) < tolerance &&
+            fabsf(v1.a[1] - v2.a[1]) < tolerance &&
+            fabsf(v1.a[2] - v2.a[2]) < tolerance &&
+            fabsf(v1.a[3] - v2.a[3]) < tolerance);
 }
 
 void	normalize_vec4s(t_vec4s *target)
 {
-	const __m128	msqr = _mm_msqr_ps(target->simd);
-	__m128			isrt;
-
-	if (_mm_cvtss_f32(msqr) == 0.0f)
-	{
-		*target = (t_vec4s){0};
-		return ;
-	}
-	isrt = _mm_rsqrt_ps(msqr);
-	target->simd = _mm_mul_ps(target->simd, isrt);
+    float msqr;
+ 
+    msqr = target->a[0] * target->a[0] + target->a[1] * target->a[1] \
+        + target->a[2] * target->a[2] + target->a[3] * target->a[3];
+    if (msqr == 0.0f)
+    {
+        *target = vec4sv_re(0.f, 0.f, 0.f);
+        return ;
+    }
+    *target = scale_vec4s_re(*target, 1.f /sqrtf(msqr));
 }
 
 t_vec4s	normalize_vec4s_re(const t_vec4s in)
 {
-	const __m128	msqr = _mm_dp_ps(in.simd, in.simd, 0xFF);
-	__m128			isrt;
+	float msqr; 
+	
+    msqr = in.a[0] * in.a[0] + in.a[1] * in.a[1] + in.a[2] * in.a[2] + \
+     in.a[3] * in.a[3];
 
-	if (_mm_cvtss_f32(msqr) == 0.0f)
-		return ((t_vec4s){.simd = _mm_set1_ps(0.f)});
-	isrt = _mm_rsqrt_ps(msqr);
-	return ((t_vec4s)
-		{
-			.simd = _mm_mul_ps(in.simd, isrt)
-		});
+    if (msqr == 0.0f)
+        return (vec4sv_re(0.f, 0.f, 0.f));
+    return (scale_vec4s_re(in, 1.f / sqrtf(msqr)));
 }
 
 void	normalize_vec4s_new(t_vec4s *out, const t_vec4s in)
 {
-	const __m128	msqr = _mm_dp_ps(in.simd, in.simd, 0xFF);
-	__m128			isrt;
+	float msqr; 
 
-	if (_mm_cvtss_f32(msqr) == 0.0f)
-	{
-		*out = (t_vec4s){0};
-		return ;
-	}
-	isrt = _mm_rsqrt_ps(msqr);
-	out->simd = _mm_mul_ps(in.simd, isrt);
+    msqr = in.a[0] * in.a[0] + in.a[1] * in.a[1] + in.a[2] * in.a[2] + \
+     in.a[3] * in.a[3];
+
+    if (msqr == 0.0f)
+    {
+        *out = vec4sv_re(0.f, 0.f, 0.f);
+        return;
+    }
+    *out = scale_vec4s_re(in, 1.f /sqrtf(msqr));
 }

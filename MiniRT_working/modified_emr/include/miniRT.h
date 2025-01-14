@@ -245,7 +245,7 @@ t_vec4s		plane_normal_at(t_object *plane, t_vec4s *world_p);
 t_vec4s		sphere_normal_at(t_object *sphere, t_vec4s *world_p);
 void		quick_sort_intersections(t_itx *arr, size_t size);
 t_itx		*get_hit(t_itx_grp *xs);
-void		lag_mat4s_transpose(const t_mat4s *m, t_mat4s *out);
+void		transpose_mat4s(const t_mat4s *m, t_mat4s *out);
 
 /*--- TEXTURES ---*/
 

@@ -15,38 +15,17 @@
 void	cross_vec4s(t_vec4s *out, const t_vec4s in1,
 						const t_vec4s in2)
 {
-	const __m128	a_yzx = \
-					_mm_shuffle_ps(in1.simd, in1.simd, _MM_SHUFFLE(3, 0, 2, 1));
-	const __m128	b_yzx = \
-					_mm_shuffle_ps(in2.simd, in2.simd, _MM_SHUFFLE(3, 0, 2, 1));
-	const __m128	a_zxy = \
-					_mm_shuffle_ps(in1.simd, in1.simd, _MM_SHUFFLE(3, 1, 0, 2));
-	const __m128	b_zxy = \
-					_mm_shuffle_ps(in2.simd, in2.simd, _MM_SHUFFLE(3, 1, 0, 2));
-
-	out->simd = _mm_sub_ps(\
-		_mm_mul_ps(a_yzx, b_zxy), \
-		_mm_mul_ps(a_zxy, b_yzx) \
-	);
+	*out = cross_vec4s_re(in1, in2);
 }
 
 t_vec4s	cross_vec4s_re(const t_vec4s in1,
 						const t_vec4s in2)
 {
-	const __m128	a_yzx = \
-					_mm_shuffle_ps(in1.simd, in1.simd, _MM_SHUFFLE(3, 0, 2, 1));
-	const __m128	b_yzx = \
-					_mm_shuffle_ps(in2.simd, in2.simd, _MM_SHUFFLE(3, 0, 2, 1));
-	const __m128	a_zxy = \
-					_mm_shuffle_ps(in1.simd, in1.simd, _MM_SHUFFLE(3, 1, 0, 2));
-	const __m128	b_zxy = \
-					_mm_shuffle_ps(in2.simd, in2.simd, _MM_SHUFFLE(3, 1, 0, 2));
+	 t_vec4s result;
 
-	return ((t_vec4s)
-		{
-			.simd = _mm_sub_ps(\
-				_mm_mul_ps(a_yzx, b_zxy), \
-				_mm_mul_ps(a_zxy, b_yzx) \
-			)
-		});
+    result.a[0] = in1.a[1] * in2.a[2] - in1.a[2] * in2.a[1];
+    result.a[1] = in1.a[2] * in2.a[0] - in1.a[0] * in2.a[2];
+    result.a[2] = in1.a[0] * in2.a[1] - in1.a[1] * in2.a[0];
+    result.a[3] = 0.0f; 
+    return (result);
 }

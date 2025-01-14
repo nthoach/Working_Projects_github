@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:20:27 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:48:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:27:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ float	get_spot_light_intensity(t_light *light, t_vec4s light_v)
 	float	inner_cone_cos;
 	float	delta_cos;
 
-	if (light->type == S_L)
+	if (light->type == SPOT_LIGHT)
 	{
 		cos_align = dot_vec4s_re(&light_v,
 				&light->specs.spot.orientation);
@@ -75,7 +75,7 @@ bool	is_shadowed(t_scene *scene, t_vec4s *point, t_light *light)
 	t_vec4s		hit_pos;
 
 	sub_vec4s(&v, &light->pos, point);
-	if (light->type == S_L && is_spot_light_shadowed(light, &v))
+	if (light->type == SPOT_LIGHT && is_spot_light_shadowed(light, &v))
 		return (true);
 	ray_create(&r, point, &v);
 	cast_shadow_ray(scene, &r, &xs);
@@ -101,15 +101,15 @@ void	cast_shadow_ray(t_scene *w, t_ray *r, t_itx_grp *xs)
 	{
 		if (xs->count >= _RT_MAX_ITX || itx_occured > 2)
 			break ;
-		if (w->shapes[i].type == SP)
+		if (w->shapes[i].type == SPHERE)
 			itx_occured += intersect_sphere(r, &w->shapes[i], xs);
-		else if (w->shapes[i].type == PL)
+		else if (w->shapes[i].type == PLANE)
 			itx_occured += intersect_plane(r, &w->shapes[i], xs);
-		else if (w->shapes[i].type == CY)
+		else if (w->shapes[i].type == CYLINDER)
 			itx_occured += intersect_cylinder(r, &w->shapes[i], xs);
-		else if (w->shapes[i].type == CU)
+		else if (w->shapes[i].type == CUBIC)
 			itx_occured += intersect_cube(r, &w->shapes[i], xs);
-		else if (w->shapes[i].type == CO)
+		else if (w->shapes[i].type == CONE)
 			itx_occured += intersect_cone(r, &w->shapes[i], xs);
 	}
 }

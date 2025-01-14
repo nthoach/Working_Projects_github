@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:20:32 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:45:03 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:04:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 static void	material_init(t_material *material, const t_split *fields,
 		t_minirt *minirt, int curr_line)
 {
-	__m128	color_vec;
+	//__m128	color_vec;
 
-	color_vec = material->color.v.simd;
-	material->xordc = \
-		(t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
+	//color_vec = material->color.v.simd;
+
+	material->xordc = (t_color){.v = vec4s_re(0.f, 0.f, 0.f, 0.f)};
+	//material->xordc = (t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
 	material->specular = 0.9;
@@ -37,11 +38,15 @@ static void	material_init(t_material *material, const t_split *fields,
 
 void	get_sphere_extras(t_object *sp)
 {
-	sp->scale.simd = _mm_set1_ps(sp->radius);
+	//
+	sp->scale = vec4s_re(sp->radius, sp->radius, sp->radius, sp->radius);
+	//sp->scale.simd = _mm_set1_ps(sp->radius);
 	sp->scale.w = 1.f;
 	sp->rot = ini_indentity_mat4s();
 	sp->inv_transform = get_inv_tranform_mat4s(sp->rot,
-			sp->scale.simd, sp->trans.simd);
+			sp->scale, sp->trans);
+	//sp->inv_transform = get_inv_tranform_mat4s(sp->rot,
+	//		sp->scale.simd, sp->trans.simd);
 }
 
 bool	parse_sphere(t_minirt *minirt, const t_split *fields, int curr_line)
@@ -55,7 +60,7 @@ bool	parse_sphere(t_minirt *minirt, const t_split *fields, int curr_line)
 	if (fields->wordcount < 4 || fields->wordcount > 6)
 		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_E_TYPE_SP,
 				curr_line), str_arr_destroy(fields->array), false);
-	sp->type = SP;
+	sp->type = SPHERE;
 	if (!parse_vec4p(&sp->trans, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	sp->radius = ft_atof(fields->array[2], minirt) / 2.0f;
@@ -66,6 +71,6 @@ bool	parse_sphere(t_minirt *minirt, const t_split *fields, int curr_line)
 		return (str_arr_destroy(fields->array), false);
 	material_init(&sp->material, fields, minirt, curr_line);
 	get_sphere_extras(sp);
-	lag_mat4s_transpose(&sp->inv_transform, &sp->transposed_inverse);
+	transpose_mat4s(&sp->inv_transform, &sp->transposed_inverse);
 	return (str_arr_destroy(fields->array), true);
 }

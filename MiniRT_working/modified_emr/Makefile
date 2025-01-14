@@ -1,26 +1,27 @@
-# Necessities
 CC := cc
+BONUS ?= 0
 CFLAGS = -Wextra -Wall -Werror -lz -Wno-unused-result -mavx -mavx2 -O3 -flto -funroll-loops -fno-signed-zeros #-g -fsanitize=address
-# OS-specification
+
 OS := $(shell uname)
+CFLAGS += -DBONUS=$(BONUS)
 
 Dar = Darwin
 
 Lin = Linux
 
 ifeq (${OS}, ${Dar})
-	BUILD_DIR := minilibx_macos
+	BUILD_DIR := libs/minilibx_macos
 	MLX := mlx
-	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -framework OpenGL -framework Appkit -Llibft -Ilibft/includes -lft -L/usr/lib -lm
+	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -framework OpenGL -framework Appkit -Llibs/libft -Ilibs/libft/includes -lft -L/usr/lib -lm
 else ifeq (${OS}, ${Lin})
-	BUILD_DIR := minilibx_linux
+	BUILD_DIR := libs/minilibx_linux
 	MLX := mlx_Linux
-	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -L/usr/lib -lXext -lX11 -lm -lz -Llibft -Ilibft/includes -lft
+	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -L/usr/lib -lXext -lX11 -lm -lz -Llibs/libft -Ilibs/libft/includes -lft
 else
-	$(error Idk, man. Doesn't look like something I was BUILT to deal with ;3)
+	$(error Different OS!)
 endif
 
-# PROJECT
+
 NAME := miniRT
 
 SRC := main.c ft_atof.c \
@@ -50,26 +51,47 @@ LAG_SRCS := $(addprefix $(LAG_DIR)/, $(LAG_SRC))
 INC := miniRT.h common.h colors.h macros.h keys.h ltypes.h lag.h
 INC_DIR := include
 INCLUDE := $(addprefix $(INC_DIR)/, $(INC))
+
 all: $(NAME)
+
+bonus:
+	$(MAKE) BONUS=1
+
+mandatory:
+	$(MAKE) BONUS=0
 
 $(NAME): $(SRCS) $(LAG_SRCS) $(INCLUDE)
 	@make -C $(BUILD_DIR)
-	make -C libft
+	make -C libs/libft
 	$(CC) -o $(NAME) -I$(INC_DIR) $(SRCS) $(LAG_SRCS) $(CFLAGS)
 
 clean:
 	@make -C $(BUILD_DIR) clean
-	 make -C libft clean
+	make -C libs/libft clean
 
 fclean:
 	@make -C $(BUILD_DIR) clean
 	rm -rf $(BUILD_DIR)/lib$(MLX).a
-	make -C libft fclean
+	make -C libs/libft fclean
 	rm -rf $(NAME)
 
-run: $(NAME)
+run: re $(NAME)
 	rm -rf $(OBJS)
-	@./$(NAME) ../scenes/complex.rt
+	@./$(NAME) ./scenes/complex.rt
+
+brun:
+	$(MAKE) BONUS=1
+	rm -rf $(OBJS)
+	@./$(NAME) ./scenes/complex.rt
+
+leaks: $(NAME)
+	@$(RM) $(OBJS)
+	valgrind --leak-check=full ./$(NAME) ./scenes/complex.rt
+
+bleaks: $(NAME)
+	$(MAKE) BONUS=1
+	@$(RM) $(OBJS)
+	valgrind --leak-check=full ./$(NAME) ./scenes/complex.rt
 
 re: fclean all
 

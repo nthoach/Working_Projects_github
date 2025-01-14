@@ -85,11 +85,11 @@ t_vec4s	cube_normal_at(t_object *cube, t_vec4s *world_point)
 	abslocal_n.z = fmaxf(fabsf(object_n_p[1].z), EPSILON);
 	maxc = fmax(fmax(abslocal_n.x, abslocal_n.y), abslocal_n.z);
 	if (fabsf(maxc - fabsf(object_n_p[1].x)) < EPSILON)
-		vec_4sv_ini(&world_normal, object_n_p[1].x, 0, 0);
+		vec4sv_ini(&world_normal, object_n_p[1].x, 0, 0);
 	else if (fabsf(maxc - fabsf(object_n_p[1].y)) < EPSILON)
-		vec_4sv_ini(&world_normal, 0, object_n_p[1].y, 0);
+		vec4sv_ini(&world_normal, 0, object_n_p[1].y, 0);
 	else
-		vec_4sv_ini(&world_normal, 0, 0, object_n_p[1].z);
+		vec4sv_ini(&world_normal, 0, 0, object_n_p[1].z);
 	cross_mat4s_vec4s(&cube->transposed_inverse, &world_normal, \
 		&world_normal);
 	normalize_vec4s(&world_normal);

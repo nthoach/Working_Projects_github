@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:34:49 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:45:03 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 17:49:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ bool	get_cone_extras(t_object *co, t_minirt *minirt,
 	co->scale = vec4s_re(co->radius, height, co->radius, 1);
 	co->rot = rt_extract_rot_vertical(co->orientation);
 	co->inv_transform = get_inv_tranform_mat4s(co->rot,
-			co->scale.simd, co->trans.simd);
+			co->scale, co->trans);
+	//co->inv_transform = get_inv_tranform_mat4s(co->rot,
+	//		co->scale.simd, co->trans.simd);
 	return (true);
 }
 
@@ -74,7 +76,7 @@ bool	parse_cone(t_minirt *minirt, const t_split *fields, int curr_line)
 	if (fields->wordcount < 6 || fields->wordcount > 8)
 		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CO ERR_ECO,
 				curr_line), str_arr_destroy(fields->array), false);
-	co->type = CO;
+	co->type = CONE;
 	if (!parse_vec4p(&co->trans, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	if (!parse_vec4v(&co->orientation, fields->array[2], minirt, curr_line))

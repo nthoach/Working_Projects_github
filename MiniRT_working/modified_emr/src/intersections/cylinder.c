@@ -21,11 +21,11 @@ t_vec4s	cylinder_normal_at(t_object *cy, t_vec4s *world_point)
 
 	cross_mat4s_vec4s(&cy->inv_transform, world_point, &local_point);
 	if (fabsf(local_point.y - 1.f) < EPSILON)
-		vec_4sv_ini(&local_normal, 0, 1, 0);
+		vec4sv_ini(&local_normal, 0, 1, 0);
 	else if (fabsf(local_point.y + 1.f) < EPSILON)
-		vec_4sv_ini(&local_normal, 0, -1, 0);
+		vec4sv_ini(&local_normal, 0, -1, 0);
 	else
-		vec_4sv_ini(&local_normal, local_point.x, 0, local_point.z);
+		vec4sv_ini(&local_normal, local_point.x, 0, local_point.z);
 	cross_mat4s_vec4s(&cy->transposed_inverse,
 		&local_normal, &world_normal);
 	world_normal.w = 0;

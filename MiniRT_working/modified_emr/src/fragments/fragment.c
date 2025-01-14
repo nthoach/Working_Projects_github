@@ -35,15 +35,15 @@ t_ray	ray_for_pixel(const t_camera *cam, int px, int py)
 
 static void	prepare_comps_normal(t_itx *itx, t_itx_data *comps)
 {
-	if (itx->object->type == SP)
+	if (itx->object->type == SPHERE)
 		comps->normalv = sphere_normal_at(itx->object, &comps->p);
-	else if (itx->object->type == PL)
+	else if (itx->object->type == PLANE)
 		comps->normalv = plane_normal_at(itx->object, &comps->p);
-	else if (itx->object->type == CY)
+	else if (itx->object->type == CYLINDER)
 		comps->normalv = cylinder_normal_at(itx->object, &comps->p);
-	else if (itx->object->type == CU)
+	else if (itx->object->type == CUBIC)
 		comps->normalv = cube_normal_at(itx->object, &comps->p);
-	else if (itx->object->type == CO)
+	else if (itx->object->type == CONE)
 		comps->normalv = cone_normal_at(itx->object, &comps->p);
 	if (dot_vec4s_re(&comps->normalv, &comps->eyev) < EPSILON)
 	{

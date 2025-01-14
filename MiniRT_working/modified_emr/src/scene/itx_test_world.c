@@ -24,15 +24,15 @@ t_itx_grp	intersect_world(t_scene *w, t_ray *r)
 	{
 		if (ret.count >= _RT_MAX_ITX)
 			break ;
-		if (w->shapes[i].type == SP)
+		if (w->shapes[i].type == SPHERE)
 			intersect_sphere(r, &w->shapes[i], &ret);
-		else if (w->shapes[i].type == PL)
+		else if (w->shapes[i].type == PLANE)
 			intersect_plane(r, &w->shapes[i], &ret);
-		else if (w->shapes[i].type == CY)
+		else if (w->shapes[i].type == CYLINDER)
 			intersect_cylinder(r, &w->shapes[i], &ret);
-		else if (w->shapes[i].type == CU)
+		else if (w->shapes[i].type == CUBIC)
 			intersect_cube(r, &w->shapes[i], &ret);
-		else if (w->shapes[i].type == CO)
+		else if (w->shapes[i].type == CONE)
 			intersect_cone(r, &w->shapes[i], &ret);
 	}
 	return (ret);

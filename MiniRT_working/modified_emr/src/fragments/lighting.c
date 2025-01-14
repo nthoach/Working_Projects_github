@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:18:23 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:48:44 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 14:27:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ static inline void	plane_pattern_blend(t_color *ec,
 static void	lighting_init(t_material_colors *mat_colors, t_light *light,
 			t_itx_data *comps, t_material *material)
 {
-	if (light->type == S_L)
+	if (light->type == SPOT_LIGHT)
 		mat_colors->intensity = light->specs.spot.intensity;
 	else
 		mat_colors->intensity = light->specs.point.intensity;
-	if (comps->obj->type == PL && material->checkered)
+	if (comps->obj->type == PLANE && material->checkered)
 		plane_pattern_blend(&mat_colors->effective_color, comps,
 			&mat_colors->intensity);
 	else
@@ -64,7 +64,7 @@ static void	lighting_extension(t_material_colors *mc, t_material *material,
 	else
 	{
 		factor = powf(reflect_eye_dot, material->sheen);
-		if (mc->light_type == S_L)
+		if (mc->light_type == SPOT_LIGHT)
 			factor *= hidden_spotlight_intensity;
 		scale_color(&mc->specular, &mc->intensity,
 			material->specular * factor);
@@ -89,7 +89,7 @@ t_color	lighting(t_itx_data *comps, t_material *material, t_light *light,
 		return (check_for_texture(comps, material, &mat_colors),
 			mat_colors.ambient);
 	mat_colors.light_type = light->type;
-	if (light->type == S_L && !in_shadow)
+	if (light->type == SPOT_LIGHT && !in_shadow)
 	{
 		spot_intensity = get_spot_light_intensity(light, light_v);
 		scale_color(&mat_colors.effective_color, &mat_colors.effective_color,

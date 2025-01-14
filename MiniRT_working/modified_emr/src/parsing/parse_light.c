@@ -64,7 +64,7 @@ bool	parse_spot_light(t_minirt *minirt, const t_split *fields,
 		return (false);
 	negate_vec4s(&light->specs.spot.orientation);
 	is_normalised(&light->specs.spot.orientation, curr_line);
-	light->type = S_L;
+	light->type = SPOT_LIGHT;
 	minirt->scene.num_lights++;
 	return (str_arr_destroy(fields->array), true);
 }
@@ -110,6 +110,6 @@ bool	parse_light(t_minirt *minirt, const t_split *fields, int curr_line)
 	light->ratio = temp;
 	if (!parse_point_light_color(fields, curr_line, &minirt->scene))
 		return (false);
-	light->type = P_L;
+	light->type = POINT_LIGHT;
 	return (str_arr_destroy(fields->array), true);
 }

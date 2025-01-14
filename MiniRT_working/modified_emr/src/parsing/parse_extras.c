@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 13:51:45 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:12:36 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 17:00:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ static inline t_mat4s	mat4_from_quat(const t_vec4s q)
 	w.x = q.w * q.x;
 	w.y = q.w * q.y;
 	w.z = q.w * q.z;
-	vec_4sv_ini(&ret.r1, 1 - 2 * (y.y + z.z), 2 * (x.y - w.z), 2
+	vec4sv_ini(&ret.r1, 1 - 2 * (y.y + z.z), 2 * (x.y - w.z), 2
 		* (x.z + w.y));
-	vec_4sv_ini(&ret.r2, 2 * (x.y + w.z), 1 - 2 * (x.x + z.z), 2
+	vec4sv_ini(&ret.r2, 2 * (x.y + w.z), 1 - 2 * (x.x + z.z), 2
 		* (y.z - w.x));
-	vec_4sv_ini(&ret.r3, 2 * (x.z - w.y), 2 * (y.z + w.x), 1 - 2
+	vec4sv_ini(&ret.r3, 2 * (x.z - w.y), 2 * (y.z + w.x), 1 - 2
 		* (x.x + y.y));
 	vec4sp_ini(&ret.r4, 0.f, 0.f, 0.f);
 	return (ret);

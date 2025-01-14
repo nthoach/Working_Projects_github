@@ -15,12 +15,19 @@
 
 static inline void	update_object_cache(t_object *object)
 {
+	/*
+	//object->inv_transform = get_inv_tranform_mat4s(\
+	//	object->rot, \
+	//	object->scale.simd, \
+	//	object->trans.simd \
+	//);
+	*/
 	object->inv_transform = get_inv_tranform_mat4s(\
-		object->rot, \
-		object->scale.simd, \
-		object->trans.simd \
+	object->rot, 
+	object->scale, \
+	object->trans \
 	);
-	lag_mat4s_transpose(&object->inv_transform, &object->transposed_inverse);
+	transpose_mat4s(&object->inv_transform, &object->transposed_inverse);
 }
 
 static inline void	_move_sideways_check(t_minirt *state, bool *state_changed)
@@ -49,8 +56,8 @@ static inline void	_move_longitudinally_check(t_minirt *state,
 						bool *state_changed)
 {
 	t_object	*selected_object;
-	t_vec4s	viewport_forward;
-	t_vec4s	op;
+	t_vec4s		viewport_forward;
+	t_vec4s		op;
 
 	selected_object = state->selected.object;
 	op = vec4s_re(selected_object->trans.x, \

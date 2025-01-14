@@ -29,7 +29,7 @@ void	vec4sp_ini(t_vec4s *target, float x, float y,
 t_vec4s	vec4sp_re(float x, float y, float z);
 
 /// @brief Initialises a `t_vec4s` in homogenous coordinates with a w of `0`
-void	vec_4sv_ini(t_vec4s *target, float x, float y,
+void	vec4sv_ini(t_vec4s *target, float x, float y,
 			float z);
 
 /// @brief Returns a `t_vec4s` in homogenous coordinates with a w of `0`
@@ -140,14 +140,14 @@ bool	precequal_vec4s(const t_vec4s a, const t_vec4s b);
 /// @brief Normalizes a `t_vec4s` in place.
 /// @param target Pointer to `t_vec4s` to be normalized
 /// @warning Recommend using an EPSILON of around `0.0001`.
-///          For better precision, use `mormalize_vec4s_medp`.
+///          For better precision, use `normalize_vec4s_medp`.
 ///          For highest precision, use `normalize_vec4s_highp`.
 void	normalize_vec4s(t_vec4s *target);
 
 /// @brief Returns a normalized version of the `t_vec4s`: `in`.
 /// @param in `t_vec4s` to be normalized.
 /// @warning Recommend using an EPSILON of around `0.0001`.
-///          For better precision, use `mormalize_vec4s_medp`.
+///          For better precision, use `normalize_vec4s_medp`.
 ///          For highest precision, use `normalize_vec4s_highp`.
 t_vec4s	normalize_vec4s_re(const t_vec4s in);
 
@@ -156,7 +156,7 @@ t_vec4s	normalize_vec4s_re(const t_vec4s in);
 /// @param out Pointer to the `t_vec4s` that stores the result.
 /// @param in `t_vec4s` to be normalized.
 /// @warning Recommend using an EPSILON of around `0.0001`.
-///          For better precision, use `mormalize_vec4s_medp`.
+///          For better precision, use `normalize_vec4s_medp`.
 ///          For highest precision, use `normalize_vec4s_highp`.
 void	normalize_vec4s_new(t_vec4s *out, const t_vec4s in);
 
@@ -206,14 +206,15 @@ void	cross_mat4s_mat4s(const t_mat4s in1,
 /// @return The inverse of the decomposed matrix
 /// @warning The scale should NOT contain any zero components as that will
 /// cause a floating-point exception.
-t_mat4s	get_inv_tranform_mat4s(const t_mat4s rot, const __m128 s,
-			const __m128 t);
+//t_mat4s	get_inv_tranform_mat4s(const t_mat4s rot, const __m128 s,
+//			const __m128 t);
+t_mat4s get_inv_tranform_mat4s(const t_mat4s rot, const t_vec4s s, const t_vec4s t);
 
 /*--- PS_EXTRA ---*/
 
 /// @brief Returns a normalized version of the `t_vec4s`: `in`.
 /// @param in `t_vec4s` to be normalized.
-t_vec4s	mormalize_vec4s_medp(const t_vec4s in);
+t_vec4s	normalize_vec4s_medp(const t_vec4s in);
 
 /// @brief Returns a normalized version of the `t_vec4s`: `in`.
 /// @param in `t_vec4s` to be normalized.

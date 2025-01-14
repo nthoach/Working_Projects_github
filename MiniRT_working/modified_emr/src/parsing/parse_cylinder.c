@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:38:59 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/13 18:45:03 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:09:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 static void	material_init(t_material *material, const t_split *fields,
 	t_minirt *minirt, int curr_line)
 {
-	__m128	color_vec;
+	//__m128	color_vec;
 
-	color_vec = material->color.v.simd;
-	material->xordc = \
-		(t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
+	//color_vec = material->color.v.simd;
+	//material->xordc = (t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
+	material->xordc = (t_color){.v = vec4s_re(0.f, 0.f, 0.f, 0.f)};
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
 	material->specular = 0.9;
@@ -57,9 +57,11 @@ bool	get_cylinder_extras(t_object *cy, t_minirt *minirt,
 	material_init(&cy->material, fields, minirt, curr_line);
 	cy->scale = vec4s_re(cy->radius, height / 2.f, cy->radius, 1);
 	cy->rot = rt_extract_rot_vertical(cy->orientation);
+	//cy->inv_transform = get_inv_tranform_mat4s(cy->rot,
+	//		cy->scale.simd, cy->trans.simd);
 	cy->inv_transform = get_inv_tranform_mat4s(cy->rot,
-			cy->scale.simd, cy->trans.simd);
-	lag_mat4s_transpose(&cy->inv_transform, &cy->transposed_inverse);
+			cy->scale, cy->trans);
+	transpose_mat4s(&cy->inv_transform, &cy->transposed_inverse);
 	return (true);
 }
 
@@ -75,7 +77,7 @@ bool	parse_cylinder(t_minirt *minirt, const t_split *fields, int curr_line)
 	if (fields->wordcount < 6 || fields->wordcount > 8)
 		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CY ERR_ECY,
 				curr_line), str_arr_destroy(fields->array), false);
-	cy->type = CY;
+	cy->type = CYLINDER;
 	if (!parse_vec4p(&cy->trans, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	if (!parse_vec4v(&cy->orientation, fields->array[2], minirt, curr_line))

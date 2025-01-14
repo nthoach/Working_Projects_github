@@ -35,10 +35,10 @@ t_vec4s	cone_normal_at(t_object *cone, t_vec4s *world_point)
 	cross_mat4s_vec4s(&cone->inv_transform, world_point, &local_point);
 	dist = local_point.x * local_point.x + local_point.z * local_point.z;
 	if (dist < 1.f * 1.f && local_point.y >= (1.f - EPSILON))
-		vec_4sv_ini(&local_normal, 0, 1, 0);
+		vec4sv_ini(&local_normal, 0, 1, 0);
 	else
-		vec_4sv_ini(&local_normal, local_point.x, 0, local_point.z);
-	lag_mat4s_transpose(&cone->inv_transform, &transposed_inv);
+		vec4sv_ini(&local_normal, local_point.x, 0, local_point.z);
+	transpose_mat4s(&cone->inv_transform, &transposed_inv);
 	cross_mat4s_vec4s(&transposed_inv, &local_normal, &world_normal);
 	world_normal.w = 0;
 	normalize_vec4s(&world_normal);
