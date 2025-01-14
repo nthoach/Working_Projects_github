@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nth <nth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/16 13:11:06 by melshafi          #+#    #+#             */
-/*   Updated: 2024/10/16 16:33:24 by melshafi         ###   ########.fr       */
+/*   Created: 2024/10/16 13:11:06 by nth          #+#    #+#             */
+/*   Updated: 2024/10/16 16:33:24 by nth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ bool	parse_camera(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	camera = &minirt->cam;
 	if (camera->is_set)
-		return (parse_fatal_msg(ERR_CAM_DEFINED, curr_line),
+		return (parse_fatal_msg(ER_CAM_DEFINED, curr_line),
 			str_arr_destroy(fields->array), false);
 	if (fields->wordcount != 4)
-		return (parse_err_msg(ERR_CAM_FORMAT, ERR_EXPECT_TYPE_C, curr_line),
+		return (parse_err_msg(ER_CAM_FORMAT, ER_EXPECT_TYPE_C, curr_line),
 			str_arr_destroy(fields->array), false);
 	if (!parse_vec4p(&camera->trans, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
@@ -106,7 +106,7 @@ bool	parse_camera(t_minirt *minirt, const t_split *fields, int curr_line)
 	get_camera_orient(camera);
 	temp = ft_atof(fields->array[3], minirt);
 	if (temp < -0.f || temp > 180.f)
-		return (parse_err_msg(ERR_CAM_FOV, ERR_E_FOV_RANGE, curr_line),
+		return (parse_err_msg(ER_CAM_FOV, ER_E_FOV_RANGE, curr_line),
 			str_arr_destroy(fields->array), false);
 	else if (temp == 0.f || temp == -0.f)
 		parse_warn_msg("Viewport will be an infinitely small line", NULL,

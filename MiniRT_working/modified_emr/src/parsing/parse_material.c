@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 13:02:53 by melshafi          #+#    #+#             */
+/*   Created: 2024/11/18 13:02:53 by nth          #+#    #+#             */
 /*   Updated: 2025/01/13 18:40:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -74,21 +74,21 @@ static bool	check_material_fields(t_material *obj_material,
 
 	split = ft_split(material_field, "=\n\r");
 	if (split.wordcount != 2)
-		return (parse_warn_msg(ERR_M_FORMAT, ERR_EXPECT_M ERR_EM2, line, false),
+		return (parse_warn_msg(ER_M_FORMAT, ER_EXPECT_M ER_EM2, line, false),
 			str_arr_destroy(split.array), false);
 	ret = parse_traits(split.array[0], split.array[1], obj_material, minirt);
 	if (!ret && minirt->error_code == 3)
-		return (parse_warn_msg(ERR_M_BUMP_FORMAT, ERR_EXPECT_XPM, line, true),
+		return (parse_warn_msg(ER_M_BUMP_FORMAT, ER_EXPECT_XPM, line, true),
 			str_arr_destroy(split.array), true);
 	else if (!ret && (minirt->error_code == 2 || minirt->flt_operations
 			== 0))
-		return (parse_warn_msg(ERR_M_VALUE, ERR_EXPECT_FLOAT, line, true),
+		return (parse_warn_msg(ER_M_VALUE, ER_EXPECT_FLOAT, line, true),
 			str_arr_destroy(split.array), true);
 	else if (!ret && minirt->error_code == 4)
-		return (parse_warn_msg(ERR_M_CHECKER, ERR_EXPECT_CHECKER, line, true),
+		return (parse_warn_msg(ER_M_CHECKER, ER_EXPECT_CHECKER, line, true),
 			str_arr_destroy(split.array), true);
 	else if (!ret)
-		return (parse_warn_msg(ERR_M_FORMAT, ERR_EXPECT_M_TRAIT ERR_EMT2,
+		return (parse_warn_msg(ER_M_FORMAT, ER_EXPECT_M_TRAIT ER_EMT2,
 				line, true), str_arr_destroy(split.array), true);
 	return (str_arr_destroy(split.array), true);
 }
@@ -105,7 +105,7 @@ bool	parse_material(t_material *obj_material, char **material_fields,
 		return (false);
 	split = ft_split(material_fields[1], ",\n\r");
 	if (split.wordcount > 7)
-		return (parse_err_msg(ERR_M_FORMAT, ERR_EXPECT_M ERR_EM2, line), false);
+		return (parse_err_msg(ER_M_FORMAT, ER_EXPECT_M, line), false);
 	i = 0;
 	str_arr_destroy(split.array);
 	traits = ft_split(material_fields[1], ",");

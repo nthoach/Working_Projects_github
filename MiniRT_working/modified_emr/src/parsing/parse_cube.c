@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 12:38:04 by melshafi          #+#    #+#             */
+/*   Created: 2024/11/18 12:38:04 by nth          #+#    #+#             */
 /*   Updated: 2025/01/14 18:20:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -37,10 +37,10 @@ bool	parse_cube(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
 		return (str_arr_destroy(fields->array),
-			parse_warn_msg(ERR_MAX_SHAPES, NULL, curr_line, true), true);
+			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	cu = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 5 || fields->wordcount > 7)
-		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CU ERR_ECU,
+		return (parse_err_msg(ER_OBJ_FORMAT, ER_EXPECT_TYPE_CU ER_ECU,
 				curr_line), str_arr_destroy(fields->array), false);
 	cu->type = CUBIC;
 	if (!parse_vec4p(&cu->trans, fields->array[1], minirt, curr_line))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_light.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: melshafi <melshafi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nth <nth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 14:22:24 by nth          #+#    #+#             */
-/*   Updated: 2024/10/16 13:10:35 by melshafi         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:10:35 by nth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ bool	parse_spot_light_color(const t_split *fields, int curr_line,
 	if (!parse_single_f(&light->ratio, fields->array[3], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	if (light->ratio < -0.f || light->ratio > 1.f)
-		return (parse_err_msg(ERR_LIGHT_VALUE, ERR_EXPECT_F_RANGE,
+		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_F_RANGE,
 				curr_line), str_arr_destroy(fields->array), false);
 	if (!parse_single_f(&light->specs.spot.spot_angle, fields->array[4],
 			minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	if (light->specs.spot.spot_angle < 10.f || light->specs.spot.spot_angle
 		> 90.f)
-		return (parse_err_msg(ERR_LIGHT_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	light->specs.spot.spot_angle *= ((float)M_PI / 180.f);
 	if (!parse_color(&parsed_color,
@@ -50,10 +50,10 @@ bool	parse_spot_light(t_minirt *minirt, const t_split *fields,
 
 	light = &minirt->scene.lights[minirt->scene.num_lights];
 	if (minirt->scene.num_lights >= LIGHTS_MAX)
-		return (parse_warn_msg(ERR_MAX_LIGHTS, NULL, curr_line, true),
+		return (parse_warn_msg(ER_MAX_LIGHTS, NULL, curr_line, true),
 			str_arr_destroy(fields->array), true);
 	if (fields->wordcount != 6)
-		return (parse_err_msg(ERR_LIGHT_FORMAT, ERR_EXPECT_TYPE_SL ERR_ESL,
+		return (parse_err_msg(ER_LIGHT_FORMAT, ER_EXPECT_TYPE_SL ER_ESL,
 				curr_line), str_arr_destroy(fields->array), false);
 	if (!parse_vec4p(&light->pos, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
@@ -92,19 +92,19 @@ bool	parse_light(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	light = &minirt->scene.lights[minirt->scene.num_lights];
 	if (minirt->scene.num_lights >= LIGHTS_MAX)
-		return (parse_warn_msg(ERR_MAX_LIGHTS, NULL, curr_line, true),
+		return (parse_warn_msg(ER_MAX_LIGHTS, NULL, curr_line, true),
 			str_arr_destroy(fields->array), true);
 	if (fields->wordcount != 4)
-		return (parse_err_msg(ERR_LIGHT_FORMAT, ERR_EXPECT_TYPE_L,
+		return (parse_err_msg(ER_LIGHT_FORMAT, ER_EXPECT_TYPE_L,
 				curr_line), str_arr_destroy(fields->array), false);
 	if (!parse_vec4p(&light->pos, fields->array[1], minirt, curr_line))
 		return (str_arr_destroy(fields->array), false);
 	temp = ft_atof(fields->array[2], minirt);
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_LIGHT_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	if (temp < -0.f || temp > 1.f)
-		return (parse_err_msg(ERR_LIGHT_VALUE, ERR_EXPECT_F_RANGE,
+		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_F_RANGE,
 				curr_line),
 			str_arr_destroy(fields->array), false);
 	light->ratio = temp;

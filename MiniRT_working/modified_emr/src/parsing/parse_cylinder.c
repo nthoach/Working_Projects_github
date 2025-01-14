@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 12:38:59 by melshafi          #+#    #+#             */
+/*   Created: 2024/11/18 12:38:59 by nth          #+#    #+#             */
 /*   Updated: 2025/01/14 18:20:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -39,11 +39,11 @@ bool	get_cylinder_extras(t_object *cy, t_minirt *minirt,
 
 	cy->radius = ft_atof(fields->array[3], minirt) / 2.0f;
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_OBJ_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	height = ft_atof(fields->array[4], minirt);
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_OBJ_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	cy->specs.min = -height / 2.0f;
 	cy->specs.max = height / 2.0f;
@@ -66,10 +66,10 @@ bool	parse_cylinder(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
 		return (str_arr_destroy(fields->array),
-			parse_warn_msg(ERR_MAX_SHAPES, NULL, curr_line, true), true);
+			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	cy = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 6 || fields->wordcount > 8)
-		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CY ERR_ECY,
+		return (parse_err_msg(ER_OBJ_FORMAT, ER_EXPECT_TYPE_CY ER_ECY,
 				curr_line), str_arr_destroy(fields->array), false);
 	cy->type = CYLINDER;
 	if (!parse_vec4p(&cy->trans, fields->array[1], minirt, curr_line))

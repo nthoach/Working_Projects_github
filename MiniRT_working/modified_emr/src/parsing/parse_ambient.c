@@ -21,17 +21,17 @@ static bool	get_ambient_color(t_minirt *minirt, t_split *fields,
 bool	parse_ambient(t_minirt *minirt, t_split *fields, int curr_line)
 {
 	if (minirt->ambiance.is_set)
-		return (parse_fatal_msg(ERR_AMBIENT_DEFINED, curr_line),
+		return (parse_fatal_msg(ER_AMBIENT_DEFINED, curr_line),
 			str_arr_destroy(fields->array), false);
 	if (fields->wordcount != 3)
-		return (parse_err_msg(ERR_AMBIENT_FORMAT, ERR_EXPECT_TYPE_A,
+		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
 				curr_line), str_arr_destroy(fields->array), false);
 	minirt->ambiance.ratio = ft_atof(fields->array[1], minirt);
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_AMBIENT_FORMAT, ERR_EXPECT_TYPE_A,
+		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
 				curr_line), str_arr_destroy(fields->array), false);
 	if (minirt->ambiance.ratio < -0.f || minirt->ambiance.ratio > 1.f)
-		return (parse_err_msg(ERR_AMBIENT_VALUE, ERR_EXPECT_F_RANGE,
+		return (parse_err_msg(ER_AMBIENT_VALUE, ER_EXPECT_F_RANGE,
 				curr_line), str_arr_destroy(fields->array), false);
 	return (get_ambient_color(minirt, fields, curr_line));
 }

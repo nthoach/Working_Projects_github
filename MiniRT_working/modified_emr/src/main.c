@@ -64,24 +64,42 @@ bool	ini_objs(t_minirt *minirt)
 	return (true);
 }
 
-int	main(int argc, char *argv[])
+
+void	errors(int err_code, char* err_ms, void *ptr)
+{
+	t_minirt *minirt;
+	
+	minirt = (t_minirt *)ptr;
+	if (minirt)
+		destroy_minirt(minirt);
+	ft_putstr_fd(err_ms, 2);
+	exit(err_code);
+}
+
+
+int	main(int ac, char *av[])
 {
 	t_minirt	minirt;
 
-	if (argc != 2)
-	{
-		write(2, "Usage:\n\t./miniRT <filename>.rt\n", 32);
-		return (2);
-	}
+	if (ac != 2)
+		errors(CER_AGC, ER_AGC, NULL);
+	//if (argc != 2)
+	//{
+	//	write(2, "Usage:\n\t./miniRT <filename>.rt\n", 32);
+	//	return (2);
+	//}
 	minirt = (t_minirt){0};
+	//ini_minirt(&minirt);
 	ini_mlx(&minirt);
 	if (!ini_objs(&minirt))
 	{
 		ft_putendl_fd("FATAL: Couldn't allocate for necessary objects.", 2);
 		return (destroy_scene(&minirt), 2);
 	}
-	if (!parse_file(argv[1], &minirt))
+	//parse_file(av[1], &minirt);
+	if (!parse_file(av[1], &minirt))
 		return (destroy_scene(&minirt), destroy_textures(&minirt), 2);
+	//ini_core(&minirt)
 	if (!ini_core(&minirt))
 	{
 		destroy_scene(&minirt);

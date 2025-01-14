@@ -72,9 +72,9 @@ typedef union u_vec2s
 
 /*--- MATRIX ---*/
 
-typedef t_vec4d	t_vec4d; // To silence faulty(?) VS Code warning:
+typedef t_vec4d	t_vec4d; 
 
-// 2D Matrices can be held inside a single 128-bit vector, fix. (for all)
+
 typedef union u_mat2d
 {
 	float	a[2][2];
@@ -121,6 +121,6 @@ typedef union u_mat4d
 	};
 }__attribute((aligned(32)))	t_mat4d;
 
-typedef t_mat4d	t_mat4d; //"Reference to incomplete type <T> not allowed".
+typedef t_mat4d	t_mat4d;
 
-#endif // !LTYPES_H
+#endif

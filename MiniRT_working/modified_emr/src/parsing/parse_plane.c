@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 13:08:31 by melshafi          #+#    #+#             */
+/*   Created: 2024/11/18 13:08:31 by nth          #+#    #+#             */
 /*   Updated: 2025/01/14 18:20:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -52,10 +52,10 @@ bool	parse_plane(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
 		return (str_arr_destroy(fields->array),
-			parse_warn_msg(ERR_MAX_SHAPES, NULL, curr_line, true), true);
+			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	pl = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 4 || fields->wordcount > 6)
-		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_E_T_PL,
+		return (parse_err_msg(ER_OBJ_FORMAT, ER_E_T_PL,
 				curr_line), str_arr_destroy(fields->array), false);
 	pl->type = PLANE;
 	if (!parse_vec4p(&pl->trans, fields->array[1], minirt, curr_line))

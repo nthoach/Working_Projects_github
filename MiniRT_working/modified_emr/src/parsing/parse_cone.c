@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/18 12:34:49 by melshafi          #+#    #+#             */
+/*   Created: 2024/11/18 12:34:49 by nth          #+#    #+#             */
 /*   Updated: 2025/01/14 18:20:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -48,11 +48,11 @@ bool	get_cone_extras(t_object *co, t_minirt *minirt,
 
 	co->radius = ft_atof(fields->array[3], minirt) / 2.0f;
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_OBJ_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	height = ft_atof(fields->array[4], minirt);
 	if (minirt->error_code == 2)
-		return (parse_err_msg(ERR_OBJ_VALUE, ERR_EXPECT_FLOAT, curr_line),
+		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
 			str_arr_destroy(fields->array), false);
 	co->specs.min = -height / 2.0f;
 	co->specs.max = height / 2.0f;
@@ -73,10 +73,10 @@ bool	parse_cone(t_minirt *minirt, const t_split *fields, int curr_line)
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
 		return (str_arr_destroy(fields->array),
-			parse_warn_msg(ERR_MAX_SHAPES, NULL, curr_line, true), true);
+			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	co = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 6 || fields->wordcount > 8)
-		return (parse_err_msg(ERR_OBJ_FORMAT, ERR_EXPECT_TYPE_CO ERR_ECO,
+		return (parse_err_msg(ER_OBJ_FORMAT, ER_EXPECT_TYPE_CO ER_ECO,
 				curr_line), str_arr_destroy(fields->array), false);
 	co->type = CONE;
 	if (!parse_vec4p(&co->trans, fields->array[1], minirt, curr_line))
