@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:34:49 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/14 17:49:04 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:20:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,16 @@
 static void	material_init(t_material *material, const t_split *fields,
 	t_minirt *minirt, int curr_line)
 {
-	__m128	color_vec;
+    t_vec4s color_vec;
 
-	color_vec = material->color.v.simd;
-	material->xordc = \
-		(t_color){.v.simd = _mm_xor_ps(color_vec, \
-			_mm_set_ps(1.f, 1.f, 1.f, (OS_MACOS == 0)))};
+    color_vec = material->color.v;
+    material->xordc = (t_color)
+	{
+        .v.a[0] = (int)color_vec.a[0] ^ 1,
+        .v.a[1] = (int)color_vec.a[1] ^ 1,
+        .v.a[2] = (int)color_vec.a[2] ^ 1,
+        .v.a[3] = (int)color_vec.a[3] ^ (OS_MACOS == 0)
+    };
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
 	material->specular = 0.9;
@@ -60,8 +64,6 @@ bool	get_cone_extras(t_object *co, t_minirt *minirt,
 	co->rot = rt_extract_rot_vertical(co->orientation);
 	co->inv_transform = get_inv_tranform_mat4s(co->rot,
 			co->scale, co->trans);
-	//co->inv_transform = get_inv_tranform_mat4s(co->rot,
-	//		co->scale.simd, co->trans.simd);
 	return (true);
 }
 

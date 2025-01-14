@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:20:32 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/14 18:04:17 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:20:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,7 @@
 static void	material_init(t_material *material, const t_split *fields,
 		t_minirt *minirt, int curr_line)
 {
-	//__m128	color_vec;
-
-	//color_vec = material->color.v.simd;
-
 	material->xordc = (t_color){.v = vec4s_re(0.f, 0.f, 0.f, 0.f)};
-	//material->xordc = (t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
 	material->specular = 0.9;
@@ -38,15 +33,11 @@ static void	material_init(t_material *material, const t_split *fields,
 
 void	get_sphere_extras(t_object *sp)
 {
-	//
 	sp->scale = vec4s_re(sp->radius, sp->radius, sp->radius, sp->radius);
-	//sp->scale.simd = _mm_set1_ps(sp->radius);
 	sp->scale.w = 1.f;
 	sp->rot = ini_indentity_mat4s();
 	sp->inv_transform = get_inv_tranform_mat4s(sp->rot,
 			sp->scale, sp->trans);
-	//sp->inv_transform = get_inv_tranform_mat4s(sp->rot,
-	//		sp->scale.simd, sp->trans.simd);
 }
 
 bool	parse_sphere(t_minirt *minirt, const t_split *fields, int curr_line)

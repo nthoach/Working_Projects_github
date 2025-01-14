@@ -20,7 +20,6 @@ t_vec4s	vec4s_re(float x, float y, float z, float w)
     v.a[1] = y;
     v.a[2] = z;
     v.a[3] = w;
-    v.simd = _mm_set_ps(w, z, y, x); // Explicitly assign the simd member
     return v;
 }
 
@@ -30,7 +29,6 @@ void	vec4sp_ini(t_vec4s *p, float x, float y, float z)
     p->a[1] = y;
     p->a[2] = z;
     p->a[3] = 1.0f;
-    p->simd = _mm_set_ps(1.0f, z, y, x); // Explicitly assign the simd member
 }
 
 t_vec4s	vec4sp_re(float x, float y, float z)
@@ -45,7 +43,6 @@ void	vec4sv_ini(t_vec4s *v, float x, float y,
     v->a[1] = y;
     v->a[2] = z;
     v->a[3] = 0.0;
-    v->simd = _mm_set_ps(0.f, z, y, x); // Explicitly assign the simd member
 }
 
 t_vec4s	vec4sv_re(float x, float y, float z)

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:08:31 by melshafi          #+#    #+#             */
-/*   Updated: 2025/01/14 18:11:09 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/14 18:20:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 static void	material_init(t_material *material, const t_split *fields,
 	t_minirt *minirt, int curr_line)
 {
-	//__m128	color_vec;
-
-	//color_vec = material->color.v.simd;
-	//material->xordc = (t_color){.v.simd = _mm_xor_ps(color_vec, color_vec)};
 	material->xordc = (t_color){.v = vec4s_re(0.f, 0.f, 0.f, 0.f)};
 	material->ambient = 0.1;
 	material->diffuse = 0.9;
@@ -74,8 +70,6 @@ bool	parse_plane(t_minirt *minirt, const t_split *fields, int curr_line)
 	pl->rot = rt_extract_rot_vertical(pl->orientation);
 	pl->inv_transform = get_inv_tranform_mat4s(pl->rot,
 			pl->scale, pl->trans);
-	//pl->inv_transform = get_inv_tranform_mat4s(pl->rot,
-	//		pl->scale.simd, pl->trans.simd);
 	transpose_mat4s(&pl->inv_transform, &pl->transposed_inverse);
 	return (pl->center.w = 1.f, str_arr_destroy(fields->array), true);
 }

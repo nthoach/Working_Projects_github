@@ -21,7 +21,7 @@
 typedef union u_vec4d //double presision, multiple members share the same memory location, size of union is the size of the largest member
 {
 	double		a[4]; // Array access
-	__m256d		simd; // SIMD access for parallel processing with AVX instructions
+
 	uint64_t	raw[4]; // for low-level operation
 	struct  // named access
 	{
@@ -32,10 +32,9 @@ typedef union u_vec4d //double presision, multiple members share the same memory
 	};
 }__attribute((aligned(32)))	t_vec4d;
 
-typedef union u_vec4s // single precsision in SIMD
+typedef union u_vec4s
 {
 	float		a[4];
-	__m128		simd;
 	uint32_t	raw[4];
 	struct
 	{
@@ -49,7 +48,6 @@ typedef union u_vec4s // single precsision in SIMD
 typedef union u_vec3d
 {
 	double	a[3];
-	__m256d	simd;
 	struct
 	{
 		double	x;
@@ -62,7 +60,6 @@ typedef union u_vec3d
 typedef union u_vec2s
 {
 	float	a[2];
-	__m128d	simd;
 	struct
 	{
 		float	x;
@@ -74,7 +71,6 @@ typedef union u_vec2s
 typedef union u_mat2d
 {
 	float	a[2][2];
-	__m128d	simd[2];
 	struct
 	{
 		t_vec2s	r1;
@@ -85,7 +81,6 @@ typedef union u_mat2d
 typedef union u_mat3d
 {
 	float	a[4][4];
-	__m256	simd[4];
 	struct
 	{
 		t_vec3d	r1;
@@ -98,8 +93,6 @@ typedef union u_mat3d
 typedef union u_mat4s
 {
 	float	a[4][4];
-	__m128	simd[4];
-	__m256	_ymm[2];
 	struct
 	{
 		t_vec4s	r1;
@@ -112,7 +105,6 @@ typedef union u_mat4s
 typedef union u_mat4d
 {
 	float	a[4][4];
-	__m256d	simd[4];
 	struct
 	{
 		t_vec4d	r1;

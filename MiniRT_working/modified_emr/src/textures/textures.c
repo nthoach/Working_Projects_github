@@ -41,8 +41,6 @@ static inline t_vec4s	_from_sample_to_tangent_normal(const t_color *sample)
 	scale_vec4s(&tangent_normal, tangent_normal, 2.f);
 	tangent_normal = sub_vec4s_re(tangent_normal, vec4sp_re(1.f, 1.f, 1.f));
 	tangent_normal.a[3] = 0.f;
-    //tangent_normal.simd = _mm_set_ps(tangent_normal.a[3], tangent_normal.a[2], tangent_normal.a[1], tangent_normal.a[0]);
-	//tangent_normal.simd = _mm_sub_ps(tangent_normal.simd, _mm_set1_ps(1.f));
 	tangent_normal.w = 0.f;
 	return (tangent_normal);
 }

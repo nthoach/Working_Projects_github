@@ -25,7 +25,6 @@
 typedef union __attribute((aligned(32))) u_vec4d
 {
 	float		a[4];
-	__m256d		simd;
 	uint64_t	raw[4];
 	struct
 	{
@@ -39,7 +38,6 @@ typedef union __attribute((aligned(32))) u_vec4d
 typedef union __attribute((aligned(16))) u_vec4s
 {
 	float		a[4];
-	__m128		simd;
 	uint32_t	raw[4];
 	struct 
 	{
@@ -53,7 +51,6 @@ typedef union __attribute((aligned(16))) u_vec4s
 typedef union u_vec3d
 {
 	float	a[4];
-	__m256d	simd;
 	struct
 	{
 		float	x;
@@ -66,7 +63,6 @@ typedef union u_vec3d
 typedef union u_vec2s
 {
 	float	a[2];
-	__m128d	simd;
 	struct
 	{
 		float	x;
@@ -82,7 +78,6 @@ typedef t_vec4d	t_vec4d; // To silence faulty(?) VS Code warning:
 typedef union u_mat2d
 {
 	float	a[2][2];
-	__m128d	simd[2];
 	struct
 	{
 		t_vec2s	r1;
@@ -93,7 +88,6 @@ typedef union u_mat2d
 typedef union u_mat3d
 {
 	float	a[4][4];
-	__m256	simd[4];
 	struct
 	{
 		t_vec3d	r1;
@@ -106,8 +100,6 @@ typedef union u_mat3d
 typedef union __attribute((aligned(16))) u_mat4s
 {
 	float	a[4][4];
-	__m128	simd[4];
-	__m256	_ymm[2];
 	struct
 	{
 		t_vec4s	r1;
@@ -120,7 +112,6 @@ typedef union __attribute((aligned(16))) u_mat4s
 typedef union u_mat4d
 {
 	float	a[4][4];
-	__m256d	simd[4];
 	struct
 	{
 		t_vec4d	r1;

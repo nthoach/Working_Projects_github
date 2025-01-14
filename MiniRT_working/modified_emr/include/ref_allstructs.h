@@ -38,7 +38,7 @@ typedef struct s_frame
 typedef union u_vec4s
 {
 	float		a[4];
-	__m128		simd;
+
 	uint32_t	raw[4];
 	struct
 	{
@@ -66,8 +66,6 @@ typedef union u_color
 typedef union u_mat4s
 {
 	float	a[4][4];
-	__m128	simd[4];
-	__m256	_ymm[2];
 	struct
 	{
 		t_vec4s	r1;

@@ -15,13 +15,6 @@
 
 static inline void	update_object_cache(t_object *object)
 {
-	/*
-	//object->inv_transform = get_inv_tranform_mat4s(\
-	//	object->rot, \
-	//	object->scale.simd, \
-	//	object->trans.simd \
-	//);
-	*/
 	object->inv_transform = get_inv_tranform_mat4s(\
 	object->rot, 
 	object->scale, \
