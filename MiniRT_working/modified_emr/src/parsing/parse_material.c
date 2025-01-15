@@ -75,22 +75,22 @@ static bool	check_material_fields(t_material *obj_material,
 	split = ft_split(material_field, "=\n\r");
 	if (split.wordcount != 2)
 		return (parse_warn_msg(ER_M_FORMAT, ER_EXPECT_M ER_EM2, line, false),
-			str_arr_destroy(split.array), false);
+			destroy_2d_arr(split.array), false);
 	ret = parse_traits(split.array[0], split.array[1], obj_material, minirt);
 	if (!ret && minirt->error_code == 3)
 		return (parse_warn_msg(ER_M_BUMP_FORMAT, ER_EXPECT_XPM, line, true),
-			str_arr_destroy(split.array), true);
+			destroy_2d_arr(split.array), true);
 	else if (!ret && (minirt->error_code == 2 || minirt->flt_operations
 			== 0))
 		return (parse_warn_msg(ER_M_VALUE, ER_EXPECT_FLOAT, line, true),
-			str_arr_destroy(split.array), true);
+			destroy_2d_arr(split.array), true);
 	else if (!ret && minirt->error_code == 4)
 		return (parse_warn_msg(ER_M_CHECKER, ER_EXPECT_CHECKER, line, true),
-			str_arr_destroy(split.array), true);
+			destroy_2d_arr(split.array), true);
 	else if (!ret)
 		return (parse_warn_msg(ER_M_FORMAT, ER_EXPECT_M_TRAIT ER_EMT2,
-				line, true), str_arr_destroy(split.array), true);
-	return (str_arr_destroy(split.array), true);
+				line, true), destroy_2d_arr(split.array), true);
+	return (destroy_2d_arr(split.array), true);
 }
 
 bool	parse_material(t_material *obj_material, char **material_fields,
@@ -107,14 +107,14 @@ bool	parse_material(t_material *obj_material, char **material_fields,
 	if (split.wordcount > 7)
 		return (parse_err_msg(ER_M_FORMAT, ER_EXPECT_M, line), false);
 	i = 0;
-	str_arr_destroy(split.array);
+	destroy_2d_arr(split.array);
 	traits = ft_split(material_fields[1], ",");
 	while (i < traits.wordcount)
 	{
 		if (!check_material_fields(obj_material, traits.array[i], minirt,
 				line))
-			return (str_arr_destroy(traits.array), false);
+			return (destroy_2d_arr(traits.array), false);
 		i++;
 	}
-	return (str_arr_destroy(traits.array), true);
+	return (destroy_2d_arr(traits.array), true);
 }

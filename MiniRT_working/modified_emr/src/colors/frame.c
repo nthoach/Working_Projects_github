@@ -15,7 +15,7 @@
 #include "mlx.h"
 #include "macros.h"
 
-bool	create_canvas(t_minirt *minirt, int width, int height)
+bool	make_window(t_minirt *minirt, int width, int height)
 {
 	minirt->frame.ptr = mlx_new_image(minirt->mlx, width, height);
 	if (!minirt->frame.ptr)

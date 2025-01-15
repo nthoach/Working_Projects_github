@@ -10,60 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "macros.h"
 #include "miniRT.h"
-#include "mlx.h"
-#include "keys.h"
-
-void	ini_mlx(t_minirt *minirt)
-{
-	minirt->mlx = mlx_init();
-	if (!minirt->mlx)
-	{
-		write(2, "FATAL: error initialising minilibx.", 36);
-		exit(2);
-	}
-	minirt->win = mlx_new_window(\
-		minirt->mlx, \
-		FRAME_W, \
-		FRAME_H, \
-		"miniRT" \
-	);
-	if (!create_canvas(minirt, FRAME_W, FRAME_H))
-	{
-		mlx_destroy_window(minirt->mlx, minirt->win);
-		free(minirt->mlx);
-		exit(2);
-	}
-}
-
-void	start_rt(t_minirt *minirt)
-{
-	minirt->selected = (struct s_select){.is_cam = true, .object = NULL};
-	mlx_hook(minirt->win, ON_KEYDOWN, 1L, &check_key_presses, minirt);
-	mlx_hook(minirt->win, ON_KEYUP, 1L << 1, &check_key_releases, minirt);
-	mlx_hook(minirt->win, ON_DESTROY, 1L >> 2, &destroy_minirt, minirt);
-	mlx_mouse_hook(minirt->win, &check_mouse_clicks, minirt);
-	mlx_loop_hook(minirt->mlx, &check_state, minirt);
-	mlx_loop(minirt->mlx);
-}
-
-bool	ini_objs(t_minirt *minirt)
-{
-	minirt->scene.lights = ft_calloc(LIGHTS_MAX, sizeof(t_light));
-	if (!minirt->scene.lights)
-		return (false);
-	minirt->scene.shapes = ft_calloc(SHAPES_MAX, sizeof(t_object));
-	if (!minirt->scene.shapes)
-	{
-		free(minirt->scene.lights);
-		free(minirt->scene.shapes);
-		return (false);
-	}
-	minirt->textures = NULL;
-	return (true);
-}
-
 
 void	errors(int err_code, char* err_ms, void *ptr)
 {
@@ -76,38 +23,57 @@ void	errors(int err_code, char* err_ms, void *ptr)
 	exit(err_code);
 }
 
-
-int	main(int ac, char *av[])
+t_minirt	*ini_minirt(void)
 {
-	t_minirt	minirt;
+	t_minirt	*minirt;
+
+	minirt = ft_calloc(1, sizeof(t_minirt));
+	if (!minirt)
+		errors(CER_MALLOC, ER_MALLOC, NULL);
+	minirt->mlx = mlx_init();
+	if (!minirt->mlx)
+		errors(CER_MLX, ER_MLX, minirt);
+	minirt->win = mlx_new_window(minirt->mlx, FRAME_W, FRAME_H, "miniRT");
+	if (!make_window(minirt, FRAME_W, FRAME_H))
+		errors(CER_MLX_WIN, ER_MLX_WIN, minirt);
+	minirt->scene.lights = ft_calloc(LIGHTS_MAX, sizeof(t_light));
+	if (!minirt->scene.lights)
+		errors(CER_MALLOC, ER_MALLOC, minirt);
+	minirt->scene.shapes = ft_calloc(SHAPES_MAX, sizeof(t_object));
+	if (!minirt->scene.shapes)
+		errors(CER_MALLOC, ER_MALLOC, minirt);
+	minirt->textures = NULL;
+	minirt->selected = (struct s_select){.is_cam = true, .object = NULL};
+	return(minirt);
+}
+void check_filename(char *file)
+{
+	size_t len;
+
+	len = ft_strlen(file);
+	if (len < 3)
+		errors(CER_FILE, ER_FILE, NULL);
+	else if (!ft_strnstr(file + (len - 3), ".rt", len))
+		errors(CER_NOT_RT, ER_NOT_RT, NULL);
+    if (access(file, F_OK) != 0)
+    	errors(CER_NO_FILE, ER_NO_FILE, NULL);
+}
+
+int	main(int ac, char **av)
+{
+	t_minirt	*minirt;
 
 	if (ac != 2)
 		errors(CER_AGC, ER_AGC, NULL);
-	//if (argc != 2)
-	//{
-	//	write(2, "Usage:\n\t./miniRT <filename>.rt\n", 32);
-	//	return (2);
-	//}
-	minirt = (t_minirt){0};
-	//ini_minirt(&minirt);
-	ini_mlx(&minirt);
-	if (!ini_objs(&minirt))
-	{
-		ft_putendl_fd("FATAL: Couldn't allocate for necessary objects.", 2);
-		return (destroy_scene(&minirt), 2);
-	}
-	//parse_file(av[1], &minirt);
-	if (!parse_file(av[1], &minirt))
-		return (destroy_scene(&minirt), destroy_textures(&minirt), 2);
-	//ini_core(&minirt)
-	if (!ini_core(&minirt))
-	{
-		destroy_scene(&minirt);
-		destroy_mlx(&minirt);
-		ft_putendl_fd("FATAL: Couldn't allocate for threads.", 2);
-		return (destroy_textures(&minirt), 2);
-	}
-	start_rt(&minirt);
+	check_filename(av[1]);
+	minirt = ini_minirt();
+	parse(av[1], minirt);
+	ini_core(minirt);
+	mlx_hook(minirt->win, EVENT_KEYPRESS, 1L, &record_keypress, minirt);
+	mlx_hook(minirt->win, EVENT_KEYRELEASE, 1L << 1, &record_keyrelease, minirt);
+	mlx_hook(minirt->win, EVENT_CLOSEWINDOW, 1L >> 2, &destroy_minirt, minirt);
+	mlx_mouse_hook(minirt->win, &select_shape, minirt);
+	mlx_loop_hook(minirt->mlx, &update_state, minirt);
+	mlx_loop(minirt->mlx);
 	return (0);
 }
-

@@ -32,13 +32,13 @@ bool	ini_core(t_minirt *minirt)
 	t_core	*thread;
 	int			i;
 
-	minirt->core = malloc(sizeof(t_core) * _RT_NUM_THREADS);
-	if (!minirt->core)
+	minirt->cores = malloc(sizeof(t_core) * _RT_NUM_THREADS);
+	if (!minirt->cores)
 		return (false);
 	i = -1;
 	while (++i < _RT_NUM_THREADS)
 	{
-		thread = &minirt->core[i];
+		thread = &minirt->cores[i];
 		thread->minirt = minirt;
 		thread->id = i;
 		thread->y = i * (minirt->cam.vsize / _RT_NUM_THREADS);
@@ -59,7 +59,7 @@ void	pool_start_frame(t_minirt *minirt)
 	i = -1;
 	while (++i < _RT_NUM_THREADS)
 	{
-		thread = &minirt->core[i];
+		thread = &minirt->cores[i];
 		pthread_mutex_lock(&thread->mutex);
 		thread->work_ready = true;
 		pthread_cond_signal(&thread->cond);
@@ -75,7 +75,7 @@ void	pool_wait_for_frame(t_minirt *minirt)
 	i = -1;
 	while (++i < _RT_NUM_THREADS)
 	{
-		thread = &minirt->core[i];
+		thread = &minirt->cores[i];
 		pthread_mutex_lock(&thread->mutex);
 		while (thread->work_ready)
 		{

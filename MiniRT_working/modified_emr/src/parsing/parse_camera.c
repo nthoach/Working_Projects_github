@@ -95,23 +95,23 @@ bool	parse_camera(t_minirt *minirt, const t_split *fields, int curr_line)
 	camera = &minirt->cam;
 	if (camera->is_set)
 		return (parse_fatal_msg(ER_CAM_DEFINED, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	if (fields->wordcount != 4)
 		return (parse_err_msg(ER_CAM_FORMAT, ER_EXPECT_TYPE_C, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	if (!parse_vec4p(&camera->trans, fields->array[1], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (!parse_vec4v(&camera->forward, fields->array[2], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	get_camera_orient(camera);
 	temp = ft_atof(fields->array[3], minirt);
 	if (temp < -0.f || temp > 180.f)
 		return (parse_err_msg(ER_CAM_FOV, ER_E_FOV_RANGE, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	else if (temp == 0.f || temp == -0.f)
 		parse_warn_msg("Viewport will be an infinitely small line", NULL,
 			curr_line, false);
 	camera->fov = temp;
 	get_camera_extras(camera, curr_line);
-	return (str_arr_destroy(fields->array), true);
+	return (destroy_2d_arr(fields->array), true);
 }

@@ -49,16 +49,16 @@ bool	get_cone_extras(t_object *co, t_minirt *minirt,
 	co->radius = ft_atof(fields->array[3], minirt) / 2.0f;
 	if (minirt->error_code == 2)
 		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	height = ft_atof(fields->array[4], minirt);
 	if (minirt->error_code == 2)
 		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	co->specs.min = -height / 2.0f;
 	co->specs.max = height / 2.0f;
 	co->specs.closed = false;
 	if (!parse_color(&co->material.color, fields->array[5], curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	material_init(&co->material, fields, minirt, curr_line);
 	co->scale = vec4s_re(co->radius, height, co->radius, 1);
 	co->rot = rt_extract_rot_vertical(co->orientation);
@@ -72,19 +72,19 @@ bool	parse_cone(t_minirt *minirt, const t_split *fields, int curr_line)
 	t_object	*co;
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
-		return (str_arr_destroy(fields->array),
+		return (destroy_2d_arr(fields->array),
 			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	co = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 6 || fields->wordcount > 8)
 		return (parse_err_msg(ER_OBJ_FORMAT, ER_EXPECT_TYPE_CO ER_ECO,
-				curr_line), str_arr_destroy(fields->array), false);
+				curr_line), destroy_2d_arr(fields->array), false);
 	co->type = CONE;
 	if (!parse_vec4p(&co->trans, fields->array[1], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (!parse_vec4v(&co->orientation, fields->array[2], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	is_normalised(&co->orientation, curr_line);
 	if (!get_cone_extras(co, minirt, fields, curr_line))
 		return (false);
-	return (str_arr_destroy(fields->array), true);
+	return (destroy_2d_arr(fields->array), true);
 }

@@ -13,7 +13,7 @@
 #include "miniRT.h"
 #include "keys.h"
 
-int	check_mouse_clicks(int button, int x, int y, void *param)
+int	select_shape(int button, int x, int y, void *param)
 {
 	const t_camera	*cam = &((t_minirt *)param)->cam;
 	t_scene			*w;

@@ -14,7 +14,7 @@
 #include "keys.h"
 #include "macros.h"
 
-int	check_state(void *minirt)
+int	update_state(void *minirt)
 {
 	t_minirt	*state;
 
@@ -73,7 +73,7 @@ static inline void	_check_config_controls(t_minirt *state, int keysym)
 		state->scene.refract_reflect ^= true;
 }
 
-int	check_key_presses(int keysym, void *minirt)
+int	record_keypress(int keysym, void *minirt)
 {
 	t_minirt	*state;
 
@@ -88,7 +88,7 @@ int	check_key_presses(int keysym, void *minirt)
 	return (keysym);
 }
 
-int	check_key_releases(int keysym, void *param)
+int	record_keyrelease(int keysym, void *param)
 {
 	t_minirt	*state;
 

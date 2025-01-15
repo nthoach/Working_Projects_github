@@ -56,8 +56,10 @@ typedef enum e_error_code
     CER_NOK,
     CER_AGC,
     CER_MLX,
+    CER_MLX_WIN,
     CER_FILE,
     CER_NOT_RT,
+    CER_NO_FILE,
     CER_OPEN_FILE,
     CER_MALLOC,
     CER_EMPTY_MAP,
@@ -128,8 +130,10 @@ typedef enum e_error_code
 # define ER_NOK "General error\n"
 # define ER_AGC "Usage: ./miniRT <scene>.rt, one argument needed\n"
 # define ER_MLX "Cannot initialize MLX\n"
+# define ER_MLX_WIN "Cannot initialize MLX window\n"
 # define ER_FILE "Error File Name '.rt'\n"
 # define ER_NOT_RT "File extension is not '.rt'.\n"
+# define ER_NO_FILE "Input file not existed.\n"
 # define ER_OPEN_FILE "Couldn't open requested file\n"
 # define ER_MALLOC "Cannot allocate dynamic memory\n"
 # define ER_EMPTY_MAP "Empty map\n"

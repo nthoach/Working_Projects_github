@@ -36,7 +36,7 @@ bool	parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
 		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
 			false);
 	vec->w = 1.0f;
-	return (str_arr_destroy(split.array), true);
+	return (destroy_2d_arr(split.array), true);
 }
 
 bool	parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
@@ -60,7 +60,7 @@ bool	parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
 		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
 			false);
 	vec->w = 0.0f;
-	return (str_arr_destroy(split.array), true);
+	return (destroy_2d_arr(split.array), true);
 }
 
 bool	parse_single_f(float *f, char *str, t_minirt *minirt, int curr_line)
@@ -107,6 +107,6 @@ bool	parse_color(t_color *color, char *str, int curr_line)
 				curr_line), false);
 	color->b = color_int.value / 255.999;
 	if (!check_final_color_range(color, curr_line))
-		return (str_arr_destroy(split.array), false);
-	return (str_arr_destroy(split.array), true);
+		return (destroy_2d_arr(split.array), false);
+	return (destroy_2d_arr(split.array), true);
 }

@@ -51,25 +51,25 @@ bool	parse_plane(t_minirt *minirt, const t_split *fields, int curr_line)
 	t_object	*pl;
 
 	if (minirt->scene.num_shapes == SHAPES_MAX)
-		return (str_arr_destroy(fields->array),
+		return (destroy_2d_arr(fields->array),
 			parse_warn_msg(ER_MAX_SHAPES, NULL, curr_line, true), true);
 	pl = &minirt->scene.shapes[minirt->scene.num_shapes++];
 	if (fields->wordcount < 4 || fields->wordcount > 6)
 		return (parse_err_msg(ER_OBJ_FORMAT, ER_E_T_PL,
-				curr_line), str_arr_destroy(fields->array), false);
+				curr_line), destroy_2d_arr(fields->array), false);
 	pl->type = PLANE;
 	if (!parse_vec4p(&pl->trans, fields->array[1], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (!parse_vec4v(&pl->orientation, fields->array[2], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	is_normalised(&pl->orientation, curr_line);
 	if (!parse_color(&pl->material.color, fields->array[3], curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	material_init(&pl->material, fields, minirt, curr_line);
 	pl->scale = vec4s_re(1, 1, 1, 1);
 	pl->rot = rt_extract_rot_vertical(pl->orientation);
 	pl->inv_transform = get_inv_tranform_mat4s(pl->rot,
 			pl->scale, pl->trans);
 	transpose_mat4s(&pl->inv_transform, &pl->transposed_inverse);
-	return (pl->center.w = 1.f, str_arr_destroy(fields->array), true);
+	return (pl->center.w = 1.f, destroy_2d_arr(fields->array), true);
 }

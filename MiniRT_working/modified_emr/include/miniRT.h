@@ -13,6 +13,9 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 
+# include "mlx.h"
+# include "keys.h"
+# include "macros.h"
 # include "lag.h"
 # include "common.h"
 # include <pthread.h>
@@ -60,7 +63,7 @@ typedef struct s_minirt
 	t_frame		frame;
 	t_scene		scene;
 	t_camera	cam;
-	t_core		*core;
+	t_core		*cores;
 	bool		stop;
 	float		delta_time;
 	struct s_select
@@ -138,7 +141,7 @@ typedef struct s_validate_atof
 
 bool		is_normalised(t_vec4s *vec, int curr_line);
 float		ft_atof(char *rep, t_minirt *minirt);
-bool		parse_file(const char *filename, t_minirt *minirt);
+bool		parse(const char *filename, t_minirt *minirt);
 bool		parse_ambient(t_minirt *minirt, t_split *fields, int curr_line);
 bool		parse_light(t_minirt *minirt, const t_split *fields,
 				int curr_line);
@@ -182,7 +185,7 @@ void		parse_syn_err_msg(char *msg, int curr_line);
 
 t_color		rt_render_pixel(t_minirt *minirt, int x, int y);
 t_ray		ray_for_pixel(const t_camera *cam, int px, int py);
-bool		create_canvas(t_minirt *minirt, int width, int height);
+bool		make_window(t_minirt *minirt, int width, int height);
 void		put_pixel(t_frame *frame, int x, int y, const t_color *color);
 void		render_frame(t_minirt *current_context);
 t_color		color_at(t_scene *w, t_ray *r, int depth);
@@ -202,10 +205,10 @@ t_color		fetch_pixel_color(const t_frame *frame, int x, int y);
 
 //void		update_camera_state(t_camera *camera);
 int			update(void *minirt);
-int			check_state(void *minirt);
-int			check_key_presses(int keysym, void *minirt);
-int			check_key_releases(int keysym, void *param);
-int			check_mouse_clicks(int button, int x, int y, void *param);
+int			update_state(void *minirt);
+int			record_keypress(int keysym, void *minirt);
+int			record_keyrelease(int keysym, void *param);
+int			select_shape(int button, int x, int y, void *param);
 
 /*--- EVENTS ---*/
 void		object_controls(t_minirt *state);
@@ -215,12 +218,12 @@ t_mat4s		rt_rotation_matrix_from_axis_angle(const t_vec4s *axis,
 				float angle);
 
 /*--- DESTROY ---*/
-
+void		errors(int err_code, char* err_ms, void *ptr);
 void		destroy_mlx(t_minirt *minirt);
 void		destroy_scene(t_minirt *minirt);
 int			destroy_minirt(t_minirt *minirt);
 void		destroy_textures(t_minirt *minirt);
-void		str_arr_destroy(char **arr);
+void		destroy_2d_arr(char **arr);
 
 /*--- RAY - MANIPULATION ---*/
 

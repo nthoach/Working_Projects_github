@@ -78,5 +78,5 @@ bool	check_object_validity_init(t_minirt *minirt, const char *info,
 	else if (*info == 'S' && *(info + 1) == 'L')
 		return (parse_spot_light(minirt, &fields, curr_line));
 	ft_fprintf(2, "Error: couldn't recognize object in line %d:\n", curr_line);
-	return (str_arr_destroy(fields.array), false);
+	return (destroy_2d_arr(fields.array), false);
 }

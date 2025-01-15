@@ -23,21 +23,21 @@ bool	parse_spot_light_color(const t_split *fields, int curr_line,
 
 	light = &scene->lights[scene->num_lights];
 	if (!parse_single_f(&light->ratio, fields->array[3], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (light->ratio < -0.f || light->ratio > 1.f)
 		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_F_RANGE,
-				curr_line), str_arr_destroy(fields->array), false);
+				curr_line), destroy_2d_arr(fields->array), false);
 	if (!parse_single_f(&light->specs.spot.spot_angle, fields->array[4],
 			minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (light->specs.spot.spot_angle < 10.f || light->specs.spot.spot_angle
 		> 90.f)
 		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	light->specs.spot.spot_angle *= ((float)M_PI / 180.f);
 	if (!parse_color(&parsed_color,
 			fields->array[5], curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	scale_color(&light->specs.spot.intensity, \
 		&parsed_color, light->ratio);
 	return (true);
@@ -51,22 +51,22 @@ bool	parse_spot_light(t_minirt *minirt, const t_split *fields,
 	light = &minirt->scene.lights[minirt->scene.num_lights];
 	if (minirt->scene.num_lights >= LIGHTS_MAX)
 		return (parse_warn_msg(ER_MAX_LIGHTS, NULL, curr_line, true),
-			str_arr_destroy(fields->array), true);
+			destroy_2d_arr(fields->array), true);
 	if (fields->wordcount != 6)
 		return (parse_err_msg(ER_LIGHT_FORMAT, ER_EXPECT_TYPE_SL ER_ESL,
-				curr_line), str_arr_destroy(fields->array), false);
+				curr_line), destroy_2d_arr(fields->array), false);
 	if (!parse_vec4p(&light->pos, fields->array[1], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (!parse_vec4v(&light->specs.spot.orientation, fields->array[2],
 			minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	if (!parse_spot_light_color(fields, curr_line, &minirt->scene, minirt))
 		return (false);
 	negate_vec4s(&light->specs.spot.orientation);
 	is_normalised(&light->specs.spot.orientation, curr_line);
 	light->type = SPOT_LIGHT;
 	minirt->scene.num_lights++;
-	return (str_arr_destroy(fields->array), true);
+	return (destroy_2d_arr(fields->array), true);
 }
 
 bool	parse_point_light_color(const t_split *fields, int curr_line,
@@ -78,7 +78,7 @@ bool	parse_point_light_color(const t_split *fields, int curr_line,
 	curr_light = &scene->lights[scene->num_lights];
 	if (!parse_color(&parsed_color,
 			fields->array[3], curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	scale_color(&curr_light->specs.point.intensity, \
 		&parsed_color, curr_light->ratio);
 	scene->num_lights++;
@@ -93,23 +93,23 @@ bool	parse_light(t_minirt *minirt, const t_split *fields, int curr_line)
 	light = &minirt->scene.lights[minirt->scene.num_lights];
 	if (minirt->scene.num_lights >= LIGHTS_MAX)
 		return (parse_warn_msg(ER_MAX_LIGHTS, NULL, curr_line, true),
-			str_arr_destroy(fields->array), true);
+			destroy_2d_arr(fields->array), true);
 	if (fields->wordcount != 4)
 		return (parse_err_msg(ER_LIGHT_FORMAT, ER_EXPECT_TYPE_L,
-				curr_line), str_arr_destroy(fields->array), false);
+				curr_line), destroy_2d_arr(fields->array), false);
 	if (!parse_vec4p(&light->pos, fields->array[1], minirt, curr_line))
-		return (str_arr_destroy(fields->array), false);
+		return (destroy_2d_arr(fields->array), false);
 	temp = ft_atof(fields->array[2], minirt);
 	if (minirt->error_code == 2)
 		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	if (temp < -0.f || temp > 1.f)
 		return (parse_err_msg(ER_LIGHT_VALUE, ER_EXPECT_F_RANGE,
 				curr_line),
-			str_arr_destroy(fields->array), false);
+			destroy_2d_arr(fields->array), false);
 	light->ratio = temp;
 	if (!parse_point_light_color(fields, curr_line, &minirt->scene))
 		return (false);
 	light->type = POINT_LIGHT;
-	return (str_arr_destroy(fields->array), true);
+	return (destroy_2d_arr(fields->array), true);
 }

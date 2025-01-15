@@ -16,15 +16,23 @@
 
 void	destroy_mlx(t_minirt *minirt)
 {
-	mlx_destroy_image(minirt->mlx, minirt->frame.ptr);
-	mlx_destroy_window(minirt->mlx, minirt->win);
-	free(minirt->mlx);
+	if (minirt->mlx)
+	{
+		mlx_destroy_image(minirt->mlx, minirt->frame.ptr);
+		mlx_destroy_window(minirt->mlx, minirt->win);
+		free(minirt->mlx);
+		minirt->mlx = NULL;
+	}
 }
 
 void	destroy_scene(t_minirt *minirt)
 {
-	free(minirt->scene.lights);
-	free(minirt->scene.shapes);
+	if (minirt->scene.lights)
+		free(minirt->scene.lights);
+	if (minirt->scene.lights)	
+		free(minirt->scene.shapes);
+	minirt->scene.lights = NULL;
+	minirt->scene.shapes = NULL;
 }
 
 void	destroy_textures(t_minirt *minirt)
@@ -43,36 +51,46 @@ void	destroy_textures(t_minirt *minirt)
 	ft_lstclear(&minirt->textures, free);
 }
 
-int	destroy_minirt(t_minirt *minirt)
+void	destroy_cores(t_minirt *minirt)
 {
 	int	i;
 
-	if (minirt->core)
+	if (minirt->cores)
 	{
 		minirt->stop = true;
 		i = -1;
 		while (++i < _RT_NUM_THREADS)
 		{
-			pthread_mutex_lock(&minirt->core[i].mutex);
-			pthread_cond_signal(&minirt->core[i].cond);
-			pthread_mutex_unlock(&minirt->core[i].mutex);
-			pthread_mutex_destroy(&minirt->core[i].mutex);
-			pthread_cond_destroy(&minirt->core[i].cond);
+			pthread_mutex_lock(&minirt->cores[i].mutex);
+			pthread_cond_signal(&minirt->cores[i].cond);
+			pthread_mutex_unlock(&minirt->cores[i].mutex);
+			pthread_mutex_destroy(&minirt->cores[i].mutex);
+			pthread_cond_destroy(&minirt->cores[i].cond);
 		}
 		i = -1;
 		while (++i < _RT_NUM_THREADS)
-			pthread_join(minirt->core[i].thread, NULL);
-		free(minirt->core);
-		minirt->core = NULL;
+			pthread_join(minirt->cores[i].thread, NULL);
+		free(minirt->cores);
+		minirt->cores = NULL;
 	}
+}
+
+int	destroy_minirt(t_minirt *minirt)
+{
+	if (!minirt)
+		return (0);
+	destroy_cores(minirt);
 	destroy_scene(minirt);
 	destroy_textures(minirt);
 	destroy_mlx(minirt);
-	return (exit(0), 0);
+	free(minirt);
+	minirt = NULL;
+	exit(0);
+	return (0);
 }
 
 // @warning Assumes `arr` is `NULL`-terminated.
-void	str_arr_destroy(char **arr)
+void	destroy_2d_arr(char **arr)
 {
 	char	**original;
 

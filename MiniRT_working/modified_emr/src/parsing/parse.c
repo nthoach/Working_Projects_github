@@ -13,26 +13,40 @@
 #include "miniRT.h"
 #include "libft.h"
 
-static bool	read_file(int fd, t_minirt *minirt, const char *filename);
-static bool	check_object_validity_and_add(t_minirt *minirt, const char *info,
-				int curr_line, size_t line_len);
-
-bool	parse_file(const char *filename, t_minirt *minirt)
+bool	parse_uppercase_object(t_minirt *minirt, const char *info,
+			int curr_line)
 {
-	int			fd;
-	const char	*extension = ft_strrchr(filename, '.');
+	t_split	split;
 
-	if (!extension || (extension && ft_strncmp(extension, ".rt", 4)))
-		return ((void)write(2, "FATAL: Need file of type '*.rt'\n", 33), false);
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
+	split = ft_split(info, " ");
+	if (!split.array)
+		errors(CER_MALLOC, ER_MALLOC, minirt);
+	if (*info == 'A')
+		return (parse_ambient(minirt, &split, curr_line));
+	if (*info == 'C')
+		return (parse_camera(minirt, &split, curr_line));
+	if (*info == 'L')
+		return (parse_light(minirt, &split, curr_line));
+	destroy_2d_arr(split.array);
+	return (true);
+}
+bool	check_object_validity_and_add(t_minirt *minirt, const char *info,
+			int curr_line, size_t line_len)
+{
+	const t_split	fields = ft_split(info, " ");
+
+	if (!ft_isalpha(*info))
+		return (destroy_2d_arr(fields.array),
+			parse_syn_err_msg((char *)info, curr_line), false);
+	if (*info == 'A' || *info == 'C' || *info == 'L')
 	{
-		ft_putstr_fd("FATAL: file `", STDERR_FILENO);
-		ft_putstr_fd((char *)filename, STDERR_FILENO);
-		ft_putendl_fd("` could not be opened.", STDERR_FILENO);
-		return (false);
+		if (line_len > 1 && *(info + 1) != ' ')
+			return (destroy_2d_arr(fields.array),
+				parse_syn_err_msg((char *)info, curr_line), false);
+		return (destroy_2d_arr(fields.array),
+			parse_uppercase_object(minirt, info, curr_line));
 	}
-	return (read_file(fd, minirt, filename));
+	return (check_object_validity_init(minirt, info, curr_line, fields));
 }
 
 bool	read_file_ext(t_gnl *line, t_minirt *minirt, int curr_line,
@@ -84,7 +98,8 @@ bool	read_file(int fd, t_minirt *minirt, const char *filename)
 			ft_putstr_fd((char *)filename, 2);
 			ft_putstr_fd(":\n\t", 2);
 			ft_putendl_fd(line.line, 2);
-			return ((void)close(fd), free(line.line), false);
+			return ((void)close(fd), free(line.line), \
+			 errors(CER_SYNTAX, ER_SYNTAX, minirt), false);
 		}
 		free(line.line);
 		line = get_next_line(fd);
@@ -92,42 +107,12 @@ bool	read_file(int fd, t_minirt *minirt, const char *filename)
 	return (close(fd), read_file_ext(&line, minirt, curr_line, filename));
 }
 
-bool	parse_uppercase_object(t_minirt *minirt, const char *info,
-			int curr_line)
+bool	parse(const char *filename, t_minirt *minirt)
 {
-	t_split	split;
+	int			fd;
 
-	split = ft_split(info, " ");
-	if (!split.array)
-	{
-		ft_putendl_fd("FATAL: Couldn't allocate for necessary operation", 2);
-		return (false);
-	}
-	if (*info == 'A')
-		return (parse_ambient(minirt, &split, curr_line));
-	if (*info == 'C')
-		return (parse_camera(minirt, &split, curr_line));
-	if (*info == 'L')
-		return (parse_light(minirt, &split, curr_line));
-	str_arr_destroy(split.array);
-	return (true);
-}
-
-bool	check_object_validity_and_add(t_minirt *minirt, const char *info,
-			int curr_line, size_t line_len)
-{
-	const t_split	fields = ft_split(info, " ");
-
-	if (!ft_isalpha(*info))
-		return (str_arr_destroy(fields.array),
-			parse_syn_err_msg((char *)info, curr_line), false);
-	if (*info == 'A' || *info == 'C' || *info == 'L')
-	{
-		if (line_len > 1 && *(info + 1) != ' ')
-			return (str_arr_destroy(fields.array),
-				parse_syn_err_msg((char *)info, curr_line), false);
-		return (str_arr_destroy(fields.array),
-			parse_uppercase_object(minirt, info, curr_line));
-	}
-	return (check_object_validity_init(minirt, info, curr_line, fields));
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		errors(CER_OPEN_FILE, ER_OPEN_FILE, NULL);
+	return (read_file(fd, minirt, filename));
 }
