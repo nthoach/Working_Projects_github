@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <sys/time.h>
 
-extern void	*render_chunk(void *param);
+extern void	*render_chunk(void *minirt);
 
 long long	my_gettime(void)
 {

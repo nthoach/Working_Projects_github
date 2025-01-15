@@ -20,7 +20,7 @@ static inline float	get_delta_time(struct timespec *prev,
 		(curr->tv_nsec - prev->tv_nsec) / 1e9f);
 }
 
-int	update(void *minirt)
+int	update_rt(t_minirt *minirt)
 {
 	static struct timespec	last_time;
 	struct timespec			curr_time;

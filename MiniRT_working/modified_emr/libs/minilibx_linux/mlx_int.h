@@ -63,7 +63,7 @@ typedef struct	s_event_list
 {
 	int		mask;
 	int		(*hook)();
-	void	*param;
+	void	*minirt;
 }				t_event_list;
 
 

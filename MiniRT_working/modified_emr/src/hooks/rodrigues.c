@@ -12,15 +12,6 @@
 
 #include "miniRT.h"
 
-static inline t_vec4s	normalize_axis(const t_vec4s *axis)
-{
-	t_vec4s	normalized_axis;
-
-	normalized_axis = *axis;
-	normalize_vec4s(&normalized_axis);
-	return (normalized_axis);
-}
-
 static inline t_vec4s	compute_rot_row(t_vec4s k, int row, float angle)
 {
 	const float	sin_theta = sinf(angle);
@@ -51,7 +42,7 @@ t_mat4s	rt_rotation_matrix_from_axis_angle(const t_vec4s *axis, float angle)
 	t_mat4s	rot;
 	t_vec4s	k;
 
-	k = normalize_axis(axis);
+	k = normalize_vec4s_re(*axis);
 	rot.r1 = compute_rot_row(k, 1, angle);
 	rot.r2 = compute_rot_row(k, 2, angle);
 	rot.r3 = compute_rot_row(k, 3, angle);

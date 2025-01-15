@@ -15,29 +15,29 @@
 
 // Calculates the amount of words in the string.
 // (A word is a sequence of characters preceding the delimiter: `c`).
-// @param str: The string to split.
-// @param c: The delimiter character.
+// @minirt str: The string to split.
+// @minirt c: The delimiter character.
 static int	wordcount(const char *str, char *charset);
 
 // Calculates the length of the first word in the string.
 // (A word is a sequence of characters preceding the delimiter: `c`).
-// @param str: The string to split.
-// @param c: The delimiter character.
+// @minirt str: The string to split.
+// @minirt c: The delimiter character.
 static int	wordlen(const char *str, char *charset);
 
 // Takes care of all the allocations. Returns `true` if
 // something went wrong; false otherwise.
 // `true` was chosen for failure to make ft_split more readable.
-// @param arr_ptr: The address of the string array.
-// @param str: The string to split.
-// @param success: The address of the variable storing the
+// @minirt arr_ptr: The address of the string array.
+// @minirt str: The string to split.
+// @minirt success: The address of the variable storing the
 // 				   number of successful string allocations.
 static bool	ealloc(char **arr_ptr, const char *str,
 				char *charset, size_t *success);
 
 // Frees everything. Called upon failure (`allocate_each(...) == true`).
-// @param arr_ptr: The address of the string array.
-// @param successes: The number of successful allocations,
+// @minirt arr_ptr: The address of the string array.
+// @minirt successes: The number of successful allocations,
 // 					 i.e. the number of times to call `free`.
 static void	free_all(char **arr_ptr, size_t successes);
 

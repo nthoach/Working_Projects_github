@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "macros.h"
 
 static inline void	update_camera_state(t_camera *camera)
 {
@@ -41,12 +40,12 @@ static inline void	_movecam_sideways_check(t_minirt *state,
 
 	scale_vec4s(&scaled_left, state->cam.left, \
 		(MOVE_SPEED + (MOVE_SPEED / 2.f)) * state->delta_time);
-	if (state->movement.a)
+	if (state->move.a)
 	{
 		add_vec4s(&state->cam.trans, &scaled_left, &state->cam.trans);
 		*state_changed = true;
 	}
-	if (state->movement.d)
+	if (state->move.d)
 	{
 		sub_vec4s(&state->cam.trans, &state->cam.trans, &scaled_left);
 		*state_changed = true;
@@ -60,12 +59,12 @@ static inline void	_movecam_longitudinally_check(t_minirt *state,
 
 	scale_vec4s(&scaled_forward, state->cam.forward, \
 		(MOVE_SPEED + (MOVE_SPEED / 2.f)) * state->delta_time);
-	if (state->movement.w)
+	if (state->move.w)
 	{
 		add_vec4s(&state->cam.trans, &scaled_forward, &state->cam.trans);
 		*state_changed = true;
 	}
-	if (state->movement.s)
+	if (state->move.s)
 	{
 		sub_vec4s(&state->cam.trans, &state->cam.trans, &scaled_forward);
 		*state_changed = true;
@@ -75,12 +74,12 @@ static inline void	_movecam_longitudinally_check(t_minirt *state,
 static inline void	_movecam_elevation_check(t_minirt *state,
 						bool *state_changed)
 {
-	if (state->movement.space)
+	if (state->move.space)
 	{
 		state->cam.trans.y += (MOVE_SPEED * state->delta_time);
 		*state_changed = true;
 	}
-	if (state->movement.leftshift)
+	if (state->move.leftshift)
 	{
 		state->cam.trans.y -= (MOVE_SPEED * state->delta_time);
 		*state_changed = true;
@@ -92,8 +91,8 @@ void	camera_controls(t_minirt *state)
 	bool	state_changed;
 
 	state_changed = false;
-	if (state->movement.a || state->movement.d || state->movement.s
-		|| state->movement.w || state->movement.space || state->movement.leftshift)
+	if (state->move.a || state->move.d || state->move.s
+		|| state->move.w || state->move.space || state->move.leftshift)
 	{
 		_movecam_sideways_check(state, &state_changed);
 		_movecam_longitudinally_check(state, &state_changed);

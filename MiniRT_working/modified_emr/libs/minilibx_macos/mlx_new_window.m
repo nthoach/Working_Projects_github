@@ -80,10 +80,10 @@ int get_mouse_button(NSEventType eventtype)
 }
 
 
-- (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)param
+- (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)minirt
 {
   event_funct[event] = func;
-  event_param[event] = param;
+  event_param[event] = minirt;
   if (event == 6 || event == 32) // motion notify && high precision motion notify
     {
       if (func == NULL)
@@ -527,9 +527,9 @@ int get_mouse_button(NSEventType eventtype)
   [self release];
 }
 
-- (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)param
+- (void) setEvent:(int)event andFunc:(func_t)func andParam:(void *)minirt
 {
-  [win setEvent:event andFunc:func andParam:param];
+  [win setEvent:event andFunc:func andParam:minirt];
 }
 
 - (void) setKeyRepeat:(int)mode
@@ -679,24 +679,24 @@ void mlx_clear_window(mlx_ptr_t *mlx_ptr, mlx_win_list_t *win_ptr)
 }
 
 
-void mlx_expose_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
+void mlx_expose_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *minirt)
 {
-  [(id)(win_ptr->winid) setEvent:12 andFunc:funct_ptr andParam:param];
+  [(id)(win_ptr->winid) setEvent:12 andFunc:funct_ptr andParam:minirt];
 }
 
-void mlx_key_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
+void mlx_key_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *minirt)
 {
-  [(id)(win_ptr->winid) setEvent:3 andFunc:funct_ptr andParam:param];
+  [(id)(win_ptr->winid) setEvent:3 andFunc:funct_ptr andParam:minirt];
 }
 
-void mlx_mouse_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *param)
+void mlx_mouse_hook(mlx_win_list_t *win_ptr, int (*funct_ptr)(), void *minirt)
 {
-  [(id)(win_ptr->winid) setEvent:4 andFunc:funct_ptr andParam:param];
+  [(id)(win_ptr->winid) setEvent:4 andFunc:funct_ptr andParam:minirt];
 }
 
-void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*funct_ptr)(), void *param)
+void mlx_hook(mlx_win_list_t *win_ptr, int x_event, int x_mask, int (*funct_ptr)(), void *minirt)
 {
-  [(id)(win_ptr->winid) setEvent:x_event andFunc:funct_ptr andParam:param];
+  [(id)(win_ptr->winid) setEvent:x_event andFunc:funct_ptr andParam:minirt];
 }
 
 int     mlx_do_key_autorepeatoff(mlx_ptr_t *mlx_ptr)

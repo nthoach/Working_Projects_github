@@ -325,8 +325,8 @@ char	*ft_strtrim(const char *s1, const char *set);
  	by the delimiter `c`.
 
 	(E.g. "Hello, World!" would return {"Hello", " World!"}).
-	@param s: The string to split.
-	@param c: The delimiter character.
+	@minirt s: The string to split.
+	@minirt c: The delimiter character.
 */
 t_split	ft_split(const char *s, char *charset);
 
@@ -509,7 +509,7 @@ typedef struct s_gnl
 //
 // - NULL if the file-descriptor's offset is at EOF
 // or on error/failure.
-// @param fd: The file-descriptor in question.
+// @minirt fd: The file-descriptor in question.
 t_gnl	get_next_line(int fd);
 
 /*--------FT_FPRINTF--------*/

@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
-#include "macros.h"
 
 static inline void	update_camera_state(t_camera *camera)
 {
@@ -66,22 +65,22 @@ void	camera_rotations(t_minirt *state)
 {
 	bool	state_changed;
 
-	if (state->movement.left == true)
+	if (state->move.left == true)
 	{
 		_rotcam_apply_pitch_rot(state, true);
 		state_changed = true;
 	}
-	if (state->movement.right == true)
+	if (state->move.right == true)
 	{
 		_rotcam_apply_pitch_rot(state, false);
 		state_changed = true;
 	}
-	if (state->movement.up == true)
+	if (state->move.up == true)
 	{
 		_rotcam_apply_yaw_rot(state, true);
 		state_changed = true;
 	}
-	if (state->movement.down == true)
+	if (state->move.down == true)
 	{
 		_rotcam_apply_yaw_rot(state, false);
 		state_changed = true;

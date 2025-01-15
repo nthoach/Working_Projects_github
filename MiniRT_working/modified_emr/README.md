@@ -71,7 +71,7 @@ A 0 0,0,0
 
 ### 🎥 **Interactive Camera and Translatable-Objects**
 - Camera Mode:
-   - Real-time camera movement with smooth rotations and translations.
+   - Real-time camera move with smooth rotations and translations.
    - Camera-controls:
       - WASD: move around.
       - Space/Shift: Elevate/Descend (respectively).

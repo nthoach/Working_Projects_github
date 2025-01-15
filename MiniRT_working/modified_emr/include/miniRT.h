@@ -92,7 +92,7 @@ typedef struct s_minirt
 		bool		space;
 		bool		leftctrl;
 		bool		leftshift;
-	}	movement;
+	}	move;
 	struct s_mouse
 	{
 		bool		left_click;
@@ -204,11 +204,11 @@ t_color		fetch_pixel_color(const t_frame *frame, int x, int y);
 /*--- STATE ---*/
 
 //void		update_camera_state(t_camera *camera);
-int			update(void *minirt);
-int			update_state(void *minirt);
-int			record_keypress(int keysym, void *minirt);
-int			record_keyrelease(int keysym, void *param);
-int			select_shape(int button, int x, int y, void *param);
+int			update_rt(t_minirt *minirt);
+int			update_minirt(t_minirt *minirt);
+int			record_keypress(int keycode, t_minirt *minirt);
+int			record_keyrelease(int keycode, t_minirt *minirt);
+int			select_shape(int button, int x, int y, void *minirt);
 
 /*--- EVENTS ---*/
 void		object_controls(t_minirt *state);

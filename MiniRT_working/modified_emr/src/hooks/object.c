@@ -31,13 +31,13 @@ static inline void	_move_sideways_check(t_minirt *state, bool *state_changed)
 	scale_vec4s(&scaled_left, state->cam.left,
 		(MOVE_SPEED + (MOVE_SPEED / 2.f)) * state->delta_time);
 	selected_object = state->selected.object;
-	if (state->movement.a)
+	if (state->move.a)
 	{
 		add_vec4s(&selected_object->trans, &selected_object->trans,
 			&scaled_left);
 		*state_changed = true;
 	}
-	if (state->movement.d)
+	if (state->move.d)
 	{
 		sub_vec4s(&selected_object->trans, &selected_object->trans,
 			&scaled_left);
@@ -60,13 +60,13 @@ static inline void	_move_longitudinally_check(t_minirt *state,
 	normalize_vec4s(&viewport_forward);
 	scale_vec4s(&viewport_forward, viewport_forward,
 		(MOVE_SPEED + (MOVE_SPEED / 2.f)) * state->delta_time);
-	if (state->movement.w)
+	if (state->move.w)
 	{
 		add_vec4s(&selected_object->trans, &selected_object->trans,
 			&viewport_forward);
 		*state_changed = true;
 	}
-	if (state->movement.s)
+	if (state->move.s)
 	{
 		sub_vec4s(&selected_object->trans, &selected_object->trans,
 			&viewport_forward);
@@ -79,12 +79,12 @@ static inline void	_move_elevation_check(t_minirt *state, bool *state_changed)
 	t_object	*selected_object;
 
 	selected_object = state->selected.object;
-	if (state->movement.space)
+	if (state->move.space)
 	{
 		selected_object->trans.y += (MOVE_SPEED * state->delta_time);
 		*state_changed = true;
 	}
-	if (state->movement.leftshift)
+	if (state->move.leftshift)
 	{
 		selected_object->trans.y -= (MOVE_SPEED * state->delta_time);
 		*state_changed = true;

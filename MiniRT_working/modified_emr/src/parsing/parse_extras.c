@@ -53,7 +53,7 @@ static inline t_mat4s	mat4_from_quat(const t_vec4s q)
 	return (ret);
 }
 
-/// @param u Normalized orientation vector.
+/// @minirt u Normalized orientation vector.
 /// @warning At the risk of being repetitive, `u` must be a normalized vector!!
 t_mat4s	rt_extract_rot_vertical(const t_vec4s u)
 {
