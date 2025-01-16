@@ -24,14 +24,10 @@ int	update_rt(t_minirt *minirt)
 {
 	static struct timespec	last_time;
 	struct timespec			curr_time;
-	t_minirt				*state;
 
 	clock_gettime(CLOCK_MONOTONIC, &curr_time);
 	if (last_time.tv_sec != 0 || last_time.tv_nsec != 0)
-	{
-		state = (t_minirt *)minirt;
-		state->delta_time = get_delta_time(&last_time, &curr_time);
-	}
+		minirt->delta_time = get_delta_time(&last_time, &curr_time);
 	last_time = curr_time;
 	if (!thread_arbiter(minirt))
 		return (1);

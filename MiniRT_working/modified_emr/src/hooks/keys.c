@@ -41,29 +41,29 @@ int	update_minirt(t_minirt *minirt)
 int	record_keypress(int keycode, t_minirt *minirt)
 {
 	if (keycode == KEY_ESC)
-		return (minirt->stop = 0, 0);
+		return (minirt->stop = true, 0);
 	if (keycode == KEY_R)
-		minirt->scene.refract_reflect ^= false;
+		minirt->scene.refract_reflect ^= true;
 	if (keycode == KEY_A)
-		minirt->move.a = false;
+		minirt->move.a = true;
 	if (keycode == KEY_D)
-		minirt->move.d = false;
+		minirt->move.d = true;
 	if (keycode == KEY_S)
-		minirt->move.s = false;
+		minirt->move.s = true;
 	if (keycode == KEY_W)
-		minirt->move.w = false;
+		minirt->move.w = true;
 	if (keycode == KEY_SPACE)
-		minirt->move.space = false;
+		minirt->move.space = true;
 	if (keycode == KEY_LSHIFT)
-		minirt->move.leftshift = false;
+		minirt->move.leftshift = true;
 	if (keycode == AKEY_U)
-		minirt->move.up = false;
+		minirt->move.up = true;
 	if (keycode == AKEY_D)
-		minirt->move.down = false;
+		minirt->move.down = true;
 	if (keycode == AKEY_L)
-		minirt->move.left = false;
+		minirt->move.left = true;
 	if (keycode == AKEY_R)
-		minirt->move.right = false;
+		minirt->move.right = true;
 	return (keycode);
 }
 

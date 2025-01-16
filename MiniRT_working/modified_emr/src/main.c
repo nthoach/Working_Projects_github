@@ -10,7 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "macros.h"
 #include "miniRT.h"
+#include "mlx.h"
+#include "keys.h"
 
 void	errors(int err_code, char* err_ms, void *ptr)
 {
