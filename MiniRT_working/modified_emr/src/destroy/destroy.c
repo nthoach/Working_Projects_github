@@ -75,16 +75,21 @@ void	destroy_cores(t_minirt *minirt)
 	}
 }
 
-int	destroy_minirt(t_minirt *minirt)
+void	free_minirt(t_minirt *minirt)
 {
 	if (!minirt)
-		return (0);
+		return ;
 	destroy_cores(minirt);
 	destroy_scene(minirt);
 	destroy_textures(minirt);
 	destroy_mlx(minirt);
 	free(minirt);
 	minirt = NULL;
+}
+
+int	destroy_minirt(t_minirt *minirt)
+{
+	free_minirt(minirt);
 	exit(0);
 	return (0);
 }

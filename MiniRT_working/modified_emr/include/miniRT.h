@@ -139,47 +139,51 @@ typedef struct s_validate_atof
 	bool	found_alpha;
 }	t_vatof;
 
-bool		is_normalised(t_vec4s *vec, int curr_line);
+//bool		is_normalised(t_vec4s *vec, int curr_line);
 float		ft_atof(char *rep, t_minirt *minirt);
-bool		parse(const char *filename, t_minirt *minirt);
-bool		parse_ambient(t_minirt *minirt, t_split *fields, int curr_line);
-bool		parse_light(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_spot_light(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_camera(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_sphere(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_plane(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_cube(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_cylinder(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_cone(t_minirt *minirt, const t_split *fields,
-				int curr_line);
-bool		parse_color(t_color *color, char *str, int curr_line);
-bool		parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt,
-				int curr_line);
-bool		parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt,
-				int curr_line);
-bool		parse_single_f(float *f, char *str, t_minirt *minirt,
-				int curr_line);
-bool		parse_material(t_material *obj_material, char **material_fields,
-				t_minirt *minirt, int curr_line);
-bool		parse_plane_checker(t_material *obj_mat, t_minirt *minirt,
-				char *is_checker);
-bool		parse_bump_xpm(t_material *obj_mat, t_minirt *minirt,
-				char *filename);
-t_mat4s		rt_extract_rot_vertical(const t_vec4s u);
-t_mat4s		rt_get_cam_inverse(const t_mat4s *view);
-bool		check_object_validity_init(t_minirt *minirt, const char *info,
-				int curr_line, const t_split fields);
-void		parse_fatal_msg(char *msg, int curr_line);
-void		parse_warn_msg(char *msg, char *expected, int curr_line, bool ign);
-void		parse_err_msg(char *msg, char *expected, int curr_line);
-void		parse_syn_err_msg(char *msg, int curr_line);
+
+// Parsing
+void	parse(char *file, t_minirt *minirt);
+void	parse_data(t_minirt *minirt, char *data);
+//bool		parse(const char *filename, t_minirt *minirt);
+//bool		parse_ambient(t_minirt *minirt, t_split *fields, int curr_line);
+//bool		parse_light(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_spot_light(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_camera(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_sphere(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_plane(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_cube(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_cylinder(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_cone(t_minirt *minirt, const t_split *fields,
+//				int curr_line);
+//bool		parse_color(t_color *color, char *str, int curr_line);
+//bool		parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt,
+//				int curr_line);
+//bool		parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt,
+//				int curr_line);
+//bool		parse_single_f(float *f, char *str, t_minirt *minirt,
+//				int curr_line);
+//bool		parse_material(t_material *obj_material, char **material_fields,
+//				t_minirt *minirt, int curr_line);
+//bool		parse_plane_checker(t_material *obj_mat, t_minirt *minirt,
+//				char *is_checker);
+//bool		parse_bump_xpm(t_material *obj_mat, t_minirt *minirt,
+//				char *filename);
+//t_mat4s		rt_extract_rot_vertical(const t_vec4s u);
+//t_mat4s		rt_get_cam_inverse(const t_mat4s *view);
+//bool		check_object_validity_init(t_minirt *minirt, const char *info,
+//				int curr_line, const t_split fields);
+//void		parse_fatal_msg(char *msg, int curr_line);
+//void		parse_warn_msg(char *msg, char *expected, int curr_line, bool ign);
+//void		parse_err_msg(char *msg, char *expected, int curr_line);
+//void		parse_syn_err_msg(char *msg, int curr_line);
 
 /*--- RENDERING ---*/
 
@@ -224,6 +228,7 @@ void		destroy_scene(t_minirt *minirt);
 int			destroy_minirt(t_minirt *minirt);
 void		destroy_textures(t_minirt *minirt);
 void		destroy_2d_arr(char **arr);
+void		free_minirt(t_minirt *minirt);
 
 /*--- RAY - MANIPULATION ---*/
 

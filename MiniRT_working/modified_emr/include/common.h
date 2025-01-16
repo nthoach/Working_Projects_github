@@ -163,6 +163,8 @@ typedef struct s_scene
 {
 	bool		refract_reflect;
 	t_color		ambiance;
+	int			num_a;
+	int			num_c;
 	int			num_shapes;
 	int			num_lights;
 	t_object	*shapes;

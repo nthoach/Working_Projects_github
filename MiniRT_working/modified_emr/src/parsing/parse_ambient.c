@@ -15,34 +15,68 @@
 #include "libft.h"
 #include "colors.h"
 
-static bool	get_ambient_color(t_minirt *minirt, t_split *fields,
-				int curr_line);
 
-bool	parse_ambient(t_minirt *minirt, t_split *fields, int curr_line)
+float	parse_float(char *data, size_t *i)
 {
-	if (minirt->ambiance.is_set)
-		return (parse_fatal_msg(ER_AMBIENT_DEFINED, curr_line),
-			destroy_2d_arr(fields->array), false);
-	if (fields->wordcount != 3)
-		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
-				curr_line), destroy_2d_arr(fields->array), false);
-	minirt->ambiance.ratio = ft_atof(fields->array[1], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
-				curr_line), destroy_2d_arr(fields->array), false);
-	if (minirt->ambiance.ratio < -0.f || minirt->ambiance.ratio > 1.f)
-		return (parse_err_msg(ER_AMBIENT_VALUE, ER_EXPECT_F_RANGE,
-				curr_line), destroy_2d_arr(fields->array), false);
-	return (get_ambient_color(minirt, fields, curr_line));
+	float	value;
+
+	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',')
+		(*i)++;
+	value = ft_atof(&data[*i]);
+	while (data[*i] && data[*i] != '\t' && data[*i] != ' ' \
+			&& data[*i] != '\n' && data[*i] != ',')
+		(*i)++;
+	
+	return (value);
 }
 
-bool	get_ambient_color(t_minirt *minirt, t_split *fields, int curr_line)
+t_color	parse_color(char *data, size_t *i)
 {
-	if (!parse_color(&minirt->ambiance.color, fields->array[2], curr_line))
-		return (destroy_2d_arr(fields->array), false);
-	minirt->ambiance.is_set = true;
-	minirt->ambiance.line_set = curr_line;
-	scale_color(&minirt->scene.ambiance, &minirt->ambiance.color,
-		minirt->ambiance.ratio);
-	return (destroy_2d_arr(fields->array), true);
+	t_color	color;
+	// check format of number
+
+	color.r = parse_float(data, i)/255.999;
+	color.g = parse_float(data, i)/255.999;
+	color.b = parse_float(data, i)/255.999;
+	
+	return (color);
 }
+
+void	parse_ambient(t_minirt *minirt, char *data, size_t *i)
+{
+	(*i) += 1;
+	minirt->ambiance.ratio = parse_float(data, i);
+	minirt->ambiance.color = parse_color(data, i);
+}
+
+//static bool	get_ambient_color(t_minirt *minirt, t_split *fields,
+//				int curr_line);
+
+//bool	parse_ambient(t_minirt *minirt, t_split *fields, int curr_line)
+//{
+//	if (minirt->ambiance.is_set)
+//		return (parse_fatal_msg(ER_AMBIENT_DEFINED, curr_line),
+//			destroy_2d_arr(fields->array), false);
+//	if (fields->wordcount != 3)
+//		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
+//				curr_line), destroy_2d_arr(fields->array), false);
+//	minirt->ambiance.ratio = ft_atof(fields->array[1], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_AMBIENT_FORMAT, ER_EXPECT_TYPE_A,
+//				curr_line), destroy_2d_arr(fields->array), false);
+//	if (minirt->ambiance.ratio < -0.f || minirt->ambiance.ratio > 1.f)
+//		return (parse_err_msg(ER_AMBIENT_VALUE, ER_EXPECT_F_RANGE,
+//				curr_line), destroy_2d_arr(fields->array), false);
+//	return (get_ambient_color(minirt, fields, curr_line));
+//}
+
+//bool	get_ambient_color(t_minirt *minirt, t_split *fields, int curr_line)
+//{
+//	if (!parse_color(&minirt->ambiance.color, fields->array[2], curr_line))
+//		return (destroy_2d_arr(fields->array), false);
+//	minirt->ambiance.is_set = true;
+//	minirt->ambiance.line_set = curr_line;
+//	scale_color(&minirt->scene.ambiance, &minirt->ambiance.color,
+//		minirt->ambiance.ratio);
+//	return (destroy_2d_arr(fields->array), true);
+//}

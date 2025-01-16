@@ -21,7 +21,7 @@ void	errors(int err_code, char* err_ms, void *ptr)
 	
 	minirt = (t_minirt *)ptr;
 	if (minirt)
-		destroy_minirt(minirt);
+		free_minirt(minirt);
 	ft_putstr_fd(err_ms, 2);
 	exit(err_code);
 }
@@ -71,12 +71,12 @@ int	main(int ac, char **av)
 	check_filename(av[1]);
 	minirt = ini_minirt();
 	parse(av[1], minirt);
-	ini_core(minirt);
-	mlx_hook(minirt->win, EVENT_KEYPRESS, 1L, &record_keypress, minirt);
-	mlx_hook(minirt->win, EVENT_KEYRELEASE, 1L << 1, &record_keyrelease, minirt);
-	mlx_hook(minirt->win, EVENT_CLOSEWINDOW, 1L >> 2, &destroy_minirt, minirt);
-	mlx_mouse_hook(minirt->win, &select_shape, minirt);
-	mlx_loop_hook(minirt->mlx, &update_minirt, minirt);
-	mlx_loop(minirt->mlx);
+	//ini_core(minirt);
+	//mlx_hook(minirt->win, EVENT_KEYPRESS, 1L, &record_keypress, minirt);
+	//mlx_hook(minirt->win, EVENT_KEYRELEASE, 1L << 1, &record_keyrelease, minirt);
+	//mlx_hook(minirt->win, EVENT_CLOSEWINDOW, 1L >> 2, &destroy_minirt, minirt);
+	//mlx_mouse_hook(minirt->win, &select_shape, minirt);
+	//mlx_loop_hook(minirt->mlx, &update_minirt, minirt);
+	//mlx_loop(minirt->mlx);
 	return (0);
 }

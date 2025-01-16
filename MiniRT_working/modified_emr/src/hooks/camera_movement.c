@@ -12,27 +12,28 @@
 
 #include "miniRT.h"
 
-static inline void	update_camera_state(t_camera *camera)
-{
-	normalize_vec4s(&camera->up);
-	normalize_vec4s(&camera->left);
-	normalize_vec4s(&camera->forward);
-	camera->inv_transform = inirows_mat4s_re(\
-		vec4s_re(camera->left.x, camera->left.y, camera->left.z, 0.0f), \
-		vec4s_re(camera->up.x, camera->up.y, camera->up.z, 0.0f), \
-		vec4s_re(-camera->forward.x, -camera->forward.y, \
-			-camera->forward.z, 0.0f), \
-		vec4s_re(0.0f, 0.0f, 0.0f, 1.0f) \
-	);
-	cross_mat4s_mat4s(camera->inv_transform, \
-		translation_mat4s(\
-			-camera->trans.x, -camera->trans.y, -camera->trans.z \
-		), \
-			&camera->inv_transform \
-		);
-	camera->inv_transform = rt_get_cam_inverse(&camera->inv_transform);
-}
-
+//static inline void	update_camera_state(t_camera *camera)
+//{
+//	normalize_vec4s(&camera->up);
+//	normalize_vec4s(&camera->left);
+//	normalize_vec4s(&camera->forward);
+/*
+//	camera->inv_transform = inirows_mat4s_re(\
+//		vec4s_re(camera->left.x, camera->left.y, camera->left.z, 0.0f), \
+//		vec4s_re(camera->up.x, camera->up.y, camera->up.z, 0.0f), \
+//		vec4s_re(-camera->forward.x, -camera->forward.y, \
+//			-camera->forward.z, 0.0f), \
+//		vec4s_re(0.0f, 0.0f, 0.0f, 1.0f) \
+//	);
+//	cross_mat4s_mat4s(camera->inv_transform, \
+//		translation_mat4s(\
+//			-camera->trans.x, -camera->trans.y, -camera->trans.z \
+//		), \
+//			&camera->inv_transform \
+//		);
+//	camera->inv_transform = rt_get_cam_inverse(&camera->inv_transform);
+//}
+*/
 static inline void	_movecam_sideways_check(t_minirt *state,
 						bool *state_changed)
 {
@@ -97,7 +98,7 @@ void	camera_controls(t_minirt *state)
 		_movecam_sideways_check(state, &state_changed);
 		_movecam_longitudinally_check(state, &state_changed);
 		_movecam_elevation_check(state, &state_changed);
-		if (state_changed)
-			update_camera_state(&state->cam);
+//		if (state_changed)
+//			update_camera_state(&state->cam);
 	}
 }

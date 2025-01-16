@@ -15,98 +15,144 @@
 #include "libft.h"
 #include "colors.h"
 
-bool	parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
+void	parse_object(t_minirt *minirt, char *data, size_t *i)
 {
-	t_split	split;
+	size_t	start;
+	size_t	idx;
 
-	split = ft_split(str, ",");
-	if (split.wordcount != 3)
-		return (parse_err_msg(ER_VEC4_FORMAT, ER_EXPECT_TUPLE, curr_line),
-			false);
-	vec->x = ft_atof(split.array[0], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->y = ft_atof(split.array[1], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->z = ft_atof(split.array[2], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->w = 1.0f;
-	return (destroy_2d_arr(split.array), true);
+	idx = minirt->scene.shape_id++;
+	start = *i;
+	if (data[start] == 'p' && data[start + 1] == 'l' && data[start + 2] == ' ')
+		parse_plane(minirt, data, i, idx);
+	else if (data[start] == 's' && data[start + 1] == 'p' && data[start + 2] == ' ')
+		parse_sphere(minirt, data, i, idx);
+	else if (data[start] == 'c' && data[start + 1] == 'y' && data[start + 2] == ' ')
+		parse_cylinder(minirt, data, i, idx);
+	else if (data[start] == 'c' && data[start + 1] == 'u' && data[start + 2] == ' ')
+		parse_cube(minirt, data, i, idx);
+	else if (data[start] == 'c' && data[start + 1] == 'o' && data[start + 2] == ' ')
+		parse_cone(minirt, data, i, idx);
+	else
+		errors(CER_OBJ_TYPE,ER_OBJ_TYPE, minirt);
 }
 
-bool	parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
+void	parse_data(t_minirt *minirt, char *data)
 {
-	t_split	split;
+	size_t	i;
+	size_t	start;
 
-	split = ft_split(str, ",");
-	if (split.wordcount != 3)
-		return (parse_err_msg(ER_VEC4_FORMAT, ER_EXPECT_TUPLE, curr_line),
-			false);
-	vec->x = ft_atof(split.array[0], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->y = ft_atof(split.array[1], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->z = ft_atof(split.array[2], minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	vec->w = 0.0f;
-	return (destroy_2d_arr(split.array), true);
+	i = 0;
+	while (data[i])
+	{
+		while (data[i] == '\t' || data[i] == ' ' || data[i] == '\n')
+			i++;
+		if (!data[i])
+			break ;
+		start = i;
+		if (data[start] == 'A'  && data[start + 1] == ' ')
+			parse_ambient(minirt, data, &i);
+		else if (data[start] == 'C' && data[start + 1] == ' ')
+			parse_camera(minirt, data, &i);
+		else if ((data[start] == 'L' && data[start + 1] == ' ') || \
+			data[start] == 'S' && data[start + 1] == 'L' && data[start + 2] == ' ')
+			parse_light(minirt, data, &i);
+		else
+			parse_object(minirt, data, &i);
+	}
 }
 
-bool	parse_single_f(float *f, char *str, t_minirt *minirt, int curr_line)
-{
-	*f = ft_atof(str, minirt);
-	if (minirt->error_code == 2)
-		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
-			false);
-	return (true);
-}
+//bool	parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
+//{
+//	t_split	split;
 
-bool	check_final_color_range(t_color *color, int curr_line)
-{
-	if (color->r < 0.0f || color->g < 0.0f || color->b < 0.0f
-		|| color->r > 1.0f || color->g > 1.0f || color->b > 1.0f)
-		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_COLOR_RANGE,
-				curr_line), false);
-	color->a = (OS_MACOS == 0);
-	return (true);
-}
+//	split = ft_split(str, ",");
+//	if (split.wordcount != 3)
+//		return (parse_err_msg(ER_VEC4_FORMAT, ER_EXPECT_TUPLE, curr_line),
+//			false);
+//	vec->x = ft_atof(split.array[0], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->y = ft_atof(split.array[1], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->z = ft_atof(split.array[2], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->w = 1.0f;
+//	return (destroy_2d_arr(split.array), true);
+//}
 
-bool	parse_color(t_color *color, char *str, int curr_line)
-{
-	t_split	split;
-	t_eint	color_int;
+//bool	parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt, int curr_line)
+//{
+//	t_split	split;
 
-	split = ft_split(str, ",\n\r");
-	if (split.wordcount != 3)
-		return (parse_err_msg(ER_COLOR_FORMAT, ER_EXPECT_COLOR_FORMAT,
-				curr_line), false);
-	color_int = ft_atoi(split.array[0]);
-	if (color_int.error)
-		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
-				curr_line), false);
-	color->r = color_int.value / 255.999;
-	color_int = ft_atoi(split.array[1]);
-	if (color_int.error)
-		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
-				curr_line), false);
-	color->g = color_int.value / 255.999;
-	color_int = ft_atoi(split.array[2]);
-	if (color_int.error)
-		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
-				curr_line), false);
-	color->b = color_int.value / 255.999;
-	if (!check_final_color_range(color, curr_line))
-		return (destroy_2d_arr(split.array), false);
-	return (destroy_2d_arr(split.array), true);
-}
+//	split = ft_split(str, ",");
+//	if (split.wordcount != 3)
+//		return (parse_err_msg(ER_VEC4_FORMAT, ER_EXPECT_TUPLE, curr_line),
+//			false);
+//	vec->x = ft_atof(split.array[0], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->y = ft_atof(split.array[1], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->z = ft_atof(split.array[2], minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_FLOAT_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	vec->w = 0.0f;
+//	return (destroy_2d_arr(split.array), true);
+//}
+
+//bool	parse_single_f(float *f, char *str, t_minirt *minirt, int curr_line)
+//{
+//	*f = ft_atof(str, minirt);
+//	if (minirt->error_code == 2)
+//		return (parse_err_msg(ER_OBJ_VALUE, ER_EXPECT_FLOAT, curr_line),
+//			false);
+//	return (true);
+//}
+
+//bool	check_final_color_range(t_color *color, int curr_line)
+//{
+//	if (color->r < 0.0f || color->g < 0.0f || color->b < 0.0f
+//		|| color->r > 1.0f || color->g > 1.0f || color->b > 1.0f)
+//		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_COLOR_RANGE,
+//				curr_line), false);
+//	color->a = (OS_MACOS == 0);
+//	return (true);
+//}
+
+//bool	parse_color(t_color *color, char *str, int curr_line)
+//{
+//	t_split	split;
+//	t_eint	color_int;
+
+//	split = ft_split(str, ",\n\r");
+//	if (split.wordcount != 3)
+//		return (parse_err_msg(ER_COLOR_FORMAT, ER_EXPECT_COLOR_FORMAT,
+//				curr_line), false);
+//	color_int = ft_atoi(split.array[0]);
+//	if (color_int.error)
+//		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
+//				curr_line), false);
+//	color->r = color_int.value / 255.999;
+//	color_int = ft_atoi(split.array[1]);
+//	if (color_int.error)
+//		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
+//				curr_line), false);
+//	color->g = color_int.value / 255.999;
+//	color_int = ft_atoi(split.array[2]);
+//	if (color_int.error)
+//		return (parse_err_msg(ER_COLOR_VALUE, ER_EXPECT_INT,
+//				curr_line), false);
+//	color->b = color_int.value / 255.999;
+//	if (!check_final_color_range(color, curr_line))
+//		return (destroy_2d_arr(split.array), false);
+//	return (destroy_2d_arr(split.array), true);
+//}

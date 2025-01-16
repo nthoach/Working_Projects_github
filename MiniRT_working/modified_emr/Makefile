@@ -1,6 +1,6 @@
 CC := cc
 BONUS ?= 0
-CFLAGS = -Wextra -Wall -Werror -lz -Wno-unused-result -mavx -mavx2 -O3 -flto -funroll-loops -fno-signed-zeros #-g -fsanitize=address
+CFLAGS = -Wextra -Wall -Werror #-lz -Wno-unused-result -mavx -mavx2 -O3 -flto -funroll-loops -fno-signed-zeros #-g -fsanitize=address
 
 OS := $(shell uname)
 CFLAGS += -DBONUS=$(BONUS)
@@ -12,11 +12,11 @@ Lin = Linux
 ifeq (${OS}, ${Dar})
 	BUILD_DIR := libs/minilibx_macos
 	MLX := mlx
-	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -framework OpenGL -framework Appkit -Llibs/libft -Ilibs/libft/includes -lft -L/usr/lib -lm
+	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -framework OpenGL -framework Appkit -Llibs/libft -Ilibs/libft -lft -L/usr/lib -lm
 else ifeq (${OS}, ${Lin})
 	BUILD_DIR := libs/minilibx_linux
 	MLX := mlx_Linux
-	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -L/usr/lib -lXext -lX11 -lm -lz -Llibs/libft -Ilibs/libft/includes -lft
+	CFLAGS += -L$(BUILD_DIR) -I$(BUILD_DIR) -l$(MLX) -L/usr/lib -lXext -lX11 -lm -lz -Llibs/libft -Ilibs/libft -lft
 else
 	$(error Different OS!)
 endif
