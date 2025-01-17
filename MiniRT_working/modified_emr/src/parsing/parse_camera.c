@@ -15,6 +15,37 @@
 #include "libft.h"
 #include "colors.h"
 
+t_vec4s	parse_point(char *data, size_t *i)
+{
+	t_vec4s	point;
+
+	point.x = parse_float(data, i);
+	point.y = parse_float(data, i);
+	point.z = parse_float(data, i);
+	point.w = 1.0;
+
+	return (point);
+}
+
+t_vec4s	parse_vector(char *data, size_t *i)
+{
+	t_vec4s	vector;
+
+	vector.x = parse_float(data, i);
+	vector.y = parse_float(data, i);
+	vector.z = parse_float(data, i);
+	vector.w = 0.0;
+
+	return (vector);
+}
+
+void	parse_camera(t_minirt *minirt, char *data, size_t *i)
+{
+	(*i) += 1;
+	minirt->cam.trans = parse_point(data, i);
+	minirt->cam.forward = parse_vector(data, i);
+	minirt->cam.fov = parse_float(data, i);
+}
 //t_mat4s	rt_get_cam_inverse(const t_mat4s *view)
 //{
 //	t_mat4s	ret;

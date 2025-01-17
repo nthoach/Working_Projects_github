@@ -32,14 +32,14 @@ float	parse_float(char *data, size_t *i)
 
 t_color	parse_color(char *data, size_t *i)
 {
-	t_color	color;
-	// check format of number
+    t_color	color;
+    // check format of number
 
-	color.r = parse_float(data, i)/255.999;
-	color.g = parse_float(data, i)/255.999;
-	color.b = parse_float(data, i)/255.999;
-	
-	return (color);
+    color.v[0] = parse_float(data, i);
+    color.v[1] = parse_int(data, i)/255.999;
+    color.v[2] = parse_int(data, i)/255.999;
+	color.v[2] = parse_int(data, i)/255.999;
+    return color;
 }
 
 void	parse_ambient(t_minirt *minirt, char *data, size_t *i)
