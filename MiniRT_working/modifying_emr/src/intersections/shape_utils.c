@@ -14,11 +14,11 @@
 
 void	transpose_mat4s(const t_mat4s *m, t_mat4s *out)
 {
-    //if (m == NULL || out == NULL)
-    // {
-    //     ft_fprintf(stderr, "Error: NULL pointer passed to transpose_mat4s\n");
-    //     return;
-    // }
+    if (m == NULL || out == NULL)
+     {
+         ft_printf("Error: NULL pointer passed to transpose_mat4s\n");
+         return;
+     }
 	 int    i;
 	 int	j;
 

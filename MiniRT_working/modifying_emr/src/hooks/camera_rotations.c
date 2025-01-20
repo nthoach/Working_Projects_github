@@ -30,7 +30,7 @@ static inline void	update_camera_state(t_camera *camera)
 		), \
 			&camera->inv_transform \
 		);
-//	camera->inv_transform = rt_get_cam_inverse(&camera->inv_transform);
+	camera->inv_transform = rt_get_cam_inverse(&camera->inv_transform);
 }
 
 static inline void	_rotcam_apply_pitch_rot(t_minirt *state, bool left)

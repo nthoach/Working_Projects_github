@@ -119,6 +119,6 @@ void	parse_camera(t_minirt *minirt, char *data, size_t *i)
 	minirt->cam.fov = parse_float(data, i);
 	get_camera_orient(&minirt->cam);
 	get_camera_extras(&minirt->cam);
-		// test
+	// test
 	printf("camera's fov = %f\n", minirt->cam.fov);
 }

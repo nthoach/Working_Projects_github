@@ -24,14 +24,14 @@ endif
 
 NAME := miniRT
 
-SRC := main.c ft_atof.c \
+SRC := main.c \
 			$(addprefix fragments/, lighting_utils.c rays.c fragment.c lighting.c \
 				reflections.c refractions.c) \
 			$(addprefix colors/, frame.c paint.c color_op.c) \
 			$(addprefix parsing/, parse.c parse_ambient.c parse_light.c \
 				parse_camera.c parse_sphere.c parse_utils.c parse_errors.c \
 				parse_plane.c parse_cylinder.c parse_cube.c parse_cone.c \
-				parse_extras.c parse_material.c parse_texture.c parse_xpm.c) \
+				parse_extras.c parse_material.c parse_texture.c parse_xpm.c ft_atof.c) \
 			$(addprefix destroy/, destroy.c) \
 			$(addprefix threads/, init_join.c routines.c lerp_vertical.c lerp_horizontal.c) \
 			$(addprefix scene/, itx_test_world.c) \
