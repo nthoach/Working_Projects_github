@@ -42,7 +42,8 @@ void	destroy_textures(t_minirt *minirt)
 	temp = minirt->textures;
 	while (temp)
 	{
-		free(((t_tex_frame *)temp->content)->name);
+		if (((t_tex_frame *)temp->content)->name)
+			free(((t_tex_frame *)temp->content)->name);
 		mlx_destroy_image(minirt->mlx,
 			((t_tex_frame *)temp->content)->fra_tex->ptr);
 		free(((t_tex_frame *)temp->content)->fra_tex);

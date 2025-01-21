@@ -36,9 +36,9 @@
 # define _RT_MAX_ITX 200
 # define _RT_MIN_INTENSITY 0.05f
 
-# define MOVE_SPEED 5.f
-# define PITCH_SPEED 0.3f
-# define YAW_SPEED 0.3f
+# define MOVE_SPEED 2.f
+# define PITCH_SPEED 0.1f
+# define YAW_SPEED 0.1f
 
 # ifdef __MACH__
 #  undef OS_MACOS

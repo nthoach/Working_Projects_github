@@ -14,7 +14,6 @@
 #include "macros.h"
 #include "libft.h"
 #include "colors.h"
-#include <assert.h>
 
 //static void	set_material_1(t_material *material, char *data, size_t *i, t_minirt *minirt)
 //{
@@ -58,7 +57,7 @@ bool	parse_cone(t_minirt *minirt, char *data, size_t *i, size_t idx)
 	cone->trans = parse_point(data, i);
 	cone->orientation = parse_vector(data, i);
 	is_normalised(&cone->orientation, *i);
-	cone->radius = parse_float(data, i);
+	cone->radius = parse_float(data, i)/2.0f;
 	height = parse_float(data, i);
 	cone->specs.min = -height / 2.0f;
 	cone->specs.max = height / 2.0f;
@@ -69,23 +68,17 @@ bool	parse_cone(t_minirt *minirt, char *data, size_t *i, size_t idx)
 	cone->rot = rt_extract_rot_vertical(cone->orientation);
 	cone->inv_transform = get_inv_tranform_mat4s(cone->rot,
 			cone->scale, cone->trans);
-	// test
+	/*
+		// test
 	printf("shape[%ld], type = %d\n", idx, cone->type);// test
 	//test
 	printf("cone position = %f, %f, %f\n", (minirt->scene.shapes + idx)->trans.x, \
 		(minirt->scene.shapes + idx)->trans.y, (minirt->scene.shapes + idx)->trans.z);
 	// test
-	printf("cone orientation = %f, %f, %f\n", (minirt->scene.shapes + idx)->orientation.x, \
-		(minirt->scene.shapes + idx)->orientation.y, (minirt->scene.shapes + idx)->orientation.z);
-	//test
-	printf("cone radius = %f\n", (minirt->scene.shapes + idx)->radius);
-	// test
-	printf("cone height = %f\n", 2 * cone->specs.max );
-	
+	printf("cone radius =  %f\n", (minirt->scene.shapes + idx)->radius);
 	//test	
 	printf("cone color = %f, %f, %f\n", (minirt->scene.shapes + idx)->material.color.r, \
 		(minirt->scene.shapes + idx)->material.color.g, (minirt->scene.shapes + idx)->material.color.b);
-		//test
-	printf("Bonus = %c\n", data[*i]);
-	return (true);
+	*/
+return (true);
 }

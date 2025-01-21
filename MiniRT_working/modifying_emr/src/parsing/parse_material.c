@@ -109,7 +109,6 @@ void	set_material(t_material *material, char *data, size_t *i, t_minirt *minirt)
 		(*i)++;
 		parse_material(material, data, i, minirt);
 	}
-	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',' || data[*i] == '\n')
+	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',')
 		(*i)++;
 }
-

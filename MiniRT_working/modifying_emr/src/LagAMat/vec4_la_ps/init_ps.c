@@ -12,10 +12,9 @@
 
 #include "lag.h"
 
-t_vec4s	vec4s_re(float x, float y, float z, float w)
+t_vec4s vec4s_re(float x, float y, float z, float w)
 {
     t_vec4s v;
-
     v.a[0] = x;
     v.a[1] = y;
     v.a[2] = z;
@@ -23,29 +22,30 @@ t_vec4s	vec4s_re(float x, float y, float z, float w)
     return v;
 }
 
-void	vec4sp_ini(t_vec4s *p, float x, float y, float z)
-{
-    p->a[0] = x;
-    p->a[1] = y;
-    p->a[2] = z;
-    p->a[3] = 1.0f;
-}
-
-t_vec4s	vec4sp_re(float x, float y, float z)
-{
-	return (vec4s_re(x, y, z, 1.0));
-}
-
-void	vec4sv_ini(t_vec4s *v, float x, float y,
-						float z)
+void vec4s_ini(t_vec4s *v, float x, float y, float z, float w)
 {
     v->a[0] = x;
     v->a[1] = y;
     v->a[2] = z;
-    v->a[3] = 0.0;
+    v->a[3] = w;
 }
 
-t_vec4s	vec4sv_re(float x, float y, float z)
+t_vec4s vec4sp_re(float x, float y, float z)
 {
-	return (vec4s_re(x, y, z, 0.0));
+    return vec4s_re(x, y, z, 1.0f);
+}
+
+void vec4sp_ini(t_vec4s *p, float x, float y, float z)
+{
+    vec4s_ini(p, x, y, z, 1.0f);
+}
+
+t_vec4s vec4sv_re(float x, float y, float z)
+{
+    return vec4s_re(x, y, z, 0.0f);
+}
+
+void vec4sv_ini(t_vec4s *v, float x, float y, float z)
+{
+    vec4s_ini(v, x, y, z, 0.0f);
 }

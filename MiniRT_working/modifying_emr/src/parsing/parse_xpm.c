@@ -28,6 +28,7 @@ static bool	parse_new_bump_xpm(t_material *obj_mat, t_minirt *minirt, char *file
 		return (ft_lstdelone(new, free), minirt->error_code = 3, false);
 	((t_tex_frame *)new->content)->fra_tex = rt_xpm_file_to_canvas(
 			filename, minirt->mlx);
+	printf("export xpm to canvas\n");
 	obj_mat->fra_tex = ((t_tex_frame *)new->content)->fra_tex;
 	if (!obj_mat->fra_tex)
 		return (free(((t_tex_frame *)new->content)->name), ft_lstdelone(new,
@@ -39,7 +40,7 @@ bool parse_bump_xpm(t_material *material, char *data, size_t *i, t_minirt *minir
 {
     t_list *temp;
     size_t len;
-    char filename[256]; // Assuming filename length is within 256 characters
+    char filename[256];
   
   	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == '\n')
 		(*i)++;
@@ -51,8 +52,6 @@ bool parse_bump_xpm(t_material *material, char *data, size_t *i, t_minirt *minir
 	}
 	*i += len;
 	filename[len] = '\0';
-	// test
-	printf("len: %ld, xpm = %s\n", len, filename);
 
     if (len < 5 || ft_strncmp(data + len - 4, ".xpm", 4))
         return (minirt->error_code = 3, false);

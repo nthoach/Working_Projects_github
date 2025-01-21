@@ -14,13 +14,6 @@
 #include "mlx.h"
 #include "macros.h"
 
-/// @brief Loads a xpm file onto memory as a `t_frame`. Ownership of the
-/// block thereof is given to the caller.
-/// @minirt filepath the path to the xpm file to load (No const qualifier
-/// to adhere to MiniLibX. The argument however might as well be const).
-/// @minirt minirt mlx pointer.
-/// @return Pointer to the address storing the frame data.
-/// @warning Returns `NULL` on failure.
 
 t_frame	*rt_xpm_file_to_canvas(char *filepath, void *mlx)
 {

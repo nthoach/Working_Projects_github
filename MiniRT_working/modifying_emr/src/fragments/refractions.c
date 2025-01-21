@@ -111,6 +111,7 @@ t_color	refracted_color(t_scene *scene, t_itx_data *comps, int depth)
 //approximation. The formula is simplified to be used in ray tracing in
 //order to be faster than the original formula, and not incorporate the extras
 //of true Fresnel effects like light polarization.
+
 float	schlick(t_itx_data *comps)
 {
 	float	cos;

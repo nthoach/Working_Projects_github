@@ -21,8 +21,9 @@ void	count_elements(t_minirt *minirt, char *line)
 		minirt->scene.num_a++;
 	else if (*line == 'C' && *(line + 1) == ' ')
 		minirt->scene.num_c++;
-	else if ((*line == 'L' && *(line + 1) == ' ') || \
-	 (*line == 'S' && *(line + 1) == 'L' && *(line + 2) == ' '))
+	else if (((*line == 'L' || *line == 'l') && *(line + 1) == ' ') || \
+	 ((*line == 'S'|| *line == 's') && (*(line + 1) == 'L' || *line == 'l')
+	  && *(line + 2) == ' '))
 		minirt->scene.num_lights++;
 	else if ((*line == 's' && *(line + 1) == 'p' && *(line + 2) == ' ') || \
 		(*line == 'p' && *(line + 1) == 'l' && *(line + 2) == ' ') || \

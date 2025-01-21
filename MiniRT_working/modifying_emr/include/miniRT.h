@@ -79,7 +79,7 @@ typedef struct s_minirt
 		t_color	color;
 		float	ratio;
 	}	ambiance;
-	struct s_movement
+	struct s_move
 	{
 		bool		w;
 		bool		a;
@@ -281,7 +281,7 @@ void		transpose_mat4s(const t_mat4s *m, t_mat4s *out);
 
 /*--- TEXTURES ---*/
 
-t_frame	*rt_xpm_file_to_canvas(char *filepath, void *mlx);
+t_frame		*rt_xpm_file_to_canvas(char *filepath, void *mlx);
 t_vec2s		rt_get_sphere_uv_local(t_vec4s *hitp);
 t_vec2s		rt_get_plane_uv_local(t_vec4s *hitp, t_vec4s tangent,
 				t_vec4s *normal);

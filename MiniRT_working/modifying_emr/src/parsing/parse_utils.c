@@ -55,9 +55,10 @@ void	parse_data(t_minirt *minirt, char *data)
 			parse_ambient(minirt, data, &i);
 		else if (data[i] == 'C' && data[i + 1] == ' ')
 			parse_camera(minirt, data, &i);
-		else if (data[i] == 'L' && data[i + 1] == ' ')
+		else if ((data[i] == 'L' || data[i] == 'l') && data[i + 1] == ' ')
 			parse_light(minirt, data, &i);
-		else if (data[i] == 'S' && data[i + 1] == 'L' && data[i + 2] == ' ')
+		else if ((data[i] == 'S' || data[i] == 's') && (data[i + 1] == 'L'|| data[i + 1] == 'l')
+		 && data[i + 2] == ' ')
 			parse_spotlight(minirt, data, &i);
 		else
 			parse_shape(minirt, data, &i);

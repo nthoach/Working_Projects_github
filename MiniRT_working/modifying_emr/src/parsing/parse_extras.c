@@ -83,7 +83,7 @@ bool	is_normalised(t_vec4s *vec, int curr_line)
 	magnitude_vec4s(&mag, *vec);
 	if (fabsf(mag - 1.0f) > EPSILON)
 	{
-		ft_printf("Warning on line %d: orientation vector not normalised. \n\tWe'll normalise it for you.\n", curr_line);
+		ft_printf("Warning on line %d: orientation vector not normalised. \n\t be normalised now.\n", curr_line);
 		*vec = normalize_vec4s_highp(*vec);
 		return (false);
 	}

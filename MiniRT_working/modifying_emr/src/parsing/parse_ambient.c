@@ -18,6 +18,8 @@
 int	parse_int(char *data, size_t *i)
 {
 	int	value;
+	
+	//Check format for int
 
 	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',')
 		(*i)++;
@@ -32,6 +34,8 @@ float	parse_float(char *data, size_t *i)
 {
 	float	value;
 
+	// check format for float
+
 	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',')
 		(*i)++;
 	value = ft_atof(&data[*i]);
@@ -44,8 +48,7 @@ float	parse_float(char *data, size_t *i)
 t_color	parse_color(char *data, size_t *i)
 {
     t_color	color;
-    // check format of number
-
+    // check format of color
  	color.a = 0.f;
     color.r = parse_int(data, i)/255.999f;
     color.g = parse_int(data, i)/255.999f;
@@ -63,9 +66,4 @@ void	parse_ambient(t_minirt *minirt, char *data, size_t *i)
 	minirt->ambiance.color = parse_color(data, i);
 	scale_color(&minirt->scene.ambiance, &minirt->ambiance.color,
 		minirt->ambiance.ratio);	
-	////  test
-	//printf("ambiance.ratio: %f\n", minirt->ambiance.ratio);
-
-	//// test
-	//printf("ambiance.color.b =: %f\n", minirt->ambiance.color.b);
 }

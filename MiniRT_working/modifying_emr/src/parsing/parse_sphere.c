@@ -15,15 +15,6 @@
 #include "libft.h"
 #include "colors.h"
 
-void	get_sphere_extras(t_object *sp)
-{
-	sp->scale = vec4s_re(sp->radius, sp->radius, sp->radius, sp->radius);
-	sp->scale.w = 1.f;
-	sp->rot = ini_indentity_mat4s();
-	sp->inv_transform = get_inv_tranform_mat4s(sp->rot,
-			sp->scale, sp->trans);
-}
-
 bool	parse_sphere(t_minirt *minirt, char *data, size_t *i, size_t idx)
 {
 	t_object	*sphere;
@@ -31,32 +22,29 @@ bool	parse_sphere(t_minirt *minirt, char *data, size_t *i, size_t idx)
 	(*i) += 2;
 	sphere = minirt->scene.shapes + idx;
 	sphere->type = SPHERE;
+	sphere->trans = parse_point(data, i);
+	sphere->radius = parse_float(data, i) / 2.f;
+	sphere->material.color = parse_color(data, i);
+	set_material(&sphere->material, data, i, minirt);
+	sphere->scale = vec4s_re(sphere->radius, sphere->radius, sphere->radius, 1.f);
+	sphere->rot = ini_indentity_mat4s();
+	sphere->inv_transform = get_inv_tranform_mat4s(sphere->rot, sphere->scale, sphere->trans);
+	transpose_mat4s(&sphere->inv_transform, &sphere->transposed_inverse);
+/*
+
 	// test
 	printf("shape[%ld], type = %d\n", idx, sphere->type);// test
-
-	sphere->trans = parse_point(data, i);
 	//test
 	printf("sphere position = %f, %f, %f\n", (minirt->scene.shapes + idx)->trans.x, \
 		(minirt->scene.shapes + idx)->trans.y, (minirt->scene.shapes + idx)->trans.z);
-	
-	sphere->radius = parse_float(data, i);
 	// test
 	printf("sphere radius =  %f\n", (minirt->scene.shapes + idx)->radius);
-	
-	is_normalised(&sphere->orientation, *i);
-
-	sphere->material.color = parse_color(data, i);
 	//test	
 	printf("sphere color = %f, %f, %f\n", (minirt->scene.shapes + idx)->material.color.r, \
 		(minirt->scene.shapes + idx)->material.color.g, (minirt->scene.shapes + idx)->material.color.b);
-	//test
-	printf("Bonus = %c\n", data[*i]);
 
-	set_material(&sphere->material, data, i, minirt);
-	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',' || data[*i] == '\n')
-		(*i)++;
-	// initialize the sphere
-	get_sphere_extras(sphere);
-	transpose_mat4s(&sphere->inv_transform, &sphere->transposed_inverse);
+*/
+
 	return (true);
 }
+

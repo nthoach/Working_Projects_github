@@ -65,10 +65,9 @@ void	set_camera_orient(t_camera *cam)
 	cam->inv_transform = rt_get_cam_inverse(&cam->inv_transform);
 }
 
-void	set_camera(t_camera *cam)
+void	set_camera_fields(t_camera *cam)
 {
 	cam->is_set = true;
-	//cam->line_set = curr_line;
 	cam->scale = vec4sp_re(1.f, 1.f, 1.f);
 	cam->hsize = FRAME_W;
 	cam->vsize = FRAME_H;
@@ -120,7 +119,5 @@ void	parse_camera(t_minirt *minirt, char *data, size_t *i)
 	minirt->cam.fov = parse_float(data, i);
 	if (minirt->cam.fov < -0.f || minirt->cam.fov > 180.f)
 		return (free(data), errors(CER_CAM_FOV, ER_CAM_FOV, minirt));
-	set_camera(&minirt->cam);
-	//// test
-	//printf("camera's fov = %f\n", minirt->cam.fov);
+	set_camera_fields(&minirt->cam);
 }
