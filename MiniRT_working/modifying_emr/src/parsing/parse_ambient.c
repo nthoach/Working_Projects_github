@@ -55,12 +55,17 @@ t_color	parse_color(char *data, size_t *i)
 
 void	parse_ambient(t_minirt *minirt, char *data, size_t *i)
 {
-	// Pass over 'A
 	(*i) += 1;
 	minirt->ambiance.ratio = parse_float(data, i);
-	//  test
-	printf("ambiance.ratio: %f\n", minirt->ambiance.ratio);
+	if (minirt->ambiance.ratio < -0.f || minirt->ambiance.ratio > 1.f)
+		return (free(data), errors(CER_AMBIENT_VALUE, ER_AMBIENT_VALUE, minirt));
+	minirt->ambiance.is_set = true;
 	minirt->ambiance.color = parse_color(data, i);
-	// test
-	printf("ambiance.color.b =: %f\n", minirt->ambiance.color.b);
+	scale_color(&minirt->scene.ambiance, &minirt->ambiance.color,
+		minirt->ambiance.ratio);	
+	////  test
+	//printf("ambiance.ratio: %f\n", minirt->ambiance.ratio);
+
+	//// test
+	//printf("ambiance.color.b =: %f\n", minirt->ambiance.color.b);
 }

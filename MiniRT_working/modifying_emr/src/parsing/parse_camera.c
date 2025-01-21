@@ -41,7 +41,7 @@ t_mat4s	rt_get_cam_inverse(const t_mat4s *view)
 	return (ret);
 }
 
-void	get_camera_orient(t_camera *cam)
+void	set_camera_orient(t_camera *cam)
 {
 	is_normalised(&cam->forward, cam->line_set);
 	if (fabsf(cam->forward.x) < EPSILON && fabsf(cam->forward.z) < EPSILON)
@@ -65,7 +65,7 @@ void	get_camera_orient(t_camera *cam)
 	cam->inv_transform = rt_get_cam_inverse(&cam->inv_transform);
 }
 
-void	get_camera_extras(t_camera *cam)
+void	set_camera(t_camera *cam)
 {
 	cam->is_set = true;
 	//cam->line_set = curr_line;
@@ -116,9 +116,11 @@ void	parse_camera(t_minirt *minirt, char *data, size_t *i)
 	(*i) += 1;
 	minirt->cam.trans = parse_point(data, i);
 	minirt->cam.forward = parse_vector(data, i);
+	set_camera_orient(&minirt->cam);
 	minirt->cam.fov = parse_float(data, i);
-	get_camera_orient(&minirt->cam);
-	get_camera_extras(&minirt->cam);
-	// test
-	printf("camera's fov = %f\n", minirt->cam.fov);
+	if (minirt->cam.fov < -0.f || minirt->cam.fov > 180.f)
+		return (free(data), errors(CER_CAM_FOV, ER_CAM_FOV, minirt));
+	set_camera(&minirt->cam);
+	//// test
+	//printf("camera's fov = %f\n", minirt->cam.fov);
 }

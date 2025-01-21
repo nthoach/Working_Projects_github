@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:52:25 by honguyen          #+#    #+#             */
-/*   Updated: 2025/01/17 09:45:53 by marvin           ###   ########.fr       */
+/*   Updated: 2025/01/21 09:12:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ float	ft_atof(const char *str)
 	sign = parse_sign(&str);
 	result = parse_integer_part(&str);
 	result += parse_fractional_part(&str);
-	//printf("= %f", result * sign); //
 	return (result * sign);
 }

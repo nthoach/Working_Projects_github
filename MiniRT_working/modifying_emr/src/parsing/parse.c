@@ -73,7 +73,6 @@ size_t	calculate_required_size(char *file, t_minirt *minirt)
 		free(line);
 	}
 	close(fd);
-	// Check errors in file data
 	check_elements(minirt);
 	return (total_size);
 }
@@ -88,7 +87,7 @@ char	*file_data(t_minirt *minirt, size_t *total_size, char *file)
 	data = ft_calloc(calculate_required_size(file, minirt) + 1, sizeof(char));
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		errors(CER_OPEN_FILE, ER_OPEN_FILE, minirt);
+		return (free(data), errors(CER_OPEN_FILE, ER_OPEN_FILE, minirt), NULL);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -126,19 +125,8 @@ void	parse(char *file, t_minirt *minirt)
 	data = NULL;
 	data = file_data(minirt, &total_size, file);
 	if (!data || total_size == 0)
-	{
-		free(data);
-		errors(CER_EMPTY_MAP, ER_EMPTY_MAP, minirt);
-	}
-	// test
-	printf("%s\n", data);
-	printf("num_a: %d\n", minirt->scene.num_a);
-	printf("num_c: %d\n", minirt->scene.num_c);
-	printf("num_lights: %d\n", minirt->scene.num_lights);
-	printf("num_shapes: %d\n", minirt->scene.num_shapes);
-	//
+		return (free(data), errors(CER_EMPTY_MAP, ER_EMPTY_MAP, minirt));
 	allocate_light_shape(minirt);
 	parse_data(minirt, data);
-	// test parsing
 	free(data);
 }

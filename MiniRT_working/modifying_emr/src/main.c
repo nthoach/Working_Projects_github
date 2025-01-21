@@ -39,12 +39,6 @@ t_minirt	*ini_minirt(void)
 	minirt->win = mlx_new_window(minirt->mlx, FRAME_W, FRAME_H, "miniRT");
 	if (!make_window(minirt, FRAME_W, FRAME_H))
 		errors(CER_MLX_WIN, ER_MLX_WIN, minirt);
-	//minirt->scene.lights = ft_calloc(LIGHTS_MAX, sizeof(t_light));
-	//if (!minirt->scene.lights)
-	//	errors(CER_MALLOC, ER_MALLOC, minirt);
-	//minirt->scene.shapes = ft_calloc(SHAPES_MAX, sizeof(t_object));
-	//if (!minirt->scene.shapes)
-	//	errors(CER_MALLOC, ER_MALLOC, minirt);
 	minirt->textures = NULL;
 	minirt->selected = (struct s_select){.is_cam = true, .object = NULL};
 	return(minirt);

@@ -43,64 +43,46 @@ void	parse_material(t_material *material, char *data, size_t *i, t_minirt *minir
 		{
 			(*i) += 8;
 			material->ambient = parse_float(data, i);
-			// test
-			printf("material->ambient = %f\n", material->ambient);
 		}
 		else if (!ft_strncmp(data + (*i), "diffuse=", 8))
 		{
 			(*i) += 8;
 			material->diffuse = parse_float(data, i);
-			// test
-			printf("material->diffuse = %f\n", material->diffuse);
 		}
 		else if (!ft_strncmp(data + (*i), "specular=", 9))
 		{
 			(*i) += 9;
 			material->specular = parse_float(data, i);
-			//test
-			printf("material->specular = %f\n", material->specular);
 		}
 		else if (!ft_strncmp(data + (*i), "sheen=", 6))
 		{
 			(*i) += 6;
 			material->sheen = parse_float(data, i);
-			//test
-			printf("material->sheen = %f\n", material->sheen);
 		}
 		else if (!ft_strncmp(data + (*i), "reflective=", 11))
 		{
 			(*i) += 11;
 			material->reflective = parse_float(data, i);
-			//test
-			printf("material->reflective = %f\n", material->reflective);
 		}
 		else if (!ft_strncmp(data + (*i), "transparency=", 13))
 		{
 			(*i) += 13;
 			material->transparency = parse_float(data, i);
-			//test
-			printf("material->transparency = %f\n", material->transparency);
 		}
 		else if (!ft_strncmp(data + (*i), "refractive_index=", 17))
 		{
 			(*i) += 17;
 			material->refractive_index = parse_float(data, i);
-			//test
-			printf("material->refractive_index = %f\n", material->refractive_index);
 		}
 		else if (!ft_strncmp(data + (*i), "bump_xpm=", 9))
 		{
 			(*i) += 9;
 			parse_bump_xpm(material, data, i, minirt);
-			//test
-			printf("material->bump_xpm = %s\n", "having textures");
 		}
 		else if (!ft_strncmp(data + (*i), "checker=", 8))
 		{
 			*i += 8;
 			parse_plane_checker(material, data, i, minirt);
-			//test
-			printf("material->checker = %s\n (%d)", "having checker", material->checkered);
 		}
 		else
 		{
@@ -122,13 +104,12 @@ void	set_material(t_material *material, char *data, size_t *i, t_minirt *minirt)
 	material->refractive_index = 1.0;
 	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',')
 		(*i)++;
-	//test
-	printf("data[%ld] = %c\n", *i, data[*i]);
-
 	if (data[*i] == 'M')
 	{
 		(*i)++;
 		parse_material(material, data, i, minirt);
 	}
+	while (data[*i] == '\t' || data[*i] == ' ' || data[*i] == ',' || data[*i] == '\n')
+		(*i)++;
 }
 

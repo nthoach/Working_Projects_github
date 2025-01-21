@@ -52,7 +52,7 @@ bool parse_bump_xpm(t_material *material, char *data, size_t *i, t_minirt *minir
 	*i += len;
 	filename[len] = '\0';
 	// test
-	printf("len: %ld, xpm = \"%s\"\n", len, filename);
+	printf("len: %ld, xpm = %s\n", len, filename);
 
     if (len < 5 || ft_strncmp(data + len - 4, ".xpm", 4))
         return (minirt->error_code = 3, false);
