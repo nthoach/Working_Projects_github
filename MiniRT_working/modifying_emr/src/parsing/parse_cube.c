@@ -17,7 +17,6 @@
 
 bool	parse_cube(t_minirt *minirt, char *data, size_t *i, size_t idx)
 {
-
 	t_object	*cube;
 
 	(*i) += 2;

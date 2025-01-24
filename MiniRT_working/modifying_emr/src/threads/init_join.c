@@ -30,7 +30,7 @@ long long	my_gettime(void)
 bool	ini_core(t_minirt *minirt)
 {
 	t_core	*thread;
-	int			i;
+	int		i;
 
 	minirt->cores = malloc(sizeof(t_core) * _RT_NUM_THREADS);
 	if (!minirt->cores)
@@ -54,7 +54,7 @@ bool	ini_core(t_minirt *minirt)
 void	pool_start_frame(t_minirt *minirt)
 {
 	t_core	*thread;
-	int			i;
+	int		i;
 
 	i = -1;
 	while (++i < _RT_NUM_THREADS)
@@ -70,7 +70,7 @@ void	pool_start_frame(t_minirt *minirt)
 void	pool_wait_for_frame(t_minirt *minirt)
 {
 	t_core	*thread;
-	int			i;
+	int		i;
 
 	i = -1;
 	while (++i < _RT_NUM_THREADS)
@@ -94,7 +94,8 @@ bool	thread_arbiter(t_minirt *minirt)
 	start_time = my_gettime();
 	pool_start_frame(minirt);
 	pool_wait_for_frame(minirt);
-	mlx_put_image_to_window(minirt->mlx, minirt->win, minirt->frame.ptr, 0, 0);
+	mlx_put_image_to_window(minirt->mlx, minirt->win, \
+		minirt->frame.ptr, 0, 0);
 	frame_time = my_gettime() - start_time;
 	printf("Frame took: %lld\n", frame_time);
 	return (true);

@@ -85,38 +85,12 @@ void	set_camera_fields(t_camera *cam)
 	cam->pixel_size = (cam->half_width * 2.f) / cam->hsize;
 }
 
-t_vec4s	parse_point(char *data, size_t *i)
-{
-	t_vec4s	point;
-
-	point.x = parse_float(data, i);
-	point.y = parse_float(data, i);
-	point.z = parse_float(data, i);
-	point.w = 1.0;
-
-	return (point);
-}
-
-t_vec4s	parse_vector(char *data, size_t *i)
-{
-	t_vec4s	vector;
-
-	vector.x = parse_float(data, i);
-	vector.y = parse_float(data, i);
-	vector.z = parse_float(data, i);
-	vector.w = 0.0;
-
-	return (vector);
-}
-
 void	parse_camera(t_minirt *minirt, char *data, size_t *i)
 {
 	(*i) += 1;
 	minirt->cam.trans = parse_point(data, i);
 	minirt->cam.forward = parse_vector(data, i);
-	//
 	is_normalised(&minirt->cam.forward, *i, minirt);
-	//
 	set_camera_orient(&minirt->cam);
 	minirt->cam.fov = parse_float(data, i);
 	if (minirt->cam.fov < -0.f || minirt->cam.fov > 180.f)

@@ -14,7 +14,6 @@
 #include "mlx.h"
 #include "macros.h"
 
-
 t_frame	*rt_xpm_file_to_canvas(char *filepath, void *mlx)
 {
 	t_frame	*retval;

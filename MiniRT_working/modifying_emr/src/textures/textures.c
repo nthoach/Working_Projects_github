@@ -23,7 +23,8 @@ t_color	rt_sample_texture(const t_frame *fra_tex, const t_vec2s *uv)
 
 	tex_x = floorf((int)(uv->x * fra_tex->tex_width) % fra_tex->tex_width);
 	tex_y = floorf((int)(uv->y * fra_tex->tex_height) % fra_tex->tex_height);
-	src = fra_tex->addr + (tex_y * fra_tex->line_length + tex_x * fra_tex->bpp_8);
+	src = fra_tex->addr + (tex_y * fra_tex->line_length + \
+		tex_x * fra_tex->bpp_8);
 	color_value = *(uint32_t *)src;
 	retval.r = (color_value >> 16) & 0xFF;
 	retval.g = (color_value >> 8) & 0xFF;

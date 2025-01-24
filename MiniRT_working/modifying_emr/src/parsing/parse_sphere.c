@@ -26,25 +26,11 @@ bool	parse_sphere(t_minirt *minirt, char *data, size_t *i, size_t idx)
 	sphere->radius = parse_float(data, i) / 2.f;
 	sphere->material.color = parse_color(data, i, minirt);
 	set_material(&sphere->material, data, i, minirt);
-	sphere->scale = vec4s_re(sphere->radius, sphere->radius, sphere->radius, 1.f);
+	sphere->scale = vec4s_re(sphere->radius, sphere->radius, \
+		sphere->radius, 1.f);
 	sphere->rot = ini_indentity_mat4s();
-	sphere->inv_transform = get_inv_tranform_mat4s(sphere->rot, sphere->scale, sphere->trans);
+	sphere->inv_transform = get_inv_tranform_mat4s(sphere->rot, \
+		sphere->scale, sphere->trans);
 	transpose_mat4s(&sphere->inv_transform, &sphere->transposed_inverse);
-/*
-
-	// test
-	printf("shape[%ld], type = %d\n", idx, sphere->type);// test
-	//test
-	printf("sphere position = %f, %f, %f\n", (minirt->scene.shapes + idx)->trans.x, \
-		(minirt->scene.shapes + idx)->trans.y, (minirt->scene.shapes + idx)->trans.z);
-	// test
-	printf("sphere radius =  %f\n", (minirt->scene.shapes + idx)->radius);
-	//test	
-	printf("sphere color = %f, %f, %f\n", (minirt->scene.shapes + idx)->material.color.r, \
-		(minirt->scene.shapes + idx)->material.color.g, (minirt->scene.shapes + idx)->material.color.b);
-
-*/
-
 	return (true);
 }
-

@@ -26,8 +26,8 @@ void	parse_light(t_minirt *minirt, char *data, size_t *i)
 	minirt->scene.lights[idx].pos = parse_point(data, i);
 	minirt->scene.lights[idx].ratio = parse_float(data, i);
 	in_color = parse_color(data, i, minirt);
-	scale_color(&minirt->scene.lights[idx].specs.point.intensity,
-		&in_color, 	minirt->scene.lights[idx].ratio);
+	scale_color(&minirt->scene.lights[idx].specs.point.intensity, \
+		&in_color, minirt->scene.lights[idx].ratio);
 }
 
 void	parse_spotlight(t_minirt *minirt, char *data, size_t *i)
@@ -40,7 +40,8 @@ void	parse_spotlight(t_minirt *minirt, char *data, size_t *i)
 	minirt->scene.lights[idx].type = SPOT_LIGHT;
 	minirt->scene.lights[idx].pos = parse_point(data, i);
 	minirt->scene.lights[idx].specs.spot.orientation = parse_vector(data, i);
-	is_normalised(&minirt->scene.lights[idx].specs.spot.orientation, *i, minirt);
+	is_normalised(&minirt->scene.lights[idx].specs.spot.orientation, \
+		*i, minirt);
 	minirt->scene.lights[idx].ratio = parse_float(data, i);
 	minirt->scene.lights[idx].specs.spot.spot_angle = parse_float(data, i);
 	minirt->scene.lights[idx].specs.spot.spot_angle *= ((float)M_PI / 180.f);
