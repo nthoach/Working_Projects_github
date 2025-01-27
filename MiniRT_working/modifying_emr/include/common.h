@@ -53,7 +53,7 @@ typedef struct s_material
 	float		transparency;
 	float		refractive_index;
 	bool		checkered;
-	t_frame	*fra_tex;
+	t_frame		*fra_tex;
 }	t_material;
 
 typedef struct s_material_colors
@@ -100,10 +100,10 @@ typedef struct s_object
 
 typedef struct s_itx
 {
-	float	t;
+	float		t;
 	t_object	*object;
-	float	n1;
-	float	n2;
+	float		n1;
+	float		n2;
 }	t_itx;
 
 typedef struct s_itx_grp

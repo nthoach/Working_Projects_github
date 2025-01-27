@@ -58,7 +58,7 @@ t_itx_data	prepare_computations(t_itx *itx, t_ray *r, t_itx_grp *itxs)
 {
 	const float	time = itx->t;
 	const float	bump = EPSILON + (time / (time * time));
-	t_itx_data		comps;
+	t_itx_data	comps;
 	t_vec4s		margin;
 
 	comps.t = itx->t;
@@ -81,7 +81,7 @@ t_color	color_at(t_scene *w, t_ray *r, int depth)
 	t_itx_grp		world_itxs;
 	t_itx			*hit;
 	t_color			result;
-	t_itx_data			comps;
+	t_itx_data		comps;
 
 	world_itxs = intersect_world(w, r);
 	hit = get_hit(&world_itxs);

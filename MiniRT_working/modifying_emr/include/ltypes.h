@@ -33,13 +33,13 @@ typedef union __attribute((aligned(32))) u_vec4d
 		float	z;
 		float	w;
 	};
-} t_vec4d;
+}	t_vec4d;
 
 typedef union __attribute((aligned(16))) u_vec4s
 {
 	float		a[4];
 	uint32_t	raw[4];
-	struct 
+	struct
 	{
 		float	x;
 		float	y;
@@ -72,8 +72,7 @@ typedef union u_vec2s
 
 /*--- MATRIX ---*/
 
-typedef t_vec4d	t_vec4d; 
-
+typedef t_vec4d	t_vec4d;
 
 typedef union u_mat2d
 {

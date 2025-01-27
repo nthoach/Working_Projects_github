@@ -208,12 +208,13 @@ void	cross_mat4s_mat4s(const t_mat4s in1,
 /// cause a floating-point exception.
 //t_mat4s	get_inv_tranform_mat4s(const t_mat4s rot, const __m128 s,
 //			const __m128 t);
-t_mat4s get_inv_tranform_mat4s(const t_mat4s rot, const t_vec4s s, const t_vec4s t);
+t_mat4s	get_inv_tranform_mat4s(const t_mat4s rot, const t_vec4s s, \
+		const t_vec4s t);
 
 /*--- PS_EXTRA ---*/
 
 /// @brief Returns a normalized version of the `t_vec4s`: `in`.
-/// @minirt in `t_vec4s` to be normalized.
+// @minirt in `t_vec4s` to be normalized.
 t_vec4s	normalize_vec4s_medp(const t_vec4s in);
 
 /// @brief Returns a normalized version of the `t_vec4s`: `in`.

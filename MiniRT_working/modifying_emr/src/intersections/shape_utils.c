@@ -14,23 +14,23 @@
 
 void	transpose_mat4s(const t_mat4s *m, t_mat4s *out)
 {
-    if (m == NULL || out == NULL)
-     {
-         ft_printf("Error: NULL pointer passed to transpose_mat4s\n");
-         return;
-     }
-	 int    i;
-	 int	j;
+	int	i;
+	int	j;
 
-	 i = 0;
-	 while (i < 4)
-     {
-         j = 0;
-         while (j < 4)
-         {
-             out->a[i][j] = m->a[j][i];
-             j++;
-         }
-         i++;
-     }
+	if (m == NULL || out == NULL)
+	{
+		ft_printf("Error: NULL pointer passed to transpose_mat4s\n");
+		return ;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			out->a[i][j] = m->a[j][i];
+			j++;
+		}
+		i++;
+	}
 }

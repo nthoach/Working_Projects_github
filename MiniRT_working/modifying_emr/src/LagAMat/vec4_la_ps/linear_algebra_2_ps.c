@@ -21,11 +21,11 @@ void	cross_vec4s(t_vec4s *out, const t_vec4s in1,
 t_vec4s	cross_vec4s_re(const t_vec4s in1,
 						const t_vec4s in2)
 {
-	 t_vec4s result;
+	t_vec4s	result;
 
-    result.a[0] = in1.a[1] * in2.a[2] - in1.a[2] * in2.a[1];
-    result.a[1] = in1.a[2] * in2.a[0] - in1.a[0] * in2.a[2];
-    result.a[2] = in1.a[0] * in2.a[1] - in1.a[1] * in2.a[0];
-    result.a[3] = 0.0f; 
-    return (result);
+	result.a[0] = in1.a[1] * in2.a[2] - in1.a[2] * in2.a[1];
+	result.a[1] = in1.a[2] * in2.a[0] - in1.a[0] * in2.a[2];
+	result.a[2] = in1.a[0] * in2.a[1] - in1.a[1] * in2.a[0];
+	result.a[3] = 0.0f;
+	return (result);
 }

@@ -29,7 +29,7 @@
 #  define EPSILON 0.0001f
 # endif // !EPSILON
 
-#define GL_SILENCE_DEPRECATION
+# define GL_SILENCE_DEPRECATION
 
 long long	my_gettime(void);
 
@@ -69,9 +69,9 @@ typedef struct s_minirt
 	float		delta_time;
 	struct s_select
 	{
-		bool	is_cam;
+		bool		is_cam;
 		t_object	*object;
-		t_vec4s	ray_dir;
+		t_vec4s		ray_dir;
 	}	selected;
 	struct s_ambient
 	{
@@ -118,7 +118,7 @@ typedef struct s_itx_data
 {
 	bool		shadowed;
 	double		t;
-	t_object		*obj;
+	t_object	*obj;
 	t_vec4s		p;
 	t_vec4s		over_point;
 	t_vec4s		under_point;
@@ -141,74 +141,37 @@ typedef struct s_validate_atof
 }	t_vatof;
 
 bool		is_normalised(t_vec4s *vec, size_t i, t_minirt *minirt);
-//float		ft_atof(char *rep, t_minirt *minirt);
 float		ft_atof(const char *str);
 
 // Parsing
-void	parse(char *file, t_minirt *minirt);
-void	parse_data(t_minirt *minirt, char *data, size_t total_size);
+void		parse(char *file, t_minirt *minirt);
+size_t		calculate_required_size(char *file, t_minirt *minirt);
+void		parse_data(t_minirt *minirt, char *data, size_t total_size);
 
-void	parse_ambient(t_minirt *minirt, char *data, size_t *i);
-t_color	parse_color(char *data, size_t *i, t_minirt *minirt);
-float	parse_float(char *data, size_t *i);
-int		parse_int(char *data, size_t *i);
+void		parse_ambient(t_minirt *minirt, char *data, size_t *i);
+t_color		parse_color(char *data, size_t *i, t_minirt *minirt);
+float		parse_float(char *data, size_t *i);
+int			parse_int(char *data, size_t *i);
 
-void	parse_camera(t_minirt *minirt, char *data, size_t *i);
-t_vec4s	parse_point(char *data, size_t *i);
-t_vec4s	parse_vector(char *data, size_t *i);
-
-void	parse_camera(t_minirt *minirt, char *data, size_t *i);
-void	parse_light(t_minirt *minirt, char *data, size_t *i);
-void	parse_spotlight(t_minirt *minirt, char *data, size_t *i);
-
-bool	parse_plane(t_minirt *minirt, char *data, size_t *i, size_t idx);
-bool	parse_sphere(t_minirt *minirt, char *data, size_t *i, size_t idx);
-bool	parse_cylinder(t_minirt *minirt, char *data, size_t *i, size_t idx);
-bool	parse_cube(t_minirt *minirt, char *data, size_t *i, size_t idx);
-bool	parse_cone(t_minirt *minirt, char *data, size_t *i, size_t idx);
-
-void	parse_material(t_material *material, char *data, size_t *i, t_minirt *minirt);
-bool 	parse_bump_xpm(t_material *material, char *data, size_t *i, t_minirt *minirt);
-void	set_material(t_material *material, char *data, size_t *i, t_minirt *minirt);
-//bool		parse(const char *filename, t_minirt *minirt);
-//bool		parse_ambient(t_minirt *minirt, t_split *fields, int curr_line);
-//bool		parse_light(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_spot_light(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_camera(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_sphere(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_plane(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_cube(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_cylinder(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_cone(t_minirt *minirt, const t_split *fields,
-//				int curr_line);
-//bool		parse_color(t_color *color, char *str, int curr_line);
-//bool		parse_vec4v(t_vec4s *vec, char *str, t_minirt *minirt,
-//				int curr_line);
-//bool		parse_vec4p(t_vec4s *vec, char *str, t_minirt *minirt,
-//				int curr_line);
-//bool		parse_single_f(float *f, char *str, t_minirt *minirt,
-//				int curr_line);
-//bool		parse_material(t_material *obj_material, char **material_fields,
-//				t_minirt *minirt, int curr_line);
-//bool		parse_plane_checker(t_material *obj_mat, t_minirt *minirt,
-//				char *is_checker);
-//bool		parse_bump_xpm(t_material *obj_mat, t_minirt *minirt,
-//				char *filename);
+void		parse_camera(t_minirt *minirt, char *data, size_t *i);
+t_vec4s		parse_point(char *data, size_t *i);
+t_vec4s		parse_vector(char *data, size_t *i);
+void		parse_camera(t_minirt *minirt, char *data, size_t *i);
+void		parse_light(t_minirt *minirt, char *data, size_t *i);
+void		parse_spotlight(t_minirt *minirt, char *data, size_t *i);
+bool		parse_plane(t_minirt *minirt, char *data, size_t *i, size_t idx);
+bool		parse_sphere(t_minirt *minirt, char *data, size_t *i, size_t idx);
+bool		parse_cylinder(t_minirt *minirt, char *data, size_t *i, size_t idx);
+bool		parse_cube(t_minirt *minirt, char *data, size_t *i, size_t idx);
+bool		parse_cone(t_minirt *minirt, char *data, size_t *i, size_t idx);
+void		parse_material(t_material *material, char *data, \
+	size_t *i, t_minirt *minirt);
+bool		parse_bump_xpm(t_material *material, char *data, \
+	size_t *i, t_minirt *minirt);
+void		set_material(t_material *material, char *data, \
+	size_t *i, t_minirt *minirt);
 t_mat4s		rt_extract_rot_vertical(const t_vec4s u);
 t_mat4s		rt_get_cam_inverse(const t_mat4s *view);
-//bool		check_object_validity_init(t_minirt *minirt, const char *info,
-//				int curr_line, const t_split fields);
-//void		parse_fatal_msg(char *msg, int curr_line);
-//void		parse_warn_msg(char *msg, char *expected, int curr_line, bool ign);
-//void		parse_err_msg(char *msg, char *expected, int curr_line);
-//void		parse_syn_err_msg(char *msg, int curr_line);
 
 /*--- RENDERING ---*/
 
@@ -247,12 +210,11 @@ t_mat4s		rt_rotation_matrix_from_axis_angle(const t_vec4s *axis,
 				float angle);
 
 /*--- DESTROY ---*/
-void		errors(int err_code, char* err_ms, void *ptr);
+void		errors(int err_code, char *err_ms, void *ptr);
 void		destroy_mlx(t_minirt *minirt);
 void		destroy_scene(t_minirt *minirt);
 int			destroy_minirt(t_minirt *minirt);
 void		destroy_textures(t_minirt *minirt);
-void		destroy_2d_arr(char **arr);
 void		free_minirt(t_minirt *minirt);
 
 /*--- RAY - MANIPULATION ---*/

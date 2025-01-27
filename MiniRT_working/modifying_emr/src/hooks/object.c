@@ -16,7 +16,7 @@
 static inline void	update_object_cache(t_object *object)
 {
 	object->inv_transform = get_inv_tranform_mat4s(\
-	object->rot, 
+	object->rot, \
 	object->scale, \
 	object->trans \
 	);
@@ -26,20 +26,20 @@ static inline void	update_object_cache(t_object *object)
 static inline void	_move_sideways_check(t_minirt *minirt, bool *state_changed)
 {
 	t_object	*selected_object;
-	t_vec4s	scaled_left;
+	t_vec4s		scaled_left;
 
 	scale_vec4s(&scaled_left, minirt->cam.left,
 		(MOVE_SPEED + (MOVE_SPEED / 2.f)) * minirt->delta_time);
 	selected_object = minirt->selected.object;
 	if (minirt->move.a || minirt->move.left)
 	{
-		add_vec4s(&selected_object->trans, &selected_object->trans,
+		add_vec4s(&selected_object->trans, &selected_object->trans, \
 			&scaled_left);
 		*state_changed = true;
 	}
 	if (minirt->move.d || minirt->move.right)
 	{
-		sub_vec4s(&selected_object->trans, &selected_object->trans,
+		sub_vec4s(&selected_object->trans, &selected_object->trans, \
 			&scaled_left);
 		*state_changed = true;
 	}
@@ -79,7 +79,7 @@ static inline void	_move_elevation_check(t_minirt *minirt, bool *state_changed)
 	t_object	*selected_object;
 
 	selected_object = minirt->selected.object;
-	if (minirt->move.space  || minirt->move.up)
+	if (minirt->move.space || minirt->move.up)
 	{
 		selected_object->trans.y += (MOVE_SPEED * minirt->delta_time);
 		*state_changed = true;
@@ -94,7 +94,7 @@ static inline void	_move_elevation_check(t_minirt *minirt, bool *state_changed)
 void	object_controls(t_minirt *minirt)
 {
 	t_object	*selected_object;
-	bool	state_changed;
+	bool		state_changed;
 
 	state_changed = false;
 	selected_object = minirt->selected.object;

@@ -46,7 +46,8 @@ static inline float	cy_discriminant(t_ray *ray, t_object *cy,
 	cy->center.w = 1.f;
 	(void)xs;
 	sub_vec4s(&oc, &oc, &cy->center);
-	a = ray->direction.x * ray->direction.x + ray->direction.z * ray->direction.z;
+	a = ray->direction.x * ray->direction.x + ray->direction.z \
+		* ray->direction.z;
 	if (fabsf(a) < EPSILON && cy->specs.closed)
 		return (-1);
 	b = 2 * (oc.x * ray->direction.x + oc.z * ray->direction.z);

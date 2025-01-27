@@ -13,7 +13,8 @@
 #include "miniRT.h"
 #include "macros.h"
 
-static void	check_axis(float origin, float direction, float side_length, t_vec4s *t)
+static void	check_axis(float origin, float direction, \
+	float side_length, t_vec4s *t)
 {
 	float	half_side;
 	float	tmin_numerator;

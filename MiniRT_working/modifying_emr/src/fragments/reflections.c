@@ -56,7 +56,7 @@ t_color	check_for_refref(t_scene *scene, t_itx_data *comps, int depth)
 	reflection_result = reflected_color(scene, comps, depth);
 	refraction_result = refracted_color(scene, comps, depth);
 	check_for_refref_init(comps, &return_color);
-	if (comps->obj->material.reflective > 0.0f
+	if (comps->obj->material.reflective > 0.0f \
 		&& comps->obj->material.transparency > 0.0f)
 	{
 		schlick_value = schlick(comps);

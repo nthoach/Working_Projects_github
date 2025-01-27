@@ -29,7 +29,7 @@ void	destroy_scene(t_minirt *minirt)
 {
 	if (minirt->scene.lights)
 		free(minirt->scene.lights);
-	if (minirt->scene.lights)	
+	if (minirt->scene.lights)
 		free(minirt->scene.shapes);
 	minirt->scene.lights = NULL;
 	minirt->scene.shapes = NULL;
@@ -88,23 +88,4 @@ void	free_minirt(t_minirt *minirt)
 	destroy_mlx(minirt);
 	free(minirt);
 	minirt = NULL;
-}
-
-int	destroy_minirt(t_minirt *minirt)
-{
-	free_minirt(minirt);
-	exit(0);
-	return (0);
-}
-
-void	destroy_2d_arr(char **arr)
-{
-	char	**original;
-
-	if (!arr)
-		return ;
-	original = arr;
-	while (*arr)
-		free(*arr++);
-	free(original);
 }

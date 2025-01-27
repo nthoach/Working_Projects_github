@@ -15,30 +15,30 @@
 void	cross_mat4s_vec4s(const t_mat4s *m,
 							const t_vec4s *v, t_vec4s *out)
 {
-    out->a[0] = dot_vec4s_re(&m->r1, v);
-    out->a[1] = dot_vec4s_re(&m->r2, v);
-    out->a[2] = dot_vec4s_re(&m->r3, v);
-    out->a[3] = dot_vec4s_re(&m->r4, v);
+	out->a[0] = dot_vec4s_re(&m->r1, v);
+	out->a[1] = dot_vec4s_re(&m->r2, v);
+	out->a[2] = dot_vec4s_re(&m->r3, v);
+	out->a[3] = dot_vec4s_re(&m->r4, v);
 }
 
 void	cross_mat4s_mat4s(const t_mat4s in1,
 						const t_mat4s in2, t_mat4s *out)
 {
-    int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-    while (i < 4)
-    {
-        j = 0;
-        while (j < 4)
-        {
-            out->a[i][j] = in1.a[i][0] * in2.a[0][j] +
-                           in1.a[i][1] * in2.a[1][j] +
-                           in1.a[i][2] * in2.a[2][j] +
-                           in1.a[i][3] * in2.a[3][j];
-            j++;
-        }
-        i++;
-    }
+	while (i < 4)
+	{
+		j = 0;
+		while (j < 4)
+		{
+			out->a[i][j] = in1.a[i][0] * in2.a[0][j] + \
+				in1.a[i][1] * in2.a[1][j] + \
+				in1.a[i][2] * in2.a[2][j] + \
+				in1.a[i][3] * in2.a[3][j];
+			j++;
+		}
+		i++;
+	}
 }

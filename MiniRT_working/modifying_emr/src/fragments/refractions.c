@@ -54,8 +54,8 @@ static bool	within_container(t_object **container, int count, int i,
 void	prepare_refractions(t_itx *hit, t_itx_data *comps,
 			t_itx_grp *itxs)
 {
-	int		count;
-	int		i;
+	int			count;
+	int			i;
 	t_object	**container;
 
 	container = malloc(sizeof(t_object *) * itxs->count);

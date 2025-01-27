@@ -51,10 +51,10 @@ float	co_discriminant(t_ray transformed_ray, float *t_values)
 	float	b;
 	float	c;
 	float	disc;
-	float	sqrt_disc;
 
 	a = powf(transformed_ray.direction.x, 2) - \
-		powf(transformed_ray.direction.y, 2) + powf(transformed_ray.direction.z, 2);
+		powf(transformed_ray.direction.y, 2) + \
+		powf(transformed_ray.direction.z, 2);
 	b = 2 * (transformed_ray.origin.x * transformed_ray.direction.x - \
 		transformed_ray.origin.y * transformed_ray.direction.y + \
 		transformed_ray.origin.z * transformed_ray.direction.z);
@@ -62,9 +62,8 @@ float	co_discriminant(t_ray transformed_ray, float *t_values)
 	disc = b * b - 4 * a * (c + powf(transformed_ray.origin.z, 2));
 	if (disc < 0)
 		return (false);
-	sqrt_disc = sqrtf(disc);
-	t_values[0] = (-b - sqrt_disc) / (2 * a);
-	t_values[1] = (-b + sqrt_disc) / (2 * a);
+	t_values[0] = (-b - sqrtf(disc)) / (2 * a);
+	t_values[1] = (-b + sqrtf(disc)) / (2 * a);
 	if (t_values[0] > t_values[1])
 	{
 		disc = t_values[0];
@@ -81,14 +80,16 @@ static inline bool	_set_y_values_in_xs(t_ray *transformed_ray,
 	float	y_vals[2];
 
 	itx_occured = false;
-	y_vals[0] = transformed_ray->origin.y + t_vals[0] * transformed_ray->direction.y;
+	y_vals[0] = transformed_ray->origin.y + t_vals[0] * \
+		transformed_ray->direction.y;
 	if (y_vals[0] > -1.f && y_vals[0] < 1.f)
 	{
 		xs->arr[xs->count].object = cone;
 		xs->arr[xs->count++].t = t_vals[0];
 		itx_occured = true;
 	}
-	y_vals[1] = transformed_ray->origin.y + t_vals[1] * transformed_ray->direction.y;
+	y_vals[1] = transformed_ray->origin.y + t_vals[1] * \
+		transformed_ray->direction.y;
 	if (y_vals[1] > -1.f && y_vals[1] < 1.f)
 	{
 		xs->arr[xs->count].object = cone;
