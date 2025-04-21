@@ -130,6 +130,7 @@
     "clocale": "cpp",
     "memory_resource": "cpp",
     "random": "cpp",
-    "*.tpp": "cpp"
+    "*.tpp": "cpp",
+    "filesystem": "cpp"
   }
 }
