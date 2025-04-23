@@ -2,14 +2,13 @@
 #pragma once
 #include <map>
 #include <iostream>
-#include "SpellBook.hpp"
-
+#include "ASpell.hpp"
 class Warlock
 {
     private:
         std::string name;
         std::string title;
-        SpellBook store;
+        std::map<std::string,ASpell *> store;
         
 
         Warlock();

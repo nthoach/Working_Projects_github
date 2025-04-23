@@ -3,6 +3,9 @@
 
 # include <map>
 # include "ASpell.hpp"
+# include "SpellBook.hpp"
+
+class SpellBook;
 
 class Warlock
 {
@@ -12,7 +15,7 @@ class Warlock
         Warlock();
         Warlock(Warlock const &other);
         Warlock & operator=(Warlock const &other);
-        std::map<std::string, ASpell *> _spells; 
+        SpellBook _spellbook;
 
     public:
         Warlock(std::string const &name, std::string const &title);

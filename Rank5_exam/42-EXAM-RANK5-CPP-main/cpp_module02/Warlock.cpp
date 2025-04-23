@@ -18,19 +18,16 @@ void Warlock::introduce() const { std::cout << this->name << ": I am " << this->
 
 void Warlock::learnSpell(ASpell *spell)
 {
-    this->store.learnSpell(spell);
+    if (spell)
+        this->store[spell->getName()] = spell;
 }
 void Warlock::forgetSpell(std::string spell)
 {
-    this->store.forgetSpell(spell);
+    this->store[spell] = NULL;
 }
 void Warlock::launchSpell(std::string spell, ATarget const & target)
 {
-        ASpell *s = this->store.createSpell(spell);
-        if (s)
-        {
-            s->launch(target);
-            delete s;
-        }
+    if (this->store[spell])
+        this->store[spell]->launch(target);
 }
 
