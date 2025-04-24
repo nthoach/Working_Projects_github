@@ -1,14 +1,14 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:20:59 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/18 17:52:12 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:22:31 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../incl/Bureaucrat.hpp"
 
@@ -37,13 +37,13 @@ std::string Bureaucrat::getName() const
 int Bureaucrat::getGrade() const 
 { return _grade; }
 
-void Bureaucrat::increGrade() {
+void Bureaucrat::promote() {
     if (_grade <= 1)
         throw GradeTooHighException();
     --_grade;
 }
 
-void Bureaucrat::decreGrade() {
+void Bureaucrat::demote() {
     if (_grade >= 150)
         throw GradeTooLowException();
     ++_grade;

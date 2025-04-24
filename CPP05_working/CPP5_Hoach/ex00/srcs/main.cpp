@@ -1,25 +1,26 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:44:02 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/18 17:56:31 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:44:33 by nthoach          ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #include "../incl/Bureaucrat.hpp"
 
 int main()
 {
+	std::cout << "\n\n==================== Bureaucrat ====================" << std::endl;
     try {
         Bureaucrat a("Alice", 2);
         std::cout << a << std::endl;
-        a.increGrade();
-        std::cout << "After increment: " << a << std::endl;
-        a.increGrade();  // should throw
+        a.promote();
+        std::cout << "After promotion: " << a << std::endl;
+        a.demote();  // should throw
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
@@ -33,12 +34,12 @@ int main()
     try {
         Bureaucrat c("Charlie", 149);
         std::cout << c << std::endl;
-        c.decreGrade();
-        std::cout << "After decrement: " << c << std::endl;
-        c.decreGrade();  // should throw
+        c.demote();
+        std::cout << "After demotion: " << c << std::endl;
+        c.demote();  // should throw
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
-
+	std::cout << "==================== Bureaucrat ====================\n" << std::endl;
     return 0;
 }
