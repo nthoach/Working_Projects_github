@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:20:59 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/24 18:27:36 by nthoach          ###   ########.fr       */
+/*   Updated: 2025/04/25 05:32:59 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -19,20 +19,18 @@ _name(name), _signed(false), _grade2sign(grade2sign), _grade2exec(grade2exec)
 {
     if (grade2sign < 1  || grade2exec < 1)
         throw Form::GradeTooHighException();
-    else if (grade > 150 || grade2exec > 150)
+    else if (grade2sign > 150 || grade2exec > 150)
         throw Form::GradeTooLowException();
 }
 
-Form::Form(const Form& other) { *this = other}
+Form::Form(const Form& other): _name(other._name), _signed(other._signed), \
+	_grade2sign(other._grade2sign), _grade2exec(other._grade2exec) {}
 
 Form& Form::operator=(const Form& other)
 {
-    if (this != &other)
-    {
-		_name = other._name;
-		_signed = other._signed;
-		_grade2sign = other._grade2sign;
-		_grade2exec = other._grade2exec;
+	if (this != &other)
+	{
+		return *this;
 	}
     return *this;
 }
@@ -65,35 +63,10 @@ std::ostream& operator<<(std::ostream& os, const Form& b)
 }
 
 
-//
-        //Orthodox Canonical Form
-	
-        Form(std::string _name, int _grade2sign, int _grade2exec);
-        Form(const Form& other);
-        Form& operator=(const Form& other);
-        virtual ~Form();
-        //Getters
-        std::string getName() const;
-        bool getSigned() const;
-		int  getGrade2Sign() const;
-		int getGrade2Exec() const;
-        //Grade incre/decre
-        void promote();
-        void demote();
-		
-		//overload insertion
-		friend std::ostream& operator<<(std::ostream& os, const Form& b);
-        
-		//Exceptions
-        class GradeTooHighException : public std::exception
-        {
-            public:
-                virtual const char* what() const throw();
-        };
-        class GradeTooLowException : public std::exception
-        {
-            public:
-                virtual const char* what() const throw();
-        };
-		//
-		void beSigned(const Form &n);
+void Form::beSigned(const Bureaucrat &b)
+{
+	if (b.getGrade() > this->getGrade2Sign())
+		throw Form::GradeTooLowException();
+	else
+		this->_signed = true;
+}

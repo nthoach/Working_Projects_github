@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/24 17:21:42 by nthoach          ###   ########.fr       */
+/*   Updated: 2025/04/25 05:17:37 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -16,6 +16,9 @@
 # include <iostream>
 # include <string>
 # include <exception>
+# include "Form.hpp"
+
+class Form;
 
 class   Bureaucrat
 {
@@ -47,6 +50,8 @@ class   Bureaucrat
             public:
                 virtual const char* what() const throw();
         };
+		//
+		void signForm(Form &f) const;
 
 };
 

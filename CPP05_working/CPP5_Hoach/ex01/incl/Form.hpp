@@ -6,7 +6,7 @@
 /*   By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/24 18:22:56 by nthoach          ###   ########.fr       */
+/*   Updated: 2025/04/25 05:17:13 by nthoach          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,6 +14,8 @@
 # define FORM_HPP
 
 # include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class   Form
 {
@@ -35,13 +37,7 @@ class   Form
         bool getSigned() const;
 		int  getGrade2Sign() const;
 		int getGrade2Exec() const;
-        //Grade incre/decre
-        void promote();
-        void demote();
-		
-		//overload insertion
-		friend std::ostream& operator<<(std::ostream& os, const Form& b);
-        
+    		
 		//Exceptions
         class GradeTooHighException : public std::exception
         {
@@ -54,7 +50,11 @@ class   Form
                 virtual const char* what() const throw();
         };
 		//
-		void beSigned(const Bureaucrat &n);
+		void beSigned(const Bureaucrat &b);
 };
+
+//overload insertion
+std::ostream& operator<<(std::ostream& os, const Form& b);
+        
 
 #endif
