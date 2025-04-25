@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/25 15:47:14 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:20:46 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ class   Bureaucrat
         int getGrade() const;
 
         //Grade incre/decre
-        void increGrade();
-        void decreGrade();
+        void Promote();
+        void Demote();
         
         //Exceptions
         class GradeTooHighException : public std::exception

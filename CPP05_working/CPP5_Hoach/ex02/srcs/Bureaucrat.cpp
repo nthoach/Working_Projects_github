@@ -6,7 +6,7 @@
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:20:59 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/25 16:11:41 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/25 18:20:46 by honguyen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ std::string Bureaucrat::getName() const { return _name; }
 int Bureaucrat::getGrade() const 
 { return _grade; }
 
-void Bureaucrat::increGrade() {
+void Bureaucrat::Promote() {
     if (_grade <= 1)
         throw GradeTooHighException();
     --_grade;
 }
 
-void Bureaucrat::decreGrade() {
+void Bureaucrat::Demote() {
     if (_grade >= 150)
         throw GradeTooLowException();
     ++_grade;

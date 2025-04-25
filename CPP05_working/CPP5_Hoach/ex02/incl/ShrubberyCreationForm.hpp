@@ -21,16 +21,19 @@ class Bureaucrat;
 class   ShrubberyCreationForm: public AForm
 {
     private:
+        std::string _target;
+    
     public:
         //Orthodox Canonical ShrubberyCreationForm
-        ShrubberyCreationForm(): AForm("ShurrubberyCreationForm", 145, 137) {};
+        ShrubberyCreationForm();
+        ShrubberyCreationForm(std::string target);
+        ShrubberyCreationForm(const ShrubberyCreationForm& other);
+        ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
         virtual ~ShrubberyCreationForm();
 
         //Getters
-        std::string getName() const;
-        bool getSigned() const;
-        int  getGradeSign() const;
-        int  getGradeExec() const;
+        std::string getTarget() const;
+        //Setters
 
         //Exceptions
         class GradeTooHighException : public std::exception
@@ -46,6 +49,7 @@ class   ShrubberyCreationForm: public AForm
         };
         //
         void beSigned(Bureaucrat const& b);
+        v
 };
 
 //Overload operator

@@ -52,7 +52,16 @@ class   AForm
                 const char* what() const throw();
         };
         //
-        virtual void beSigned(Bureaucrat const& b) const = 0;
+        class notSigned : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        // Member functions
+        void beSigned(Bureaucrat const& b) const;
+        void checkSigned() const;
+        virtual void excecute(Bureaucrat const& exec) const = 0;
 };
 
 //Overload operator
