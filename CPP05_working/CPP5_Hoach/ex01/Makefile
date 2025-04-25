@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 # **************************************************************************** #
+=======
+#******************************************************************************#
+>>>>>>> 3bf0f9260a7b8bdd9c5f7c2a2723d832354368b2
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+<<<<<<< HEAD
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
@@ -11,6 +16,16 @@
 # **************************************************************************** #
 
 NAME		= ex00
+=======
+#    By: nthoach <nthoach@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
+#    Updated: 2025/04/25 05:16:06 by nthoach          ###   ########.fr        #
+#                                                                              #
+#******************************************************************************#
+
+NAME		= ex01
+>>>>>>> 3bf0f9260a7b8bdd9c5f7c2a2723d832354368b2
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
@@ -22,7 +37,11 @@ OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
+<<<<<<< HEAD
 INCS		= $(addprefix $(INCS_DIR)/, Bureaucrat.hpp)
+=======
+INCS		= $(addprefix $(INCS_DIR)/, Bureaucrat.hpp Form.hpp)
+>>>>>>> 3bf0f9260a7b8bdd9c5f7c2a2723d832354368b2
 
 MAIN_INC	= -I$(INCS_DIR)
 
@@ -61,7 +80,10 @@ runall		:
 			cd ../ex01/;
 
 leaksall	:
+<<<<<<< HEAD
 			make leaks;
+=======
+>>>>>>> 3bf0f9260a7b8bdd9c5f7c2a2723d832354368b2
 			cd ../ex00/; make leaks;
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
