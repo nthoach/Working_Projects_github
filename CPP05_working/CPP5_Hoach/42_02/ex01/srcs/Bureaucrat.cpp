@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:20:59 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/25 18:21:24 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:52:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ std::string Bureaucrat::getName() const { return _name; }
 int Bureaucrat::getGrade() const 
 { return _grade; }
 
-void Bureaucrat::Promote()
+void Bureaucrat::promote()
 {
     if (_grade <= 1)
         throw GradeTooHighException();
     --_grade;
 }
 
-void Bureaucrat::Demote()
+void Bureaucrat::demote()
 {
     if (_grade >= 150)
         throw GradeTooLowException();

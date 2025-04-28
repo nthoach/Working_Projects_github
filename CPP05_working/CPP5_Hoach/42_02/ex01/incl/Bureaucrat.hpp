@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 08:00:43 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/25 18:20:46 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:52:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ class   Bureaucrat
         int getGrade() const;
 
         //Grade incre/decre
-        void Promote();
-        void Demote();
+        void promote();
+        void demote();
         
         //Exceptions
         class GradeTooHighException : public std::exception

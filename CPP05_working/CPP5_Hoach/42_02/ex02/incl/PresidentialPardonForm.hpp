@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ShrubberyCreationForm.hpp                                           :+:      :+:    :+:   */
+/*   PresidentialPardonForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,36 +10,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHRUBBERYCREATIONFORM_HPP
-# define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTPARDON_HPP
+# define PRESIDENTPARDON_HPP
 
 # include "Bureaucrat.hpp"
 # include "AForm.hpp"
 
 class Bureaucrat;
 
-class   ShrubberyCreationForm: public AForm
+class   PresidentialPardonForm: public AForm
 {
     private:
         std::string _target;
 
     public:
-        //Orthodox Canonical ShrubberyCreationForm
-        ShrubberyCreationForm();
-        ShrubberyCreationForm(std::string target = "Default");
-        ShrubberyCreationForm(const ShrubberyCreationForm& other);
-        ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
-        virtual ~ShrubberyCreationForm();
+        //Orthodox Canonical PresidentialPardonForm
+        PresidentialPardonForm();
+        PresidentialPardonForm(std::string target = "Default");
+        PresidentialPardonForm(const PresidentialPardonForm& other);
+        PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
+        virtual ~PresidentialPardonForm();
 
         //Getters
         std::string getTarget() const;
 
         virtual void execute(Bureaucrat const& b) const;
-
-		//
-		void drawTrees() const;
-		
-
 };
 
 

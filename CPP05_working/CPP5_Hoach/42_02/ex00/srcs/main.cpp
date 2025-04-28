@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:44:02 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/25 14:40:02 by honguyen         ###   ########.fr       */
+/*   Updated: 2025/04/28 15:52:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int main()
     try {
         Bureaucrat a("Alice", 2);
         std::cout << a << std::endl;
-        a.Promote(); // 2 --> 1
+        a.promote(); // 2 --> 1
         std::cout << "After increment: " << a << std::endl;
-        a.Promote();  // 1--> 0 should throw
+        a.promote();  // 1--> 0 should throw
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }
@@ -38,9 +38,9 @@ int main()
     try {
         Bureaucrat c("Charlie", 149);
         std::cout << c << std::endl;
-        c.Demote(); // 149 -> 150
+        c.demote(); // 149 -> 150
         std::cout << "After decrement: " << c << std::endl;
-        c.Demote();  // 150 -> 151 should throw
+        c.demote();  // 150 -> 151 should throw
     } catch (std::exception& e) {
         std::cerr << "Exception caught: " << e.what() << std::endl;
     }

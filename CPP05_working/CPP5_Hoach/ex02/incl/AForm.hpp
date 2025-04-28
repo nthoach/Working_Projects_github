@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 # include "Bureaucrat.hpp"
 
 class Bureaucrat;
 
-class   Form
+class   AForm
 {
     private:
         const std::string _name;
@@ -26,12 +26,12 @@ class   Form
         const int _grade_exec;
 
     public:
-        //Orthodox Canonical Form
-        Form();
-        Form(std::string name = "DefaultForm", int grade_sign = 150, int grade_exec = 150);
-        Form(const Form& other);
-        Form& operator=(const Form& other);
-        virtual ~Form();
+        //Orthodox Canonical AForm
+        AForm();
+        AForm(std::string name = "DefaultForm", int grade_sign = 150, int grade_exec = 150);
+        AForm(const AForm& other);
+        AForm& operator=(const AForm& other);
+        virtual ~AForm();
 
         //Getters
         std::string getName() const;
@@ -52,10 +52,19 @@ class   Form
                 const char* what() const throw();
         };
         //
+        class notSigned : public std::exception
+        {
+            public:
+                const char* what() const throw();
+        };
+
+        // Member functions
         void beSigned(Bureaucrat const& b);
+        void checkExec(Bureaucrat const& b) const;
+        virtual void execute(Bureaucrat const& exec) const = 0;
 };
 
 //Overload operator
-std::ostream& operator<<(std::ostream& os, const Form& b);
+std::ostream& operator<<(std::ostream& os, const AForm& b);
 
 #endif
