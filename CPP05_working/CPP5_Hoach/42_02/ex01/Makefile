@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/04/25 16:16:50 by honguyen         ###   ########.fr        #
+#    Updated: 2025/04/28 20:31:58 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= ex01
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f

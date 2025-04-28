@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/04/28 18:04:49 by marvin           ###   ########.fr        #
+#    Updated: 2025/04/28 20:27:28 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,14 @@ RM			= rm -f
 
 SRCS_DIR 	= srcs
 SRCS		= $(addprefix $(SRCS_DIR)/, AForm.cpp Bureaucrat.cpp main.cpp \
-	PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp)
+	PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
 INCS		= $(addprefix $(INCS_DIR)/, Bureaucrat.hpp AForm.hpp \
-	PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp)
+	PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp Intern.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
