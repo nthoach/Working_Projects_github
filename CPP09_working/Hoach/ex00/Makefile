@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/05/01 21:02:34 by honguyen         ###   ########.fr        #
+#    Updated: 2025/05/01 21:30:40 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,13 @@ CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, BitcoinExchange.cpp main.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, Easyfind.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, BitcoinExchange.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
