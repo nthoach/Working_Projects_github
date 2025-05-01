@@ -4,6 +4,10 @@
 # include <map>
 # include "ASpell.hpp"
 
+typedef std::map<std::string, ASpell * > spell_map;
+typedef spell_map::iterator spell_it;
+typedef std::pair<std::string, ASpell *> spell_pair;
+
 class Warlock
 {
     private:
@@ -12,7 +16,7 @@ class Warlock
         Warlock();
         Warlock(Warlock const &other);
         Warlock & operator=(Warlock const &other);
-        std::map<std::string, ASpell *> _spells; 
+       spell_map _spells; 
 
     public:
         Warlock(std::string const &name, std::string const &title);

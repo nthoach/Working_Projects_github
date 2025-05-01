@@ -7,5 +7,5 @@ Dummy::~Dummy() {}
 
 Dummy * Dummy::clone() const
 {
-    return new Dummy(*this);
+    return new Dummy();
 }
