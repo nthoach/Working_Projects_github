@@ -7,7 +7,7 @@ int	main(void)
 {
 	Bureaucrat b("Overseer", 1);
 
-	std::cout << std::endl << std::endl << "1 O================================================================O" << std::endl << std::endl;
+	std::cout << std::endl << std::endl << "\n\n 1.1)_________ Intern make schrubbery form ___________" << std::endl << std::endl;
 	{
 		Intern	i;
 
@@ -26,7 +26,7 @@ int	main(void)
 		delete form;
 	}
 	sleep(1);
-	std::cout << std::endl << std::endl << "2 O================================================================O" << std::endl << std::endl;
+	std::cout << std::endl << std::endl << "\n 1.2)_________ Intern make presidential pardon ___________" << std::endl << std::endl;
 	{
 		Intern	i;
 		std::cout << std::endl;
@@ -46,7 +46,7 @@ int	main(void)
 		delete form;
 	}
 	sleep(1);
-	std::cout << std::endl << std::endl << "3 O================================================================O" << std::endl << std::endl;
+	std::cout << std::endl << std::endl << "\n 1.3)_________Intern make robotomy request ___________" << std::endl << std::endl;
 	{
 		Intern	i;
 		std::cout << std::endl;
@@ -66,7 +66,7 @@ int	main(void)
 		delete form;
 	}
 	sleep(1);
-	std::cout << std::endl << std::endl << "4 O================================================================O" << std::endl << std::endl;
+	std::cout << std::endl << std::endl << "1.4)_________Intern make dance sentence form - not existed ___________" << std::endl << std::endl;
 	{
 		Intern	i;
 		std::cout << std::endl;
@@ -93,5 +93,5 @@ int	main(void)
 		}
 
 	}
-	std::cout << std::endl << std::endl << "E O================================================================O" << std::endl << std::endl;
+	std::cout << std::endl << std::endl << "-------------------End----------------" << std::endl << std::endl;
 }

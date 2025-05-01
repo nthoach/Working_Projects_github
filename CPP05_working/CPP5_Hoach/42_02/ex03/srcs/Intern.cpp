@@ -31,19 +31,20 @@ const char* Intern::FormNotFoundException::what() const throw()
 
 AForm* Intern::makeForm(std::string const& formName, std::string const& target) const
 {
-    // Define known form names and their corresponding constructors
+    //Array of form names
     std::string const names[] = {
         "shrubbery creation",
         "robotomy request",
         "presidential pardon"
     };
-
+	// Array of form constructors
     AForm* (*constructors[])(std::string const& target) = {
         &ShrubberyCreationForm::create,
         &RobotomyRequestForm::create,
         &PresidentialPardonForm::create
     };
 
+	// matching form name with constructor via idex number
     for (int i = 0; i < 3; ++i)
     {
         if (formName == names[i])
