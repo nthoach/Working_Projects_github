@@ -38,10 +38,6 @@ class   ShrubberyCreationForm: public AForm
 
 		//
 		void drawTrees() const;
-
-		static AForm* create(std::string const& target);
-		
-
 };
 
 

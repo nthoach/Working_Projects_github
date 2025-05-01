@@ -72,8 +72,3 @@ void ShrubberyCreationForm::drawTrees() const
     ofs << "   ^   ^    ^     ^   ^     ^     ^" << std::endl;
     ofs.close();
 }
-
-AForm* ShrubberyCreationForm::create(std::string const& target)
-{
-    return new ShrubberyCreationForm(target);
-}

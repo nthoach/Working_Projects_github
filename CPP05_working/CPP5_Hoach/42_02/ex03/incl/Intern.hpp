@@ -20,4 +20,3 @@ class Intern
 				const char* what() const throw();
 		};
 };
-

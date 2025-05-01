@@ -35,8 +35,6 @@ class   RobotomyRequestForm: public AForm
         std::string getTarget() const;
 
         virtual void execute(Bureaucrat const& b) const;
-
-		static AForm* create(std::string const& target);
 };
 
 

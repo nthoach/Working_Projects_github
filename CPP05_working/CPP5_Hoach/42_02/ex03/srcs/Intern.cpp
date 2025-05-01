@@ -26,7 +26,21 @@ Intern::~Intern(){}
 // Exceptions
 const char* Intern::FormNotFoundException::what() const throw()
 {
-    return "error: form not found";
+    return " form not found";
+}
+
+static AForm* createShrubbery(std::string const& target)
+{
+	return new ShrubberyCreationForm(target);
+}
+static AForm* createRobotomy(std::string const& target)
+{
+	return new RobotomyRequestForm(target);
+}
+
+static AForm* createPresidential(std::string const& target)
+{
+	return new PresidentialPardonForm(target);
 }
 
 AForm* Intern::makeForm(std::string const& formName, std::string const& target) const
@@ -38,10 +52,9 @@ AForm* Intern::makeForm(std::string const& formName, std::string const& target) 
         "presidential pardon"
     };
 	// Array of form constructors
-    AForm* (*constructors[])(std::string const& target) = {
-        &ShrubberyCreationForm::create,
-        &RobotomyRequestForm::create,
-        &PresidentialPardonForm::create
+    AForm* (*constructors[])(std::string const& target) =
+	{
+        &createShrubbery, &createRobotomy, &createPresidential
     };
 
 	// matching form name with constructor via idex number

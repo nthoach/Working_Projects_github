@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 17:20:59 by honguyen          #+#    #+#             */
-/*   Updated: 2025/04/28 20:19:18 by marvin           ###   ########.fr       */
+/*   Updated: 2025/05/01 15:59:27 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,4 @@ void RobotomyRequestForm::execute(Bureaucrat const& b) const
 		std::cout << _target << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << _target << " has not been robotomized successfully" << std::endl;
-}
-
-AForm* RobotomyRequestForm::create(std::string const& target)
-{
-    return new RobotomyRequestForm(target);
 }
