@@ -10,7 +10,7 @@
 class ScalarConverter {
 public:
     // Static method to perform the conversion
-    static void convert(const std::string& literal);
+    static void convert(const std::string& str);
 
 private:
     // Private constructor to prevent instantiation
@@ -18,10 +18,10 @@ private:
     ~ScalarConverter();
 
     // Helper methods
-    static bool isCharLiteral(const std::string& literal);
-    static bool isFloatLiteral(const std::string& literal);
-    static bool isDoubleLiteral(const std::string& literal);
-    static bool isIntLiteral(const std::string& literal);
+    static bool isChar(const std::string& str);
+    static bool isInt(const std::string& str);    
+    static bool isFloat(const std::string& str);
+    static bool isDouble(const std::string& str);
 };
 
 #endif // SCALARCONVERTER_HPP

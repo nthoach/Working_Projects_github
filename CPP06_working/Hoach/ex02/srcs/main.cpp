@@ -7,6 +7,10 @@ void identify(Base* p);
 void identify(Base& p);
 
 int main() {
+
+    std::cout << "\n ------------------Testing ex02 --------------------- \n" << std::endl;
+    // Create a Data object
+    
     // Generate a random object
     Base* obj = generate();
 
@@ -17,9 +21,10 @@ int main() {
     // Identify the type using a reference
     std::cout << "Identifying using reference: ";
     identify(*obj);
-
     // Clean up
     delete obj;
 
+    std::cout << "\n ------------------Done ex02 --------------------- \n" << std::endl;
+    
     return 0;
 }

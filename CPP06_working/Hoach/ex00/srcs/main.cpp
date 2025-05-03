@@ -2,6 +2,7 @@
 
 int main(int agc, char **agv) 
 {
+    std::cout << "\n ------------------Testing ex00 --------------------- \n" << std::endl;
     if (agc == 2)
     {
         ScalarConverter::convert(agv[1]);
@@ -12,6 +13,6 @@ int main(int agc, char **agv)
     ScalarConverter::convert("'a'");
     ScalarConverter::convert("-inff");
     ScalarConverter::convert("123.456");
-
+    std::cout << "\n ------------------Done ex00 --------------------- \n" << std::endl;
     return 0;
 }

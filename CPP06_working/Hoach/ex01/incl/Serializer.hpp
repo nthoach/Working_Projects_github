@@ -4,7 +4,8 @@
 #include <cstdint> // For uintptr_t
 #include "Data.hpp"
 
-class Serializer {
+class Serializer
+{
 public:
     // Converts a pointer to an unsigned integer
     static uintptr_t serialize(Data* ptr);

@@ -2,8 +2,11 @@
 #include "Array.hpp"
 
 int main() {
+
+    std::cout << "\n------------------    ex02   -------------------"<< std::endl;
     try {
         // Test default constructor
+        std::cout << "Testing De"<< std::endl;
         Array<int> emptyArray;
         std::cout << "Empty array size: " << emptyArray.size() << std::endl;
 
@@ -42,6 +45,6 @@ int main() {
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
-
+    std::cout << "------------------  end of ex02   -------------------\n"<< std::endl;
     return 0;
 }

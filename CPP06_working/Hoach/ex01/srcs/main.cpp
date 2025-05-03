@@ -1,11 +1,14 @@
 #include <iostream>
 #include "Serializer.hpp"
 
-int main() {
+int main()
+{
+
+    std::cout << "\n ------------------Testing ex01 --------------------- \n" << std::endl;
     // Create a Data object
     Data data;
     data.id = 42;
-    data.name = "Test Data";
+    data.name = "Test_Data";
 
     // Print the original Data object
     std::cout << "Original Data address: " << &data << std::endl;
@@ -30,6 +33,6 @@ int main() {
     } else {
         std::cout << "Serialization and deserialization failed!" << std::endl;
     }
-
+    std::cout << "\n ------------------Done ex01 --------------------- \n" << std::endl;
     return 0;
 }

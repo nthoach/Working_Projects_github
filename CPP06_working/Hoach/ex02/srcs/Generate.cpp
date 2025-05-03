@@ -4,13 +4,22 @@
 
 Base* generate() {
     std::srand(std::time(nullptr)); // Seed the random number generator
-    int random = std::rand() % 3;   // Generate a random number between 0 and 2
+    int random = std::rand() % 4;   // Generate a random number between 0 and 2
 
-    if (random == 0) {
+    if (random == 0)
+    {
         return new A();
-    } else if (random == 1) {
+    }
+    else if (random == 1)
+    {
         return new B();
-    } else {
+    }
+    else if (random == 2)
+    {
         return new C();
+    }
+    else
+    {
+        return new Base();
     }
 }

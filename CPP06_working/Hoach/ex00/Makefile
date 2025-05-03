@@ -6,7 +6,7 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/05/01 19:54:55 by honguyen         ###   ########.fr        #
+#    Updated: 2025/05/03 16:07:32 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,21 +56,18 @@ runall		:
 			make run;
 			cd ../ex01/; make run;
 			cd ../ex02/; make run;			
-			cd ../ex03/; make run;
 			cd ../ex00/;
 
 leaksall	:
 			make leaks;
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-			cd ../ex03/; make leaks;
 			cd ../ex00/;
 
 fcleanall	:
 			make fclean;
 			cd ../ex01/; make fclean;
 			cd ../ex02/; make fclean;			
-			cd ../ex03/; make fclean;
 			cd ../ex00/;
 			
 .PHONY		: all clean fclean re run leaks leaksall fcleanall runall

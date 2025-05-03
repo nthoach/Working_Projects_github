@@ -1,33 +1,45 @@
 #include "Base.hpp"
 #include <iostream>
 
-void identify(Base* p) {
-    if (dynamic_cast<A*>(p)) {
+void identify(Base* p)
+{
+    if (dynamic_cast<A*>(p))
+    {
         std::cout << "A" << std::endl;
-    } else if (dynamic_cast<B*>(p)) {
+    }
+    else if (dynamic_cast<B*>(p))
+    {
         std::cout << "B" << std::endl;
-    } else if (dynamic_cast<C*>(p)) {
+    }
+    else if (dynamic_cast<C*>(p))
+    {
         std::cout << "C" << std::endl;
-    } else {
+    } 
+    else
+    {
         std::cout << "Unknown type" << std::endl;
     }
 }
 
 
-void identify(Base& p) {
-    try {
+void identify(Base& p)
+{
+    try
+    {
         (void)dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         return;
     } catch (std::bad_cast&) {}
 
-    try {
+    try
+    {
         (void)dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         return;
     } catch (std::bad_cast&) {}
 
-    try {
+    try
+    {
         (void)dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         return;
