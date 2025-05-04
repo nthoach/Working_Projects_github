@@ -3,7 +3,7 @@
 #include <ctime>   // For time()
 
 Base* generate() {
-    std::srand(std::time(nullptr)); // Seed the random number generator
+    std::srand(std::time(NULL)); // Seed the random number generator
     int random = std::rand() % 4;   // Generate a random number between 0 and 2
 
     if (random == 0)
