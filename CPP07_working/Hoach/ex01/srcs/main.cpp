@@ -50,6 +50,6 @@ int main()
     iter(ComplexArray, ComplexArraySize, printElement<ComplexNumber>);
     std::cout << std::endl;
 
-    std::cout << "------------------  end of ex01   -------------------\n"<< std::endl;
+    std::cout << "------------------  end of ex01   -------------------\n\n"<< std::endl;
     return 0;
 }

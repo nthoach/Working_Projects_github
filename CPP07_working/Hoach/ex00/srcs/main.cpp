@@ -5,7 +5,7 @@
 
 int main()
 {
-    std::cout << "\n------------------    ex00   -------------------"<< std::endl;
+    std::cout << "\n\n------------------    ex00   -------------------"<< std::endl;
     std::cout << "Test with integers:" << std::endl;
     
     int a = 2;
@@ -46,6 +46,6 @@ int main()
     std::cout << "min(e, f) = " << ::min(e, f) << std::endl;
     std::cout << "max(e, f) = " << ::max(e, f) << std::endl;
 
-    std::cout << "------------------  end of  ex00   -------------------\n"<< std::endl;
+    std::cout << "------------------end of ex00-------------------\n"<< std::endl;
     return 0;
 }

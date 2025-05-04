@@ -4,8 +4,10 @@
 #include "Easyfind.hpp"
 
 int main() {
+
+    std::cout << "\n------------------    ex00  -------------------"<< std::endl;
+
     try {
-        // Test with a vector
         // Test with a vector
         std::vector<int> vec;
         vec.push_back(1);
@@ -43,6 +45,7 @@ int main() {
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
+    std::cout << "\n------------------    end of ex00   -------------------"<< std::endl;
 
     return 0;
 }

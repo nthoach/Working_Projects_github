@@ -3,6 +3,9 @@
 #include <vector>
 
 int main() {
+
+    std::cout << "\n------------------    ex01  -------------------"<< std::endl;
+
     try {
         // Example from the exercise
         Span sp = Span(5);
@@ -29,6 +32,7 @@ int main() {
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
+    std::cout << "------------------    ex01  -------------------"<< std::endl;
 
     return 0;
 }
