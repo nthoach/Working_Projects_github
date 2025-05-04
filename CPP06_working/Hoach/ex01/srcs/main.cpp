@@ -28,9 +28,12 @@ int main()
     std::cout << "Deserialized Data Name: " << deserializedData->name << std::endl;
 
     // Verify that the deserialized pointer matches the original
-    if (deserializedData == &data) {
+    if (deserializedData == &data) 
+    {
         std::cout << "Serialization and deserialization successful!" << std::endl;
-    } else {
+    } 
+    else
+    {
         std::cout << "Serialization and deserialization failed!" << std::endl;
     }
     std::cout << "\n ------------------Done ex01 --------------------- \n" << std::endl;

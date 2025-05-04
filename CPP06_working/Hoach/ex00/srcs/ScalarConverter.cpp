@@ -9,18 +9,21 @@ bool ScalarConverter::isChar(const std::string& str)
     // return true;
 }
 
-bool ScalarConverter::isInt(const std::string& str) {
+bool ScalarConverter::isInt(const std::string& str)
+{
     char* end;
     std::strtol(str.c_str(), &end, 10);
     return *end == '\0';
 }
 
-bool ScalarConverter::isFloat(const std::string& str) {
-    return str.back() == 'f' && str.find('.') != std::string::npos;
+bool ScalarConverter::isFloat(const std::string& str)
+{
+    return str[str.size() -1] == 'f' && str.find('.') != std::string::npos;
 }
 
-bool ScalarConverter::isDouble(const std::string& str) {
-    return str.find('.') != std::string::npos && str.back() != 'f';
+bool ScalarConverter::isDouble(const std::string& str)
+{
+    return str.find('.') != std::string::npos && str[str.size() -1] != 'f';
 }
 
 void ScalarConverter::convert(const std::string& str) {
@@ -39,7 +42,7 @@ void ScalarConverter::convert(const std::string& str) {
         // Handle int str
         if (isInt(str)) {
             std::cout << "input is an integer" << std::endl;
-            long intValue = std::strtol(str.c_str(), nullptr, 10);
+            long intValue = std::strtol(str.c_str(), NULL, 10);
             if (intValue < std::numeric_limits<int>::min() || intValue > std::numeric_limits<int>::max()) {
                 throw std::out_of_range("int out of range");
             }
@@ -54,12 +57,12 @@ void ScalarConverter::convert(const std::string& str) {
         // Handle float str
         if (isFloat(str)) {
             std::cout << "input is a float" << std::endl;
-            float f = std::strtof(str.c_str(), nullptr);
+            float f = std::strtof(str.c_str(), NULL);
             if (f < std::numeric_limits<float>::min() || f > std::numeric_limits<float>::max()) {
                 throw std::out_of_range("Float out of range");
             }
             std::cout << "char: " << (f >= 32 && f <= 126 ? "'" + std::string(1, static_cast<char>(f)) + "'" : "Non displayable") << std::endl;
-            std::cout << "int: " << (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max() ? std::to_string(static_cast<int>(f)) : "impossible") << std::endl;
+            std::cout << "int: " << (f >= std::numeric_limits<int>::min() && f <= std::numeric_limits<int>::max() ? to_string(f) : "impossible") << std::endl;
             std::cout << "float: " << f << "f" << std::endl;
             std::cout << "double: " << static_cast<double>(f) << std::endl;
             return;
@@ -68,13 +71,13 @@ void ScalarConverter::convert(const std::string& str) {
         // Handle double str
         if (isDouble(str)) {
             std::cout << "input is a double" << std::endl;
-            double d = std::strtod(str.c_str(), nullptr);
+            double d = std::strtod(str.c_str(), NULL);
             if (d < std::numeric_limits<double>::min() || d > std::numeric_limits<double>::max()) {
                 throw std::out_of_range("double out of range");
             }
             std::cout << "char: " << (d >= 32 && d <= 126 ? "'" + std::string(1, static_cast<char>(d)) + "'" : "Non displayable") << std::endl;
-            std::cout << "int: " << (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max() ? std::to_string(static_cast<int>(d)) : "impossible") << std::endl;
-            std::cout << "float: " << (d >= std::numeric_limits<float>::min() && d <= std::numeric_limits<float>::max() ? std::to_string(static_cast<float>(d)) + "f" : "impossible") << std::endl;
+            std::cout << "int: " << (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max() ? to_string(static_cast<float>(d)) : "impossible") << std::endl;
+            std::cout << "float: " << (d >= std::numeric_limits<float>::min() && d <= std::numeric_limits<float>::max() ? to_string(d) + "f" : "impossible") << std::endl;
            // std::cout << "float: " << static_cast<float>(d) << "f" << std::endl;
             std::cout << "double: " << d << std::endl;
             return;

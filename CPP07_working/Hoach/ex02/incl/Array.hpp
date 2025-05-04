@@ -13,13 +13,13 @@ private:
 
 public:
     // Default constructor: Creates an empty array
-    Array() : _data(nullptr), _size(0) {}
+    Array() : _data(NULL), _size(0) {}
 
     // Constructor with size parameter: Creates an array of n elements
     Array(unsigned int n) : _data(new T[n]()), _size(n) {}
 
     // Copy constructor
-    Array(const Array& other) : _data(nullptr), _size(0) {*this = other; }
+    Array(const Array& other) : _data(NULL), _size(0) {*this = other; }
 
     // Destructor
     ~Array() { delete[] _data;}

@@ -6,6 +6,16 @@
 #include <iomanip>
 #include <limits>
 #include <cstdlib> // For std::strtod, std::strtol
+#include <sstream>
+
+// Helper function to replace std::to_string in C++98
+template <typename T>
+std::string to_string(T value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+};
 
 class ScalarConverter {
 public:
