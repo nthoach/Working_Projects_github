@@ -62,7 +62,6 @@ leaksall	:
 			cd ../ex00/; make leaks
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-
 			cd ../ex01/;
 
 fcleanall	:

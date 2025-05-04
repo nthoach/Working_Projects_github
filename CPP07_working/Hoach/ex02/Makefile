@@ -10,19 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= ex02
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, main.cpp ComplexNumber.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, Array.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, Array.hpp ComplexNumber.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 

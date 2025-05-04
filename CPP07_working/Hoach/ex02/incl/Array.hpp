@@ -22,7 +22,7 @@ public:
     Array(const Array& other) : _data(NULL), _size(0) {*this = other; }
 
     // Destructor
-    ~Array() { delete[] _data;}
+    ~Array() {delete[] _data;}
 
     // Assignment operator
     Array& operator=(const Array& other)
