@@ -136,6 +136,7 @@
 	"execution": "cpp",
 	"print": "cpp",
 	"queue": "cpp",
-	"variant": "cpp"
+	"variant": "cpp",
+	"__nullptr": "cpp"
 }
 }
