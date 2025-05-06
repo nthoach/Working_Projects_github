@@ -6,13 +6,13 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/05/03 16:35:20 by honguyen         ###   ########.fr        #
+#    Updated: 2025/05/06 19:31:59 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= ex02
 CXX			= c++
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g
 RM			= rm -f
 
 SRCS_DIR 	= srcs
