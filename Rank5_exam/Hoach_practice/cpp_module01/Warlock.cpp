@@ -9,7 +9,7 @@ Warlock::Warlock(std::string const &name, std::string const &title): _name(name)
 Warlock::~Warlock()
 {
     std::cout << _name << ": My job here is done!" << std::endl;
-    std::map<std::string, ASpell *>::iterator it = _spells.begin();
+    spell_it it = _spells.begin();
     while (it != _spells.end())
     {
         delete it->second; //delete ASpell
@@ -34,7 +34,7 @@ void Warlock::learnSpell(ASpell *spell)
 {
     if (spell)
     {
-        _spells.insert(std::pair<std::string, ASpell *>(spell->getName(), spell->clone()));
+        _spells.insert(spell_pair(spell->getName(), spell->clone()));
         // std::map<std::string, ASpell *>::iterator it = _spells.find(spell->getName());
         // if (it == _spells.end())
         // {
@@ -44,7 +44,7 @@ void Warlock::learnSpell(ASpell *spell)
 }
 void Warlock::forgetSpell(std::string const &spellname)
 {
-    std::map<std::string, ASpell *>::iterator it = _spells.find(spellname);
+   spell_it it = _spells.find(spellname);
     if (it != _spells.end())
     {
         delete it->second; //delete ASpell
