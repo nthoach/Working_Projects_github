@@ -3,6 +3,10 @@
 #include <list>
 
 int main() {
+
+
+    std::cout << "\n------------------    ex02  -------------------"<< std::endl;
+
     // Test with MutantStack
     std::cout << "Testing MutantStack:" << std::endl;
     MutantStack<int> mstack;
@@ -52,6 +56,8 @@ int main() {
         std::cout << *lit << std::endl;
         ++lit;
     }
+
+    std::cout << "------------------  End ex02 -------------------"<< std::endl;
 
     return 0;
 }

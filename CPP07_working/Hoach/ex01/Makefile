@@ -6,23 +6,23 @@
 #    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/05/01 20:48:48 by honguyen         ###   ########.fr        #
+#    Updated: 2025/05/03 17:32:40 by honguyen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= ex01
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, ComplexNumber.cpp main.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, Iter.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, ComplexNumber.hpp Iter.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
@@ -53,24 +53,21 @@ leaks		: re
 			valgrind --leak-check=full ./$(NAME)
 
 runall		:
-			make run;
+			cd ../ex00/; make run;
 			cd ../ex01/; make run;
 			cd ../ex02/; make run;			
-			cd ../ex03/; make run;
-			cd ../ex00/;
+			cd ../ex01/;
 
 leaksall	:
-			make leaks;
+			cd ../ex00/; make leaks
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-			cd ../ex03/; make leaks;
-			cd ../ex00/;
+			cd ../ex01/;
 
 fcleanall	:
-			make fclean;
+			cd ../ex00/; make fclean;
 			cd ../ex01/; make fclean;
 			cd ../ex02/; make fclean;			
-			cd ../ex03/; make fclean;
-			cd ../ex00/;
+			cd ../ex01/;
 			
 .PHONY		: all clean fclean re run leaks leaksall fcleanall runall
