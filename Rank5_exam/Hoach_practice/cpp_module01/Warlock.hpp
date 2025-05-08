@@ -4,9 +4,9 @@
 # include <map>
 # include "ASpell.hpp"
 
-typedef std::map<std::string, ASpell * > spell_map;
+typedef std::map<str, ASpell * > spell_map;
 typedef spell_map::iterator spell_it;
-typedef std::pair<std::string, ASpell *> spell_pair;
+typedef std::pair<str, ASpell *> spell_pair;
 
 class Warlock
 {
@@ -19,17 +19,17 @@ class Warlock
        spell_map _spells; 
 
     public:
-        Warlock(std::string const &name, std::string const &title);
+        Warlock(str const &name, str const &title);
         ~Warlock();
 
-        const std::string  & getName()  const;
-        const std::string  & getTitle() const;
-        void setTitle(const std::string &title);
+        const str  & getName()  const;
+        const str  & getTitle() const;
+        void setTitle(const str &title);
         void introduce() const;
 
         void learnSpell(ASpell *spell);
-        void forgetSpell(std::string const &spellname);
-        void launchSpell(std::string const &spellname, ATarget const& target);
+        void forgetSpell(str const &spellname);
+        void launchSpell(str const &spellname, ATarget const& target);
             
 };
 

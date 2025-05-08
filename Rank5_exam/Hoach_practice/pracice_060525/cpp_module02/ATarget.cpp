@@ -1,9 +1,9 @@
 #include "ATarget.hpp"
 #include <string>
 
-const std::string & ATarget::getType() const {return _type;}
+const str & ATarget::getType() const {return _type;}
 
-ATarget::ATarget(std::string const& type): _type(type)
+ATarget::ATarget(str const& type): _type(type)
 {
 }
 ATarget::~ATarget() 

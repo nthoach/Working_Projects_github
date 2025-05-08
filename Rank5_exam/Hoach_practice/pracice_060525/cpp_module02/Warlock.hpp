@@ -11,8 +11,8 @@
 class Warlock
 {
 	private:
-		std::string _name;
-		std::string _title;
+		str _name;
+		str _title;
 		Warlock();
 		Warlock(Warlock const& other);
 		Warlock& operator=(Warlock const& other);
@@ -20,16 +20,16 @@ class Warlock
 
 	
 	public:
-		const std::string& getName() const;
-		const std::string& getTitle() const;
-		void setTitle(std::string const& title);
-		Warlock(std::string  const& name, std::string const& title);
+		const str& getName() const;
+		const str& getTitle() const;
+		void setTitle(str const& title);
+		Warlock(str  const& name, str const& title);
 		~Warlock();
 		void introduce() const;
 
 		void learnSpell(ASpell *spell);
-		void forgetSpell(std::string const& spellname);
-		void launchSpell(std::string const& spellname, ATarget const& target);
+		void forgetSpell(str const& spellname);
+		void launchSpell(str const& spellname, ATarget const& target);
 };
 
 #endif

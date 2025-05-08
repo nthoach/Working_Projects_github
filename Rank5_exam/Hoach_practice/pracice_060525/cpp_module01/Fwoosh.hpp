@@ -6,7 +6,7 @@
 # include "ATarget.hpp"
 
 
-typedef std::string str;
+typedef str str;
 
 
 class Fwoosh: public ASpell

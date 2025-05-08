@@ -5,13 +5,13 @@
 class Warlock
 {
 	private:
-		std::string _name;
-		std::string _title;
+		str _name;
+		str _title;
 	public:
-        Warlock(const std::string& name, const std::string& title);
+        Warlock(const str& name, const str& title);
 	    ~Warlock();
-		const std::string &getName() const;
-		const std::string &getTitle() const;
-		void setTitle(const std::string &title);
+		const str &getName() const;
+		const str &getTitle() const;
+		void setTitle(const str &title);
 		void introduce() const;
 };

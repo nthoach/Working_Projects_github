@@ -6,11 +6,11 @@ class ASpell;
 class ATarget
 {
 	protected:
-		std::string _type;
+		str _type;
 	public:
-		ATarget(const std::string &type);
+		ATarget(const str &type);
 		virtual ~ATarget();
-		const std::string &getType() const;
+		const str &getType() const;
 		virtual ATarget *clone() const = 0;
 		void getHitBySpell(const ASpell &src) const;
 };

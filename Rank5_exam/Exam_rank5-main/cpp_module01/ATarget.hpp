@@ -1,12 +1,11 @@
-#ifndef ATARGET_HPP
-#define ATARGET_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
 
 class ASpell;
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class ATarget {
 protected:
@@ -24,5 +23,3 @@ public:
 
     void getHitBySpell (ASpell const &spell) const;
 };
-
-#endif

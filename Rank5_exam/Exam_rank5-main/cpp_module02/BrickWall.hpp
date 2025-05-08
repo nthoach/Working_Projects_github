@@ -6,7 +6,7 @@
 #include "ATarget.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class BrickWall : public ATarget{
 

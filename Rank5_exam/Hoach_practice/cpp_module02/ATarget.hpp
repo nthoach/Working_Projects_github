@@ -8,16 +8,16 @@ class ASpell;
 class ATarget
 {
     protected:
-        std::string _type;
+        str _type;
 
     public:
         ATarget();
         ATarget & operator=(ATarget const &other);        
         ATarget(ATarget const &other);
-        ATarget(std::string const & type);
+        ATarget(str const & type);
         virtual ~ATarget();
         
-        const std::string & getType() const;
+        const str & getType() const;
 
         virtual ATarget * clone() const = 0;
 

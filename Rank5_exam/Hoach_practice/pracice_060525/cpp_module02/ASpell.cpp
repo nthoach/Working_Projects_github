@@ -1,12 +1,12 @@
 #include "ASpell.hpp"
 #include <string>
 
-const std::string & ASpell::getName() const {return _name;}
+const str & ASpell::getName() const {return _name;}
 
-const std::string & ASpell::getEffects() const {return _effects;}
+const str & ASpell::getEffects() const {return _effects;}
 
 
-ASpell::ASpell(std::string const& name, std::string const& effect): _name(name), _effects(effect)
+ASpell::ASpell(str const& name, str const& effect): _name(name), _effects(effect)
 {
 }
 

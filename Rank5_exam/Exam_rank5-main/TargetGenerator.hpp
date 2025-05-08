@@ -13,15 +13,15 @@ class TargetGenerator
 		TargetGenerator& operator=(TargetGenerator const& other);
 		TargetGenerator(TargetGenerator const& other);
 
-		std::map<std::string, ATarget *> _targets;
+		std::map<str, ATarget *> _targets;
 
 	public:
 		TargetGenerator();
 		~TargetGenerator();
 	
 		void learnTargetType(ATarget *spell);
-		void forgetTargetType(std::string const& type);
-		ATarget * createTarget(std::string const& type);
+		void forgetTargetType(str const& type);
+		ATarget * createTarget(str const& type);
 
 };
 

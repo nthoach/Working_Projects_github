@@ -1,13 +1,13 @@
 #include "ATarget.hpp"
 #include "ASpell.hpp"
 
-ATarget::ATarget(const std::string &type): _type(type)
+ATarget::ATarget(const str &type): _type(type)
 {}
 
 ATarget::~ATarget()
 {}
 
-const std::string &ATarget::getType() const
+const str &ATarget::getType() const
 {
     return (this->_type);
 }

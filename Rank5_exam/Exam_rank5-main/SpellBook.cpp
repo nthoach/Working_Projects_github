@@ -5,7 +5,7 @@ SpellBook::SpellBook() {}
 
 SpellBook::~SpellBook() 
 {
-	std::map<std::string, ASpell *>::iterator it = _spells.begin();
+	std::map<str, ASpell *>::iterator it = _spells.begin();
 	while (it != _spells.end())
 	{
 		delete it->second;
@@ -26,7 +26,7 @@ void SpellBook::learnSpell(ASpell *spell)
 		}
 	}
 }
-void SpellBook::forgetSpell(std::string const& spellname)
+void SpellBook::forgetSpell(str const& spellname)
 {
 	if (_spells.find(spellname) != _spells.end())
 	{
@@ -36,7 +36,7 @@ void SpellBook::forgetSpell(std::string const& spellname)
 	}
 }
 
-ASpell * SpellBook::createSpell(std::string const& spellname)
+ASpell * SpellBook::createSpell(str const& spellname)
 {
 	if(_spells.find(spellname) != _spells.end())
 	{

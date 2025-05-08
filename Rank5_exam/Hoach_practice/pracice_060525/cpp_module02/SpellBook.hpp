@@ -14,15 +14,15 @@ class SpellBook
 
 		SpellBook& operator=(SpellBook const& other);
 		SpellBook(SpellBook const& other);
-		std::map<std::string, ASpell *> _spells;
+		std::map<str, ASpell *> _spells;
 
 	public:
 		SpellBook();
 		~SpellBook();
 	
 		void learnSpell(ASpell *spell);
-		void forgetSpell(std::string const& spellname);
-		ASpell * createSpell(std::string const& spellname);
+		void forgetSpell(str const& spellname);
+		ASpell * createSpell(str const& spellname);
 
 };
 

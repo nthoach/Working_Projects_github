@@ -7,8 +7,8 @@
 # include "ATarget.hpp"
 # include <map>
 
-typedef std::string str;
-typedef std::map<std::string, ASpell *> spell_map;
+typedef str str;
+typedef std::map<str, ASpell *> spell_map;
 typedef spell_map::iterator spell_it;
 
 class Warlock

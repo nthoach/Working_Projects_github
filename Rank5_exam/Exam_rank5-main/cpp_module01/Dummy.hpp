@@ -1,12 +1,11 @@
-#ifndef DUMMY_HPP
-#define DUMMY_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "ATarget.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class Dummy : public ATarget{
 
@@ -19,4 +18,3 @@ public:
     ATarget *clone();
 };
 
-#endif

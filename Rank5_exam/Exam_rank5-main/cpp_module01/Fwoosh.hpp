@@ -1,12 +1,11 @@
-#ifndef FWOOSH_HPP
-#define FWOOSH_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "ASpell.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class Fwoosh : public ASpell{
 
@@ -18,5 +17,3 @@ public:
 
     ASpell *clone();
 };
-
-#endif

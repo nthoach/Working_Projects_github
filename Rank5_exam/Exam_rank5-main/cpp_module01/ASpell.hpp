@@ -1,12 +1,11 @@
-#ifndef ASPELL_HPP
-#define ASPELL_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
 
 class ATarget;
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class ASpell {
 protected:
@@ -26,5 +25,3 @@ public:
     
     void launch(ATarget const &target) const;
 };
-
-#endif

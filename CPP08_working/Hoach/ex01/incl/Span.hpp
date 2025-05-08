@@ -19,9 +19,12 @@ class Span
 
         // Destructor
         ~Span();
+        //
+        Span(Span const& other);
+        Span &operator=(Span const& other);
 
         // Add a single number to the Span
-        void addNumber(int number);
+        void addNumbers(int number);
 
         // Add a range of numbers to the Span
         template <typename Iterator>
@@ -34,6 +37,9 @@ class Span
             _numbers.insert(_numbers.end(), begin, end);
         }
 
+        // Get a number at a specific index (for debugging)
+        int getNumber(unsigned int index) const;
+
         // Find the shortest span
         int shortestSpan() const;
 
@@ -41,7 +47,9 @@ class Span
         int longestSpan() const;
 
         // Get the current size of the Span (optional for debugging)
-        unsigned int size() const { return _numbers.size(); }
+        unsigned int size() const;
 };
+
+std::ostream& operator<<(std::ostream& os, const Span& span);
 
 #endif // SPAN_HPP

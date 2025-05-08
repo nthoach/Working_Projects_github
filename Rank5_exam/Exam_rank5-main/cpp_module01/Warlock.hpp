@@ -1,5 +1,4 @@
-#ifndef WARLOCK_HPP
-#define WARLOCK_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -7,7 +6,7 @@
 #include "ASpell.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 typedef std::vector<ASpell *>::iterator spell_It;
 
 class Warlock {
@@ -31,4 +30,3 @@ public:
     void launchSpell(str const &whichSpell, ATarget &target);
 };
 
-#endif

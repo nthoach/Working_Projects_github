@@ -7,7 +7,7 @@
 #include "ASpell.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 typedef std::vector<ASpell *>::iterator spell_It;
 
 class SpellBook {

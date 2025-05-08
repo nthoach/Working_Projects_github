@@ -5,7 +5,7 @@
 # include <string>
 # include "ATarget.hpp"
 
-typedef std::string str;
+typedef str str;
 
 class ATarget; 
 

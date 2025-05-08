@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 
-typedef std::string str;
+typedef str str;
 
 
 class Warlock

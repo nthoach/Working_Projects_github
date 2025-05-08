@@ -7,12 +7,12 @@ class ATarget;
 class TargetGenerator
 {
 	private:
-		std::map<std::string, ATarget *> tgtTypes;
+		std::map<str, ATarget *> tgtTypes;
 	public:
 		TargetGenerator();
 		~TargetGenerator();
 
 		void learnTargetType(ATarget *);
-		void forgetTargetType(const std::string &);
-		ATarget *createTarget(const std::string &);
+		void forgetTargetType(const str &);
+		ATarget *createTarget(const str &);
 };

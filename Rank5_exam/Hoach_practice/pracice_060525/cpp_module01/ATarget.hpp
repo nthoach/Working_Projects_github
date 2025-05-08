@@ -5,7 +5,7 @@
 # include <string>
 # include "ASpell.hpp"
 
-typedef std::string str;
+typedef str str;
 
 class ASpell;
 

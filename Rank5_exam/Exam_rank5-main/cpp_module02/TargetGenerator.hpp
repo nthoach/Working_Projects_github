@@ -7,7 +7,7 @@
 #include "ATarget.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 typedef std::vector<ATarget *>::iterator target_It;
 
 class TargetGenerator {

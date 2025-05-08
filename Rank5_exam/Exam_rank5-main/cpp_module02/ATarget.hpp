@@ -6,7 +6,7 @@
 
 class ASpell;
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class ATarget {
 protected:

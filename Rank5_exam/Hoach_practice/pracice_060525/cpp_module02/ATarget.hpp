@@ -10,16 +10,16 @@ class ASpell;
 class ATarget
 {
 	private:
-		std::string _type;
+		str _type;
 		ATarget();
 	
 	public:
-		ATarget(std::string  const& type);
+		ATarget(str  const& type);
 		ATarget(ATarget const& other);
 		ATarget& operator=(ATarget const& other);
 
 		virtual ~ATarget();
-		const std::string& getType() const;
+		const str& getType() const;
 	
 
 		virtual ATarget* clone() const = 0;
