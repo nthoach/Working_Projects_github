@@ -47,7 +47,7 @@ re			: fclean all
 
 run			: re
 			@$(RM) $(OBJS)
-			@./$(NAME) ./input.csv
+			@./$(NAME) ./input.txt
 leaks		: re
 			@$(RM) $(OBJS)
 			valgrind --leak-check=full ./$(NAME)

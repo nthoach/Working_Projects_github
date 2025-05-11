@@ -14,7 +14,7 @@ int main(int argc, char **argv)
     }
 
     const std::string inputFile = argv[1];
-    const std::string dbFile = "exchange_rates.csv"; // adjust if your DB file has a different name
+    const std::string dbFile = "data.csv"; // adjust if your DB file has a different name
 
     BitcoinExchange exchange(dbFile);
     exchange.evaluateFile(inputFile);
