@@ -10,19 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+SHELL		= /bin/bash
+
+NAME		= PmergeMe
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, PmergeMe.cpp main.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, MutantStack.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, PmergeMe.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
@@ -45,32 +47,36 @@ fclean		: clean
 
 re			: fclean all
 
-run			: re
-			@$(RM) $(OBJS)
-			@./$(NAME) 0
+RANDOM_ARGS := $(shell shuf -i 1-20 -n 20 | tr '\n' ' ')
+
+run: re
+	@$(RM) $(OBJS)
+	@echo "-------------- ex02 ------------------"
+	@./$(NAME) 3 5 9 7 4
+	@./$(NAME) $(RANDOM_ARGS)
+	@echo "------------end of ex02---------------"
+
+
 leaks		: re
 			@$(RM) $(OBJS)
 			valgrind --leak-check=full ./$(NAME)
 
 runall		:
-			make run;
+			cd ../ex00/; make run;
 			cd ../ex01/; make run;
 			cd ../ex02/; make run;			
-			cd ../ex03/; make run;
-			cd ../ex00/;
+			cd ../ex02/;
 
 leaksall	:
-			make leaks;
+			cd ../ex00/; make leaks;
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-			cd ../ex03/; make leaks;
-			cd ../ex00/;
+			cd ../ex02/;
 
 fcleanall	:
-			make fclean;
+			cd ../ex00/; make fclean;
 			cd ../ex01/; make fclean;
 			cd ../ex02/; make fclean;			
-			cd ../ex03/; make fclean;
-			cd ../ex00/;
+			cd ../ex02/;
 			
 .PHONY		: all clean fclean re run leaks leaksall fcleanall runall

@@ -1,57 +1,70 @@
-#include "MutantStack.hpp"
+// main.cpp
+#include "PmergeMe.hpp"
 #include <iostream>
-#include <list>
+#include <sstream>
+#include <cstdlib>
+#include <sys/time.h>
 
-int main() {
-    // Test with MutantStack
-    std::cout << "Testing MutantStack:" << std::endl;
-    MutantStack<int> mstack;
-    mstack.push(5);
-    mstack.push(17);
-    std::cout << "Top element: " << mstack.top() << std::endl;
-    mstack.pop();
-    std::cout << "Size after pop: " << mstack.size() << std::endl;
-    mstack.push(3);
-    mstack.push(5);
-    mstack.push(737);
-    mstack.push(0);
+static bool isValidNumber(const char* str) {
+    for (int i = 0; str[i]; ++i) {
+        if (!isdigit(str[i]))
+            return false;
+    }
+    return true;
+}
 
-    MutantStack<int>::iterator it = mstack.begin();
-    MutantStack<int>::iterator ite = mstack.end();
-    ++it;
-    --it;
+static void printSequence(const std::string& label, const std::vector<int>& seq) {
+    std::cout << label;
+    for (size_t i = 0; i < seq.size(); ++i)
+        std::cout << " " << seq[i];
+    std::cout << std::endl;
+}
 
-    std::cout << "Elements in MutantStack:" << std::endl;
-    while (it != ite) {
-        std::cout << *it << std::endl;
-        ++it;
+int main(int argc, char** argv) {
+    if (argc < 2) {
+        std::cerr << "Error" << std::endl;
+        return 1;
     }
 
-    std::stack<int> s(mstack);
+    std::vector<int> vec;
+    std::deque<int> deq;
 
-    // Test with std::list for comparison
-    std::cout << "\nTesting std::list:" << std::endl;
-    std::list<int> lst;
-    lst.push_back(5);
-    lst.push_back(17);
-    std::cout << "Top element: " << lst.back() << std::endl;
-    lst.pop_back();
-    std::cout << "Size after pop: " << lst.size() << std::endl;
-    lst.push_back(3);
-    lst.push_back(5);
-    lst.push_back(737);
-    lst.push_back(0);
-
-    std::list<int>::iterator lit = lst.begin();
-    std::list<int>::iterator lite = lst.end();
-    ++lit;
-    --lit;
-
-    std::cout << "Elements in std::list:" << std::endl;
-    while (lit != lite) {
-        std::cout << *lit << std::endl;
-        ++lit;
+    for (int i = 1; i < argc; ++i) {
+        if (!isValidNumber(argv[i])) {
+            std::cerr << "Error" << std::endl;
+            return 1;
+        }
+        int val = std::atoi(argv[i]);
+        if (val <= 0) {
+            std::cerr << "Error" << std::endl;
+            return 1;
+        }
+        vec.push_back(val);
+        deq.push_back(val);
     }
+
+    printSequence("Before:", vec);
+
+    PmergeMe sorter;
+
+    timeval start, end;
+
+    gettimeofday(&start, NULL);
+    sorter.sortVector(vec);
+    gettimeofday(&end, NULL);
+    double timeVec = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+
+    gettimeofday(&start, NULL);
+    sorter.sortDeque(deq);
+    gettimeofday(&end, NULL);
+    double timeDeq = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
+
+    printSequence("After:", vec);
+
+    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : "
+              << timeVec << " us" << std::endl;
+    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque : "
+              << timeDeq << " us" << std::endl;
 
     return 0;
 }

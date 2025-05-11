@@ -56,21 +56,18 @@ runall		:
 			make run;
 			cd ../ex01/; make run;
 			cd ../ex02/; make run;			
-			cd ../ex03/; make run;
 			cd ../ex00/;
 
 leaksall	:
 			make leaks;
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-			cd ../ex03/; make leaks;
 			cd ../ex00/;
 
 fcleanall	:
 			make fclean;
 			cd ../ex01/; make fclean;
 			cd ../ex02/; make fclean;			
-			cd ../ex03/; make fclean;
 			cd ../ex00/;
 			
 .PHONY		: all clean fclean re run leaks leaksall fcleanall runall

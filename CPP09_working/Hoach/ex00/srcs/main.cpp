@@ -19,6 +19,6 @@ int main(int argc, char **argv)
     BitcoinExchange exchange(dbFile);
     exchange.evaluateFile(inputFile);
 
-    std::cout << "\n------------------ end of ex00 -------------------"<< std::endl;
+    std::cout << "------------------ end of ex00 -------------------\n"<< std::endl;
     return 0;
 }

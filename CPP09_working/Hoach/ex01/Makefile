@@ -10,19 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= RPN
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
 
 SRCS_DIR 	= srcs
-SRCS		= $(addprefix $(SRCS_DIR)/, Span.cpp main.cpp)
+SRCS		= $(addprefix $(SRCS_DIR)/, RPN.cpp main.cpp)
 
 OBJS_DIR	= objs
 OBJS		= $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.cpp=.o)))
 
 INCS_DIR	= incl
-INCS		= $(addprefix $(INCS_DIR)/, Span.hpp)
+INCS		= $(addprefix $(INCS_DIR)/, RPN.hpp)
 
 MAIN_INC	= -I$(INCS_DIR)
 
@@ -47,30 +47,31 @@ re			: fclean all
 
 run			: re
 			@$(RM) $(OBJS)
-			@./$(NAME) 0
+			@./$(NAME) "8 9 * 9 - 9 - 9 - 4 - 1 +"
+			# @./$(NAME) "7 7 * 7 -"
+			# @./$(NAME) "1 2 * 2 / 2 * 2 4 - +"
+			# $ ./RPN "(1 + 1)"
+		
 leaks		: re
 			@$(RM) $(OBJS)
 			valgrind --leak-check=full ./$(NAME)
 
 runall		:
-			make run;
+			cd ../ex00/; make run;
 			cd ../ex01/; make run;
 			cd ../ex02/; make run;			
-			cd ../ex03/; make run;
-			cd ../ex00/;
+			cd ../ex01/;
 
 leaksall	:
-			make leaks;
+			cd ../ex00/; make leaks;
 			cd ../ex01/; make leaks;
 			cd ../ex02/; make leaks;			
-			cd ../ex03/; make leaks;
-			cd ../ex00/;
+			cd ../ex01/;
 
 fcleanall	:
-			make fclean;
+			cd ../ex00/; make fclean;
 			cd ../ex01/; make fclean;
 			cd ../ex02/; make fclean;			
-			cd ../ex03/; make fclean;
-			cd ../ex00/;
+			cd ../ex01/;
 			
 .PHONY		: all clean fclean re run leaks leaksall fcleanall runall

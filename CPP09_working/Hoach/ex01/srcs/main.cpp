@@ -1,34 +1,30 @@
-#include "Span.hpp"
+#include "RPN.hpp"
 #include <iostream>
-#include <vector>
 
-int main() {
-    try {
-        // Example from the exercise
-        Span sp = Span(5);
-        sp.addNumber(6);
-        sp.addNumber(3);
-        sp.addNumber(17);
-        sp.addNumber(9);
-        sp.addNumber(11);
 
-        std::cout << "Shortest span: " << sp.shortestSpan() << std::endl;
-        std::cout << "Longest span: " << sp.longestSpan() << std::endl;
+int main(int argc, char **argv)
+{
+    std::cout << "\n------------------    ex01   -------------------"<< std::endl;
 
-        // Test with a range of numbers
-        Span largeSpan(10000);
-        std::vector<int> numbers;
-        for (int i = 0; i < 10000; ++i) {
-            numbers.push_back(i);
-        }
-        largeSpan.addNumbers(numbers.begin(), numbers.end());
-
-        std::cout << "Shortest span in largeSpan: " << largeSpan.shortestSpan() << std::endl;
-        std::cout << "Longest span in largeSpan: " << largeSpan.longestSpan() << std::endl;
-
-    } catch (const std::exception& e) {
-        std::cerr << "Exception: " << e.what() << std::endl;
+    if (argc != 2)
+    {
+        std::cerr << "Error\n";
+        return 1;
     }
 
+    RPN calculator;
+
+    try
+    {
+        int result = calculator.evaluate(argv[1]);
+        std::cout << argv[1] << " = " << result << std::endl;
+    }
+    catch (const std::exception& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
+
+    std::cout << "------------------ end of ex01 -------------------\n"<< std::endl;
     return 0;
 }
