@@ -6,6 +6,7 @@
 #include <exception> // For std::exception
 #include <iterator>  // For iterators
 #include <iostream>  // For debugging (optional)
+#include <limits>
 
 class Span {
 private:
