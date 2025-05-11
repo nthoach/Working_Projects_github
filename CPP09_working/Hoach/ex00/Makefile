@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= ex00
+NAME		= btc
 CXX			= c++
 CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
 RM			= rm -f
@@ -47,7 +47,7 @@ re			: fclean all
 
 run			: re
 			@$(RM) $(OBJS)
-			@./$(NAME) 0
+			@./$(NAME) ./input.csv
 leaks		: re
 			@$(RM) $(OBJS)
 			valgrind --leak-check=full ./$(NAME)

@@ -1,19 +1,24 @@
 #include <iostream>
+#include <fstream>
 #include "BitcoinExchange.hpp"
 
-int main() {
-    BitcoinExchange exchange;
 
-    // Example usage
-    std::string date = "2023-10-01";
-    double amount = 100.0;
+int main(int argc, char **argv)
+{
+    std::cout << "\n------------------    ex00   -------------------"<< std::endl;
 
-    try {
-        double value = exchange.getValue(date, amount);
-        std::cout << "Value for " << amount << " BTC on " << date << " is: " << value << " USD" << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    if (argc != 2)
+    {
+        std::cerr << "Usage error ./btc input.txt \n";
+        return 1;
     }
 
+    const std::string inputFile = argv[1];
+    const std::string dbFile = "exchange_rates.csv"; // adjust if your DB file has a different name
+
+    BitcoinExchange exchange(dbFile);
+    exchange.evaluateFile(inputFile);
+
+    std::cout << "\n------------------ end of ex00 -------------------"<< std::endl;
     return 0;
 }
