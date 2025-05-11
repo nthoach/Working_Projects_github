@@ -1,18 +1,18 @@
 #include "ASpell.hpp"
 #include "ATarget.hpp"
 
-ASpell::ASpell(const std::string &name, const std::string &effects): _name(name), _effects(effects)
+ASpell::ASpell(const str &name, const str &effects): _name(name), _effects(effects)
 {}
 
 ASpell::~ASpell()
 {}
 
-std::string ASpell::getName() const
+str ASpell::getName() const
 {
     return (this->_name);
 }
 
-std::string ASpell::getEffects() const
+str ASpell::getEffects() const
 {
     return (this->_effects);
 }

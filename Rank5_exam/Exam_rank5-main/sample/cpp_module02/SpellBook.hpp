@@ -7,12 +7,12 @@ class ASpell;
 class SpellBook
 {
 	private:
-		std::map<std::string, ASpell *> _SpellBook;
+		std::map<str, ASpell *> _SpellBook;
 	public:
 		SpellBook();
 		~SpellBook();
 
 		void learnSpell(ASpell *);
-		void forgetSpell(const std::string &);
-		ASpell *createSpell(const std::string &);
+		void forgetSpell(const str &);
+		ASpell *createSpell(const str &);
 };

@@ -6,13 +6,13 @@ class ATarget;
 class ASpell
 {
 	protected:
-		std::string _name;
-		std::string _effects;
+		str _name;
+		str _effects;
 	public:
-		ASpell(const std::string &name, const std::string &title);
+		ASpell(const str &name, const str &title);
 		virtual ~ASpell();
-		std::string getName() const;
-		std::string getEffects() const;
+		str getName() const;
+		str getEffects() const;
 		virtual ASpell *clone() const = 0;
 		void launch(const ATarget &src) const;
 };

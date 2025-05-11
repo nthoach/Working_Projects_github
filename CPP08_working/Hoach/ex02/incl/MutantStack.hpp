@@ -5,7 +5,8 @@
 #include <deque> // Default container for std::stack
 
 template <typename T, typename Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container> {
+class MutantStack : public std::stack<T, Container>
+{
 public:
     // Typedefs for iterator types
     typedef typename Container::iterator iterator;
@@ -19,8 +20,10 @@ public:
     ~MutantStack() {}
 
     // Assignment operator
-    MutantStack& operator=(const MutantStack& other) {
-        if (this != &other) {
+    MutantStack& operator=(const MutantStack& other)
+    {
+        if (this != &other)
+        {
             std::stack<T, Container>::operator=(other);
         }
         return *this;

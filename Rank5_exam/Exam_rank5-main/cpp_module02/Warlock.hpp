@@ -6,7 +6,7 @@
 #include "SpellBook.hpp"
 
 using std::cout;
-typedef std::string str;
+typedef str str;
 
 class Warlock {
     str name;

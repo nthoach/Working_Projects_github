@@ -18,17 +18,17 @@ class Warlock
         SpellBook _spellbook;
 
     public:
-        Warlock(std::string const &name, std::string const &title);
+        Warlock(str const &name, str const &title);
         ~Warlock();
 
-        const std::string  & getName()  const;
-        const std::string  & getTitle() const;
-        void setTitle(const std::string &title);
+        const str  & getName()  const;
+        const str  & getTitle() const;
+        void setTitle(const str &title);
         void introduce() const;
 
         void learnSpell(ASpell *spell);
-        void forgetSpell(std::string const &spellname);
-        void launchSpell(std::string const &spellname, ATarget const& target);
+        void forgetSpell(str const &spellname);
+        void launchSpell(str const &spellname, ATarget const& target);
             
 };
 

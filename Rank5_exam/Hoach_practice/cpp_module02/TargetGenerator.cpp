@@ -19,14 +19,14 @@ void TargetGenerator::learnTargetType(ATarget * target)
     if (target)
         this->_targets[target->getType()] = target->clone();
 }
-void TargetGenerator::forgetTargetType(std::string const &type)
+void TargetGenerator::forgetTargetType(str const &type)
 {
     if (this->_targets[type])
         delete this->_targets[type];
     this->_targets.erase(type);
     
 }
-ATarget* TargetGenerator::createTarget(std::string const &type)
+ATarget* TargetGenerator::createTarget(str const &type)
 {
     if(this->_targets[type])
         return this->_targets[type]->clone();
