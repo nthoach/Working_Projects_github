@@ -7,67 +7,84 @@
 PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 
-// Insertion sort helper
-static void insertionSort(std::vector<int>& arr, int left, int right)
+// ---------- Ford–Johnson-style Sort for Vector ----------
+
+std::vector<int> PmergeMe::fordJohnsonSort(const std::vector<int>& input)
 {
-    for (int i = left + 1; i <= right; ++i)
-    {
-        int key = arr[i];
-        int j = i - 1;
-        while (j >= left && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            --j;
+    if (input.size() <= 1)
+        return input;
+
+    std::vector<int> followers;
+    std::vector<int> leaders;
+
+    for (size_t i = 0; i + 1 < input.size(); i += 2)
+	{
+        int a = input[i];
+        int b = input[i + 1];
+        if (a < b)
+		{
+            followers.push_back(a);
+            leaders.push_back(b);
         }
-        arr[j + 1] = key;
+		else
+		{
+            followers.push_back(b);
+            leaders.push_back(a);
+        }
     }
-}
 
-// static void merge(std::vector<int>& arr, int l, int m, int r)
-// {
-//     std::vector<int> left(arr.begin() + l, arr.begin() + m + 1);
-//     std::vector<int> right(arr.begin() + m + 1, arr.begin() + r + 1);
+    if (input.size() % 2 != 0)
+        leaders.push_back(input.back());
 
-//     int i = 0, j = 0, k = l;
-//     while (i < (int)left.size() && j < (int)right.size()) {
-//         if (left[i] <= right[j])
-//             arr[k++] = left[i++];
-//         else
-//             arr[k++] = right[j++];
-//     }
-//     while (i < (int)left.size()) arr[k++] = left[i++];
-//     while (j < (int)right.size()) arr[k++] = right[j++];
-// }
+    std::vector<int> sortedLeaders = fordJohnsonSort(leaders);
 
-void PmergeMe::fordJohnsonSortVector(std::vector<int>& arr)
-{
-    if (arr.size() <= 1)
-        return;
-    if (arr.size() < 16) {
-        insertionSort(arr, 0, arr.size() - 1);
-        return;
+    // Binary insertion
+    for (size_t i = 0; i < followers.size(); ++i)
+	{
+        int value = followers[i];
+        std::vector<int>::iterator pos = std::lower_bound(sortedLeaders.begin(), sortedLeaders.end(), value);
+        sortedLeaders.insert(pos, value);
     }
-    int mid = arr.size() / 2;
-    std::vector<int> left(arr.begin(), arr.begin() + mid);
-    std::vector<int> right(arr.begin() + mid, arr.end());
 
-    fordJohnsonSortVector(left);
-    fordJohnsonSortVector(right);
-    
-    std::merge(left.begin(), left.end(), right.begin(), right.end(), arr.begin());
+    return sortedLeaders;
 }
 
-void PmergeMe::sortVector(std::vector<int>& vec) {
-    fordJohnsonSortVector(vec);
-}
+// ---------- Ford–Johnson-style Sort for Deque ----------
 
-void PmergeMe::sortDeque(std::deque<int>& deq) {
-    std::vector<int> tmp(deq.begin(), deq.end());
-    fordJohnsonSortVector(tmp);
-    deq.assign(tmp.begin(), tmp.end());
-}
-
-void PmergeMe::fordJohnsonSortDeque(std::deque<int>& sequence)
+std::deque<int> PmergeMe::fordJohnsonSort(const std::deque<int>& input)
 {
-    // Optional: specialize for deque if needed
-    (void)sequence; 
+    if (input.size() <= 1)
+        return input;
+
+    std::deque<int> followers;
+    std::deque<int> leaders;
+
+    for (size_t i = 0; i + 1 < input.size(); i += 2)
+	{
+        int a = input[i];
+        int b = input[i + 1];
+        if (a < b)
+		{
+            followers.push_back(a);
+            leaders.push_back(b);
+        } else
+		{
+            followers.push_back(b);
+            leaders.push_back(a);
+        }
+    }
+
+    if (input.size() % 2 != 0)
+        leaders.push_back(input.back());
+
+    std::deque<int> sortedLeaders = fordJohnsonSort(leaders);
+
+    for (size_t i = 0; i < followers.size(); ++i)
+	{
+        int value = followers[i];
+        std::deque<int>::iterator pos = std::lower_bound(sortedLeaders.begin(), sortedLeaders.end(), value);
+        sortedLeaders.insert(pos, value);
+    }
+
+    return sortedLeaders;
 }

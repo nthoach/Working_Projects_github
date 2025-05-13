@@ -7,17 +7,16 @@
 #include <string>
 #include <ctime>
 
-class PmergeMe {
-public:
-    PmergeMe();
-    ~PmergeMe();
+class PmergeMe
+{
+	private:
 
-    void sortVector(std::vector<int>& vec);
-    void sortDeque(std::deque<int>& deq);
+	public:
+	    PmergeMe();
+	    ~PmergeMe();
 
-private:
-    void fordJohnsonSortVector(std::vector<int>& sequence);
-    void fordJohnsonSortDeque(std::deque<int>& sequence);
+		std::vector<int> fordJohnsonSort(const std::vector<int>& input);
+		std::deque<int> fordJohnsonSort(const std::deque<int>& input);
 };
 
 #endif

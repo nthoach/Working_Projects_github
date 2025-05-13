@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: honguyen <honguyen@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/10 13:54:54 by honguyen          #+#    #+#              #
-#    Updated: 2025/05/01 21:19:01 by honguyen         ###   ########.fr        #
+#    Updated: 2025/05/13 09:43:16 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ fclean		: clean
 
 re			: fclean all
 
-RANDOM_ARGS := $(shell shuf -i 1-20 -n 20 | tr '\n' ' ')
+RANDOM_ARGS := $(shell shuf -i 1-100 -n 100 | tr '\n' ' ')
 
 run: re
 	@$(RM) $(OBJS)

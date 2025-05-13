@@ -5,23 +5,35 @@
 #include <cstdlib>
 #include <sys/time.h>
 
-static bool isValidNumber(const char* str) {
-    for (int i = 0; str[i]; ++i) {
+static bool isValidNumber(const char* str)
+{
+    for (int i = 0; str[i]; ++i)
+	{
         if (!isdigit(str[i]))
             return false;
     }
     return true;
 }
 
-static void printSequence(const std::string& label, const std::vector<int>& seq) {
+static void printSequence(const std::string& label, const std::vector<int>& seq)
+{
+    std::cout << label;
+    for (size_t i = 0; i < seq.size(); ++i)
+        std::cout << " " << seq[i];
+    std::cout << std::endl;
+}
+static void printSequence(const std::string& label, const std::deque<int>& seq)
+{
     std::cout << label;
     for (size_t i = 0; i < seq.size(); ++i)
         std::cout << " " << seq[i];
     std::cout << std::endl;
 }
 
-int main(int argc, char** argv) {
-    if (argc < 2) {
+int main(int argc, char** argv)
+{
+    if (argc < 2)
+	{
         std::cerr << "Error" << std::endl;
         return 1;
     }
@@ -29,13 +41,16 @@ int main(int argc, char** argv) {
     std::vector<int> vec;
     std::deque<int> deq;
 
-    for (int i = 1; i < argc; ++i) {
-        if (!isValidNumber(argv[i])) {
+    for (int i = 1; i < argc; ++i)
+	{
+        if (!isValidNumber(argv[i]))
+		{
             std::cerr << "Error" << std::endl;
             return 1;
         }
         int val = std::atoi(argv[i]);
-        if (val <= 0) {
+        if (val <= 0)
+		{
             std::cerr << "Error" << std::endl;
             return 1;
         }
@@ -43,23 +58,24 @@ int main(int argc, char** argv) {
         deq.push_back(val);
     }
 
-    printSequence("Before:", vec);
-
+    printSequence("Before (vec):", vec);
+	printSequence("Before (deq):", deq);
     PmergeMe sorter;
 
     timeval start, end;
 
     gettimeofday(&start, NULL);
-    sorter.sortVector(vec);
+	std::vector<int> sorted_vec = sorter.fordJohnsonSort(vec);
     gettimeofday(&end, NULL);
     double timeVec = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
 
     gettimeofday(&start, NULL);
-    sorter.sortDeque(deq);
+	std::deque<int> sorted_deq = sorter.fordJohnsonSort(deq);
     gettimeofday(&end, NULL);
     double timeDeq = (end.tv_sec - start.tv_sec) * 1e6 + (end.tv_usec - start.tv_usec);
 
-    printSequence("After:", vec);
+    printSequence("After (vec):", sorted_vec);
+	printSequence("After (deq):", sorted_deq);
 
     std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : "
               << timeVec << " us" << std::endl;
